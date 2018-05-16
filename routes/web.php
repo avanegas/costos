@@ -34,8 +34,6 @@ Route::resource('users', 		'Admin\UserController');
 Route::resource('roles', 		'Admin\RoleController');
 Route::resource('permissions', 	'Admin\PermissionController');
 
-Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Marcar como leido las notificaciones
