@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Proyecto;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Proyecto\Proyecto;
+
+use App\User;
+
 class ProyectoController extends Controller
 {
     /**
@@ -14,7 +18,10 @@ class ProyectoController extends Controller
      */
     public function index()
     {
-        //
+        $proyectos = Proyecto::with(['user'])->orderBy('name', 'ASC')->get();
+
+        return response()
+                ->json(['proyectos' => $proyectos]);
     }
 
     /**

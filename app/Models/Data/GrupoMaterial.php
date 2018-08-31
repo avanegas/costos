@@ -5,8 +5,9 @@ namespace App\Models\Data;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Data\Material;
 
-use App\User;
 use App\Zona;
+use App\User;
+
 
 class GrupoMaterial extends Model
 {

@@ -5,6 +5,11 @@ namespace App\Http\Controllers\Precio;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Precio\GrupoPrecio;
+use App\Models\Precio\Precio;
+
+use App\User;
+
 class PrecioController extends Controller
 {
     /**
@@ -14,7 +19,10 @@ class PrecioController extends Controller
      */
     public function index()
     {
-        //
+        $precios = Precio::with(['grupo_precio'])->orderBy('name', 'ASC')->get();
+
+        return response()
+                ->json(['precios' => $precios]);
     }
 
     /**

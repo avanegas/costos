@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Data\GrupoEquipo;
+use App\Models\Data\Equipo;
 
 class EquipoController extends Controller
 {
@@ -14,7 +16,10 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        //
+        $equipos = Equipo::with([grupo_equipo])->orderBy('id', 'DESC')->paginate(20);
+
+        return response()
+            ->json(['equipos' => $equipos]);
     }
 
     /**

@@ -17,9 +17,10 @@ class UsersTableSeeder extends Seeder
         //$role_admin = Role::where('name', 'admin')->first();
 
         $user = User::create([
-        	'name'     => 'Angel Vanegas',
-        	'email'    => 'avanepe@hotmail.com',
-        	'password' => '$2y$10$4ZrcNsb3yeQ9DnYalzqLhOFV996gUQjUKrRW8nnutgN5/M.e4rsCC'   //alvape14
+        	'name'      => 'Angel Vanegas',
+        	'email'     => 'avanepe@hotmail.com',
+        	'password'  => '$2y$10$4ZrcNsb3yeQ9DnYalzqLhOFV996gUQjUKrRW8nnutgN5/M.e4rsCC',   //alvape14
+            'api_token' => str_random(60)
         ]);
 
         factory(User::class, 29)->create();

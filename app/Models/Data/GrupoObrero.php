@@ -3,11 +3,11 @@
 namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Data\GrupoObrero;
 use App\Models\Data\Obrero;
 
-use App\User;
 use App\Zona;
+use App\User;
+
 
 class GrupoObrero extends Model
 {

@@ -7,20 +7,23 @@ use App\Http\Controllers\Controller;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 use Session;
 use Auth;
 
 class RoleController extends Controller {
-
+    /*
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
-
+    */
     public function index() 
     {
-        $roles = Role::orderBy('id', 'ASC')->paginate();
-        return view('admin.roles.index',compact('roles'));
+        $roles = Role::orderBy('name', 'ASC')->get();
+
+        return response()
+            ->json(['roles' => $roles]);
     }
 
     public function create() 

@@ -11,6 +11,8 @@ use App\Models\Proyecto\ProyectoRubro;
 use App\Models\Proyecto\Proyecto;
 use App\Models\Precio\Precio;
 use App\Models\Post\Post;
+use App\Models\Post\Comment;
+
 use App\Zona;
 
 class User extends Authenticatable
@@ -23,7 +25,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token'
     ];
 
     /**
@@ -32,12 +34,12 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password', 'remember_token', 'api_token'
     ];
 
-        public function posts()
+    public function posts()
     {
-        return $this->hasMany(App\Models\Post\Post::class);
+        return $this->hasMany(Post::class);
     }
     
     public function setPasswordAttribute($password)
@@ -62,6 +64,6 @@ class User extends Authenticatable
     
     public function comments()
     {
-        return $this->hasMany(App\Models\Post\Comment::class);
+        return $this->hasMany(Comment::class);
     }
 }

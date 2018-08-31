@@ -3,6 +3,13 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+
+use App\Models\Data\GrupoEquipo;
+use App\Models\Data\GrupoMaterial;
+use App\Models\Data\GrupoObrero;
+use App\Models\Data\GrupoPrecio;
+use App\Models\Data\Transporte;
+
 use App\User;
 
 class Zona extends Model
@@ -44,9 +51,9 @@ class Zona extends Model
   public static function form()
   {
   	  return [
-  	  	'name' => '',
-    	'description' => '',
-    	'user_id' => ''
+        'name'         => '',
+    	'description'  => '',
+    	'user_id'      => ''
    	  ];
   }
 }

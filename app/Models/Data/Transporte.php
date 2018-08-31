@@ -4,14 +4,21 @@ namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
-use App\User;
+
 use App\Zona;
+use App\User;
+
 
 class Transporte extends Model
 {
 	protected $fillable = [
 		'zona_id', 'name', 'unidad', 'tipo', 'tarifa'
 	];
+	
+	public function getCreatedAtAttribute($value)
+	{
+	  return Carbon::parse($value)->format('d/m/Y');
+	}
 
 	public function zona()
 	{

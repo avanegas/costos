@@ -1,1 +1,0 @@
-<a href="#">{{'notification_'.snake_case(class_basename($notification->type))}}</a>

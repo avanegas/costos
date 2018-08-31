@@ -1,4 +1,3 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
@@ -8,7 +7,177 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+/* --------------1. NAVS ---------------- */
+.menu {
+    background: #343a40;
+    margin-bottom: 10px;
+    }
+    .menu ul {
+        display:flex;
+        justify-content:space-between;    
+        height: 60px;
+        }
+        .menu li{
+            position: relative;
+            flex:1;
+            display:flex;
+            justify-content:center;
+            align-items: center;
+           /* border-right: 2px solid #fff;*/
+
+            }
+            .menu a {
+                position: relative;
+                display:block;
+                color: rgba(255, 255, 255, 0.5);
+                text-decoration:none;
+                text-align:center;
+                font-size:14px;
+            }
+            .menu li.active:after {
+                content: "";
+                position: absolute;
+                bottom: 0;
+                height:3px;
+                width: 80%;
+                background: #02648e;  
+            }
+            .menu li:hover .submenu {
+                display: block;
+            }
+
+        .submenu {
+            display:none;
+            position:absolute;
+            left:0;
+            top:41px;
+            width:100px;
+            background:#343a40;
+        }
+
+            .submenu a {
+                display:flex;
+                justify-content:flex-end;
+                align-items: center;
+                height:40px;
+                padding-right: 10px;
+                border-bottom:1px solid #fff;
+                font-size: 14px;
+            }
+            .submenu .active:after {
+                content:"";
+                position:absolute;
+                bottom:0;
+                right: 0;
+                height: 100%;
+                width: 3px;
+                background: #009cde;
+            }
+.inicio {
+  color: white;
+  font-size: 1.125rem;
+  /*display: inline-block;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  margin-right: 1rem;
+
+  line-height: inherit;
+  white-space: nowrap;*/
+}
+
+///////añadido///////////////
+
+header {
+    margin: 1em auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    h2 {
+        font-weight: 300;
+	    font-size: 30px;
+    }
+    a {
+        text-decoration: none;
+        color: #616161;
+    }
+    .stuts {
+        span {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+    }
+}
+/*
+
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-left: 0;
+	list-style: none;
+}
+*/
+li {
+	position: relative;
+}
+
+li > ul {
+	display: none;
+	position:absolute;
+	background: #333;
+}
+
+li:hover {
+	background: rgba(0,0,0,.5);
+    z-index: 99999;
+}
+
+li:hover > ul {
+	display: block;
+}
+/*
+.menu {
+    background: #343a40; //#333;
+    display: flex;
+    //border-bottom: 1px solid rgba(255,255,255,.5);
+    //border: 2px solid #fff;
+}
+
+.item { margin: 5px;}
+
+.item:nth-child(5) {
+  margin-right: auto;
+  background: #fff;
+}
+*/
+.item a{
+    font-size: 14px;                    //incluido
+    color: rgba(255, 255, 255, 0.5);    //color:#fff;
+    text-decoration: none;
+    display: block;
+    padding: 0; //.5em 1.5em;
+    white-space: nowrap;
+}
+
+a {
+    text-decoration: none;
+    color: #616161;
+}
+
+.progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    width: 0;
+    transition: width 0.2s, opacity 0.4s;
+    opacity: 1;
+    background: #03a9f4;
+    z-index: 99999;
+}
+
+.arrow {
+    align-items: center;
+    padding-right: 10px;
+    font-size: 14px;
 }

@@ -7,20 +7,23 @@ use App\Http\Controllers\Controller;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 use Session;
 use Auth;
 
 class PermissionController extends Controller {
-
+    /*
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
-
+    */
     public function index() 
     {
-        $permissions = Permission::orderBy('id', 'ASC')->paginate();
-        return view('admin.permissions.index',compact('permissions'));
+        $permissions = Permission::orderBy('name', 'ASC')->get();
+
+        return response()
+            ->json(['permissions' => $permissions]);
     }
     
     public function create() 

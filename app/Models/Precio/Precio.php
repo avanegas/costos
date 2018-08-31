@@ -3,7 +3,6 @@
 namespace App\Models\Precio;
 
 use Illuminate\Database\Eloquent\Model;
-
 use App\User;
 
 class Precio extends Model

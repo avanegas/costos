@@ -4,15 +4,22 @@ namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Data\GrupoObrero;
+use Carbon\Carbon;
 
-use App\User;
 use App\Zona;
+use App\User;
+
 
 class Obrero extends Model
 {
 	protected $fillable = [
 		'grupo_obrero_id', 'name', 'jornalhora', 'factor'
 	];
+
+	public function getCreatedAtAttribute($value)
+	{
+	  return Carbon::parse($value)->format('d/m/Y');
+	}
 
 	public function grupo_obrero()
 	{

@@ -5,6 +5,8 @@ namespace App\Models\Post;
 use Illuminate\Database\Eloquent\Model;
 use App\Presenters\DatePresenter;
 
+use App\User;
+
 class Post extends Model
 {
     use DatePresenter;
@@ -30,6 +32,6 @@ class Post extends Model
 
     public function comments()
     {
-      return $this->hasMany(App\Models\Post\Comment::class);
+      return $this->hasMany(Comment::class);
     }
 }

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+
 use App\User;
 use Session;
 use Auth;
@@ -17,22 +18,23 @@ class UserController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
+     
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);   //middleware
     }
-    
+    */
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderBy('id', 'DESC')->paginate();
+        $users = User::with('roles')->orderBy('id', 'ASC')->get();
 
-        return view('admin.users.index', compact('users'));
+        return response()
+            ->json(['users' => $users]);
     }
 
     /**

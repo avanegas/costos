@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::redirect('/', 			'blog');
 
 Auth::routes();
@@ -28,15 +28,24 @@ Route::resource('categories', 	'Post\CategoryController');
 Route::resource('posts',		'Post\PostController');
 Route::resource('tags', 		'Post\TagController');
 Route::resource('comments',		'Post\CommentController');
+*/
 
+//admin
 // Admin Users, Roles, Permission resource route.
-Route::resource('users', 		'Admin\UserController');
-Route::resource('roles', 		'Admin\RoleController');
-Route::resource('permissions', 	'Admin\PermissionController');
+//Route::group(['middleware' => ['auth']], function(){});
+//	Route::resource('users', 		'Admin\UserController');
+//	Route::resource('roles', 		'Admin\RoleController');
+//	Route::resource('permissions', 	'Admin\PermissionController');
 
-Route::get('/home', 'HomeController@index')->name('home');
+
+//Route::get('/home', 'HomeController@index')->name('home');
 
 // Marcar como leido las notificaciones
 Route::get('/markAsRead', function(){
 	auth()->user()->unreadNotifications->markAsRead();
+});
+
+
+Route::get('/', function () {
+    return view('welcome');
 });

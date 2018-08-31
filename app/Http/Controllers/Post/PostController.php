@@ -21,12 +21,12 @@ class PostController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
+
     public function __construct()
     {
         $this->middleware('auth');
-    }
-    
+    }    */
+        
     /**
      * Display a listing of the resource.
      *
@@ -34,11 +34,14 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')
+        /*$posts = Post::orderBy('id', 'DESC')
             ->where('user_id', auth()->user()->id)
-            ->paginate();
+            ->paginate();*/
 
-        return view('admin.posts.index', compact('posts'));
+        //$posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
+
+        return response()
+            ->json(['posts' => $posts]);
     }
 
     /**
@@ -85,7 +88,7 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::find($id);
-        $this->authorize('pass', $post);
+        //$this->authorize('pass', $post);
 
         $comments = Comment::where('post_id', $post->id)->get();
 
