@@ -51102,7 +51102,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             form: {
                 email: '',
-                password: ''
+                password: '',
+                remember: false
             },
             error: {},
             isProcessing: false
@@ -51242,7 +51243,61 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(1),
+                _c("div", { staticClass: "form-group row" }, [
+                  _c("div", { staticClass: "col-md-6 offset-md-4" }, [
+                    _c("div", { staticClass: "checkbox" }, [
+                      _c("label", [
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.remember,
+                              expression: "form.remember"
+                            }
+                          ],
+                          attrs: { type: "checkbox", name: "remember" },
+                          domProps: {
+                            checked: Array.isArray(_vm.form.remember)
+                              ? _vm._i(_vm.form.remember, null) > -1
+                              : _vm.form.remember
+                          },
+                          on: {
+                            change: function($event) {
+                              var $$a = _vm.form.remember,
+                                $$el = $event.target,
+                                $$c = $$el.checked ? true : false
+                              if (Array.isArray($$a)) {
+                                var $$v = null,
+                                  $$i = _vm._i($$a, $$v)
+                                if ($$el.checked) {
+                                  $$i < 0 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "remember",
+                                      $$a.concat([$$v])
+                                    )
+                                } else {
+                                  $$i > -1 &&
+                                    _vm.$set(
+                                      _vm.form,
+                                      "remember",
+                                      $$a
+                                        .slice(0, $$i)
+                                        .concat($$a.slice($$i + 1))
+                                    )
+                                }
+                              } else {
+                                _vm.$set(_vm.form, "remember", $$c)
+                              }
+                            }
+                          }
+                        }),
+                        _vm._v(" Remember Me\n                                ")
+                      ])
+                    ])
+                  ])
+                ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "form-group row mb-0" }, [
                   _c("div", { staticClass: "col-md-8 offset-md-4" }, [
@@ -51290,22 +51345,6 @@ var staticRenderFns = [
       _c("i", [_c("small", [_vm._v("esencia")])]),
       _vm._v(" lo exige "),
       _c("b", [_vm._v(":)")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group row" }, [
-      _c("div", { staticClass: "col-md-6 offset-md-4" }, [
-        _c("div", { staticClass: "checkbox" }, [
-          _c("label", [
-            _vm._v(
-              "'remember') ? 'checked' : '' }}> Remember Me\n                                "
-            )
-          ])
-        ])
-      ])
     ])
   }
 ]
@@ -53015,6 +53054,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -54063,7 +54103,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['id', 'name', 'email', 'created_at'],
+            gridColumns: ['id', 'roles', 'name', 'email', 'created_at'],
             lista: 'users',
             isAutorized: false
         };
@@ -54315,7 +54355,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['id', 'name', 'created_at'],
+            gridColumns: ['id', 'name', 'permissions'],
             lista: 'roles',
             isAutorized: false
         };
@@ -54567,7 +54607,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['id', 'name', 'created_at'],
+            gridColumns: ['id', 'name'],
             lista: 'permissions',
             isAutorized: false
         };

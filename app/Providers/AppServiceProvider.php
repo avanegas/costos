@@ -5,7 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Carbon\Carbon;
-use Jenssegers\Date\Date;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -17,7 +17,9 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        Carbon::setLocale(config('app.locale'));
+        
+        Carbon::setLocale('es');
+        setlocale(LC_TIME, 'es_ES.utf8');
     }
 
     /**

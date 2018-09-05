@@ -15,6 +15,9 @@ use App\Models\Post\Category;
 use App\Models\Post\Post;
 use App\Models\Post\Tag;
 
+use App\User;
+use App\Auth;
+
 class PostController extends Controller
 {
     /**
@@ -32,13 +35,12 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request, User $user)
     {
-        /*$posts = Post::orderBy('id', 'DESC')
-            ->where('user_id', auth()->user()->id)
-            ->paginate();*/
+        //$posts = Post::where('user_id', Auth()::user()->user_id)
+        //    ->orderBy('id', 'DESC')->get();
 
-        //$posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
+        $posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
 
         return response()
             ->json(['posts' => $posts]);

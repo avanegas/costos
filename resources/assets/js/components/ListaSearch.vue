@@ -31,7 +31,7 @@
                         <template v-if= "lista === 'precios'">
                             {{ filteredData[i].grupo_precio_id }}  {{ filteredData[i].grupo_precio.name }}
                         </template>
-                         <template v-if= "lista === 'proyectos'">
+                        <template v-if= "lista === 'proyectos'">
                             {{ filteredData[i].user_id }}  {{ filteredData[i].user.name }}
                         </template>
 
@@ -44,8 +44,9 @@
                         <template v-if= "lista === 'permissions'">
                             {{ filteredData[i].id }}
                         </template>
-
                     </template>
+
+                    
                     <template v-else>
                         {{entry[key]}}
                     </template>

@@ -28,7 +28,7 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="checkbox">
                                     <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                        <input type="checkbox" name="remember" v-model= "form.remember"> Remember Me
                                     </label>                                        
                                     </div>
                                 </div>
@@ -62,7 +62,8 @@
             return {
                 form: {
                     email: '',
-                    password: ''
+                    password: '',
+                    remember: false
                 },
                 error: {},
                 isProcessing: false

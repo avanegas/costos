@@ -51,7 +51,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['id', 'name', 'created_at'],
+                gridColumns:['id', 'name'],
                 lista:'permissions',
                 isAutorized: false
             }

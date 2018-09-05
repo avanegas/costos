@@ -32,8 +32,8 @@ class PageController extends Controller
     {
     	$posts = Post::where('status', 'PUBLISHED')->with(['user', 'category', 'comments'])->orderBy('created_at', 'desc')->get();
         
-    	return response()->json([
-            'posts' => $posts
+    	return response()
+            ->json(['posts' => $posts
         ]);
     }
 
@@ -43,8 +43,8 @@ class PageController extends Controller
         
         $posts = Post::where('status', 'PUBLISHED')->where('category_id', $category)->with(['user', 'category', 'comments'])->orderBy('created_at', 'desc')->get();
 
-        return response()->json([
-            'posts' => $posts
+        return response()
+            ->json(['posts' => $posts
         ]);
     }
 
@@ -54,8 +54,8 @@ class PageController extends Controller
                 $query->where('slug', $slug);
             })->with(['user', 'category', 'comments'])->orderBy('created_at', 'desc')->where('status', 'PUBLISHED')->get();
 
-        return response()->json([
-            'posts' => $posts
+        return response()
+            ->json(['posts' => $posts
         ]);
     }
 
@@ -63,8 +63,8 @@ class PageController extends Controller
     {
         $post = Post::where('slug', $slug)->with(['comments', 'comments.user', 'user', 'category', 'tags'])->first();
         
-        return response()->json([
-            'post' => $post
+        return response()
+            ->json(['post' => $post
         ]);
     }
 
@@ -72,8 +72,8 @@ class PageController extends Controller
     {
         $equipos = Equipo::with(['grupo_equipo'])->orderBy('name', 'ASC')->get();
 
-        return response()->json([
-            'equipos' => $equipos
+        return response()
+            ->json(['equipos' => $equipos
         ]);
     }
 
@@ -81,8 +81,8 @@ class PageController extends Controller
     {
         $materials = Material::with(['grupo_material'])->orderBy('name', 'ASC')->get();
 
-        return response()->json([
-            'materials' => $materials
+        return response()
+            ->json(['materials' => $materials
         ]);
     }
 
@@ -90,8 +90,8 @@ class PageController extends Controller
     {
         $obreros = Obrero::with(['grupo_obrero'])->orderBy('name', 'ASC')->get();
 
-        return response()->json([
-            'obreros' => $obreros
+        return response()
+            ->json(['obreros' => $obreros
         ]);
     }
 
@@ -99,8 +99,8 @@ class PageController extends Controller
     {
         $transportes = Transporte::with(['zona'])->orderBy('name', 'ASC')->get();
 
-        return response()->json([
-            'transportes' => $transportes
+        return response()
+            ->json(['transportes' => $transportes
         ]);
     }
 
