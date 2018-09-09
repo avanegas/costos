@@ -13,7 +13,6 @@ trait DatePresenter
 
   public function getUpdatedAtAttribute($value)
   {
-      //Carbon::setLocale('es');
       return Carbon::parse($value)->toDateString();
   }
 }

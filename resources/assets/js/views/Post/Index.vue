@@ -39,7 +39,7 @@
 			}
 		},
 		created() {
-			get(`/api/posts` )
+			get(`/api/posts/${this.$route.params.id}`)
 			.then((res) => {
 				this.posts = res.data.posts
 			})

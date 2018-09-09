@@ -47,10 +47,14 @@
                     </template>
 
                     <template v-if = "index === 2">
-                        <template v-if = "lista === roles">
-                            Hola
+                        <template v-if= "lista === 'roles'">
+                            {{ hola }}
+                        </template>
+                        <template v-else>
+                            {{entry[key]}}
                         </template>
                     </template>
+
                     <template v-else>
                         {{entry[key]}}
                     </template>

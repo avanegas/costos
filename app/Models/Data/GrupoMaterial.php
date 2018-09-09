@@ -3,14 +3,16 @@
 namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Presenters\DatePresenter;
 use App\Models\Data\Material;
 
 use App\Zona;
 use App\User;
 
-
 class GrupoMaterial extends Model
 {
+    use DatePresenter;
+
 	protected $fillable = [
 		'zona_id', 'name', 'description'
 	];

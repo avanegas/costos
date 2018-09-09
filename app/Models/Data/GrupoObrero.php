@@ -3,14 +3,16 @@
 namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Presenters\DatePresenter;
 use App\Models\Data\Obrero;
 
 use App\Zona;
 use App\User;
 
-
 class GrupoObrero extends Model
 {
+	use DatePresenter;
+
 	protected $fillable = [
 		'zona_id', 'name', 'description'
 	];
