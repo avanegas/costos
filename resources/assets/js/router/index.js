@@ -24,6 +24,15 @@ import PostIndex from '../views/Post/Index.vue'
 import PostShow from '../views/Post/Show.vue'
 import PostForm from '../views/Post/Form.vue'
 
+import CategoryIndex from '../views/Category/Index.vue'
+import CategoryShow from '../views/Category/Show.vue'
+import CategoryForm from '../views/Category/Form.vue'
+
+import TagIndex from '../views/Tag/Index.vue'
+import TagShow from '../views/Tag/Show.vue'
+import TagForm from '../views/Tag/Form.vue'
+
+
 import EquipoIndex from '../views/Data/Equipo/Index.vue'
 import EquipoForm from '../views/Data/Equipo/Form.vue'
 
@@ -73,6 +82,17 @@ const router = new VueRouter({
         { path: '/posts/create', component: PostForm, meta: { mode: 'create' }},
         { path: '/posts/:id/edit', component: PostForm, meta: { mode: 'edit' }},
         { path: '/posts/:id', component: PostShow },
+
+        { path: '/categories', component: CategoryIndex},
+        { path: '/categories/create', component: CategoryForm, meta: { mode: 'create' }},
+        { path: '/categories/:id/edit', component: CategoryForm, meta: { mode: 'edit' }},
+        { path: '/categories/:id', component: CategoryShow },
+
+        { path: '/tags', component: TagIndex},
+        { path: '/tags/create', component: TagForm, meta: { mode: 'create' }},
+        { path: '/tags/:id/edit', component: TagForm, meta: { mode: 'edit' }},
+        { path: '/tags/:id', component: TagShow },
+
 
         { path: '/equipos', component: EquipoIndex},
         { path: '/equipos/create', component: EquipoForm, meta: { mode: 'create' }},

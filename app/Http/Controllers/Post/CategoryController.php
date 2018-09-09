@@ -15,12 +15,12 @@ class CategoryController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
+     
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+    */
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +28,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::orderBy('id', 'DESC')->paginate();
+        $categories = Category::orderBy('id', 'DESC')->get();
 
-        return view('admin.categories.index', compact('categories'));
+        //return view('admin.categories.index', compact('categories'));
+        return response()
+            ->json(['categories' => $categories]);
     }
 
     /**

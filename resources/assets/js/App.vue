@@ -7,7 +7,7 @@
         </header>
         <nav class="menu">
             <ul>
-                <li><router-link to="/">-Apuntes-</router-link></li>
+               <li><router-link to="/">-Apuntes-</router-link></li>
                 <li>
                     <a href="#">Datos</a>
                     <nav class="submenu">
@@ -18,19 +18,19 @@
                     </nav>
                 </li>
 
-                <li>	<router-link to="/precios">Precios</router-link></li>
-                <li>	<router-link to="/proyectos">Proyectos</router-link></li>
-                <li>	<router-link to="#">Ofertas</router-link></li>
+                <li><router-link to="/precios">Precios</router-link></li>
+                <li><router-link to="/proyectos">Proyectos</router-link></li>
+                <li><router-link to="#">Ofertas</router-link></li>
 
-                <li>	<router-link to="/posts"  v-if="auth">Entradas</router-link></li>
-                <li>	<router-link to="#"  v-if="auth">Categorias</router-link></li>
-                <li>	<router-link to="#"  v-if="auth">Etiquetas</router-link></li>
+                <li><router-link :to="`/posts/${authState.user_id}`"  v-if="auth">Entradas</router-link></li>
+                <li><router-link to="/categories"  v-if="auth">Categorias</router-link></li>
+                <li><router-link to="/tags"  v-if="auth">Etiquetas</router-link></li>
 
-                <li>	<router-link to="/login" v-if="guest">LOGIN</router-link></li>
-                <li>	<router-link to="/register" v-if="guest">REGISTER</router-link></li>
+                <li><router-link to="/login" v-if="guest">LOGIN</router-link></li>
+                <li><router-link to="/register" v-if="guest">REGISTER</router-link></li>
 
                 <li >
-                    <a href="#" v-if="auth">{{ auth }} Admin</a>
+                    <a href="#" v-if="auth">{{ authState.user_id }} <span class="caret"> Admin</span></a>
                     <nav class="submenu">
                         <router-link to="/users" v-if="auth" >Administrar</router-link>
                         <a href="#" @click.stop="logout" v-if="auth">LOGOUT</a>
@@ -90,6 +90,9 @@
 			}
 		},
 		methods: {
+			getlogin(){
+
+			},
 			logout() {
 				post('/api/logout')
 				.then((res) => {

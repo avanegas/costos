@@ -39,7 +39,7 @@
 			}
 		},
 		created() {
-			get(`/api/posts`)
+			get(`/api/posts` )
 			.then((res) => {
 				this.posts = res.data.posts
 			})

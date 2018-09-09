@@ -35,11 +35,8 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, User $user)
+    public function index()
     {
-        //$posts = Post::where('user_id', Auth()::user()->user_id)
-        //    ->orderBy('id', 'DESC')->get();
-
         $posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
 
         return response()
@@ -89,12 +86,10 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post = Post::find($id);
-        //$this->authorize('pass', $post);
+        $posts = Post::where('user_id', $id)->with(['user','category'])->orderBy('created_at', 'desc')->get();
 
-        $comments = Comment::where('post_id', $post->id)->get();
-
-        return view('admin.posts.show', compact('post', 'comments'));
+        return response()
+            ->json(['posts' => $posts]);
     }
 
     /**

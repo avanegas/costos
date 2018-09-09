@@ -46,7 +46,11 @@
                         </template>
                     </template>
 
-                    
+                    <template v-if = "index === 2">
+                        <template v-if = "lista === roles">
+                            Hola
+                        </template>
+                    </template>
                     <template v-else>
                         {{entry[key]}}
                     </template>

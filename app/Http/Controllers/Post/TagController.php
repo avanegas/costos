@@ -15,12 +15,12 @@ class TagController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     */
+     
     public function __construct()
     {
         $this->middleware('auth');
     }
-    
+    */
     /**
      * Display a listing of the resource.
      *
@@ -28,9 +28,11 @@ class TagController extends Controller
      */
     public function index()
     {
-        $tags = Tag::orderBy('id', 'DESC')->paginate();
+        $tags = Tag::orderBy('id', 'DESC')->get();
 
-        return view('admin.tags.index', compact('tags'));
+        //return view('admin.tags.index', compact('tags'));
+        return response()
+            ->json(['tags' => $tags]);
     }
 
     /**

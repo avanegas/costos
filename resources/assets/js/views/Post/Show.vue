@@ -1,59 +1,49 @@
 <template>
-	<div class = "recipe__show">
-
-		<div class="recipe__box">
-			<div class="image__show">
-				<img :src="`/images/${post.image}`" v-if="post.image">
+	<div class="container">
+		<div class="row">
+			<div class="col-md">
+				<div class="card">
+					<div class="card-header">
+		            	<router-link to="/posts/create"  title="Articulo nuevo" class="w-50 text-muted">
+		                	Apuntes, detalles y teoría de la construcción.
+		            	</router-link>
+		            	<input type="search" name="search" placeholder="Search" class="w-50 float-right">
+					</div>
+				</div>
+				<div class="card" v-for="post in posts">
+					<div class="card-header">
+						<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
+					</div>	
+					<div class="card-body">
+						<img :src="`../images/${post.file}`" v-if="post.file" class="card-img-top">
+						<p class="card-title">CATEGORIA: {{post.category.name}}</p>
+						<p class="text-uppercase text-center">{{post.name}}</p>
+						<p class="card-text text-justify">{{post.excerpt}}
+							<router-link :to="`/post/${post.slug}`" class="alert-link">Leer mas</router-link>
+						</p>
+					</div>
+					<div class="card-footer">
+						<p class="float-right">comentarios: 2</p>
+					</div>
+				</div>
 			</div>
-			<p>El articulo lo escribio<strong>{{ post.user.name }} </strong> {{post.created_at}}</p>
 		</div>
-
-		<div class="recipe__box">
-			<p><strong>Categoría: </strong>{{ post.category.name }}</p>
-			<h1 class="recipe__title">{{post.name}}</h1>
-			<p>{{post.content}}</p>
-			<p><strong>Articulos relacionados: </strong>{{post.tags}}</p>
-			<br>
-			<div v-if="authState.api_token && authState.user_id === post.user_id">
-				<router-link :to="`/posts/${post.id}/edit`" class="btn btn__primary">Edit</router-link>
-				<button class="btn btn__danger" @click="remove" :disabled="isRemoving">Delete</button>
-			</div>
-		</div>
-
 	</div>
 </template>
 <script type="text/javascript">
-	import Auth from '../../store/auth'
-	import Flash from '../../helpers/flash'
-	import { get, del } from '../../helpers/api'
+	import { get } from '../../helpers/api'
 	export default {
 		data() {
 			return {
-				authState: Auth.state,
-				isRemoving: false,
-				post: {
-					user: {},
-					category: {}
-				}
+				posts: []
 			}
 		},
 		created() {
 			get(`/api/posts/${this.$route.params.id}`)
 			.then((res) => {
-				this.post = res.data.post
+				this.posts = res.data.posts
 			})
-		},
-		methods: {
-			remove() {
-				this.isRemoving = false
-				del(`/api/posts/${this.$route.params.id}`)
-				.then((res) => {
-					if(res.data.deleted) {
-						Flash.setSuccess('You have successfully deleted post!')
-						this.$router.push('/')
-					}
-				})
-			}
 		}
 	}
 </script>
+
