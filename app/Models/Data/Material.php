@@ -3,8 +3,8 @@
 namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Presenters\DatePresenter;
 use App\Models\Data\GrupoMaterial;
-use Carbon\Carbon;
 
 use App\Zona;
 use App\User;
@@ -12,14 +12,11 @@ use App\User;
 
 class Material extends Model
 {
+    use DatePresenter;
+
 	protected $fillable = [
 		'grupo_material_id', 'name', 'unidad', 'precio'
 	];
-
-	public function getCreatedAtAttribute($value)
-	{
-	  return Carbon::parse($value)->format('d/m/Y');
-	}
 
 	public function grupo_material()
 	{

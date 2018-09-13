@@ -16,23 +16,33 @@
                 <td v-for="(key, index) in columns">
                     <template v-if = "index === 0">
                         <template v-if= "lista === 'equipos'">
-                            {{ filteredData[i].grupo_equipo_id }}  {{ filteredData[i].grupo_equipo.name }}
+                            {{ filteredData[i].grupo_equipo.name }}
                         </template>
                         <template v-if= "lista === 'materials'">
-                            {{ filteredData[i].grupo_material_id }}  {{ filteredData[i].grupo_material.name }}
+                            {{ filteredData[i].grupo_material.name }}
                         </template>
                         <template v-if= "lista === 'obreros'">
-                            {{ filteredData[i].grupo_obrero_id }}  {{ filteredData[i].grupo_obrero.name }}
+                            {{ filteredData[i].grupo_obrero.name }}
                         </template>
                         <template v-if= "lista === 'transportes'">
-                            {{ filteredData[i].zona_id }}  {{ filteredData[i].zona.name }}
+                            {{ filteredData[i].zona.name }}
                         </template>
 
                         <template v-if= "lista === 'precios'">
-                            {{ filteredData[i].grupo_precio_id }}  {{ filteredData[i].grupo_precio.name }}
+                            {{ filteredData[i].grupo_precio.name }}
                         </template>
                         <template v-if= "lista === 'proyectos'">
-                            {{ filteredData[i].user_id }}  {{ filteredData[i].user.name }}
+                            {{ filteredData[i].user.name }}
+                        </template>
+
+                        <template v-if= "lista === 'categories'">
+                            {{ filteredData[i].id }}
+                        </template>
+                        <template v-if= "lista === 'posts'">
+                            {{ filteredData[i].name }}
+                        </template>
+                        <template v-if= "lista === 'tags'">
+                            {{ filteredData[i].id }}
                         </template>
 
                         <template v-if= "lista === 'users'">
@@ -46,14 +56,14 @@
                         </template>
                     </template>
 
-                    <template v-if = "index === 2">
+                    <!--<template v-if = "index === 2">
                         <template v-if= "lista === 'roles'">
                             {{ hola }}
                         </template>
                         <template v-else>
                             {{entry[key]}}
                         </template>
-                    </template>
+                    </template>-->
 
                     <template v-else>
                         {{entry[key]}}
@@ -114,7 +124,7 @@
                 if (str.substring(0,4)==="user") { str="autor"}
                 if (str.substring(0,4)==="zona") { str="zona"}
                 if (str.substring(0,4)==="grup") { str="grupo"}
-                if (str.substring(0,4)==="crea") { str="fecha"}
+                if (str.substring(0,4)==="upda") { str="fecha"}
                 if (str.substring(0,4)==="gran") { str="costo"}
 
                 return str.charAt(0).toUpperCase() + str.slice(1)

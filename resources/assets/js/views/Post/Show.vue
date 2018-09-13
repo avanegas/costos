@@ -4,7 +4,7 @@
             <div class="col-md" >
                 
                 <div class="form-group row">
-                    <h3 class="col-7">Articulos</h3>
+                    <h3 class="col-7">Apuntes</h3>
                     <div class="col-4 form-group">
                         <input
                             type="text"
@@ -43,7 +43,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['id', 'name', 'status', 'file', 'updated_at'],
+                gridColumns:['name', 'status', 'file', 'updated_at'],
                 lista:'posts',
                 isAutorized: false
             }

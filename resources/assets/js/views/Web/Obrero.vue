@@ -43,7 +43,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'created_at'],
+                gridColumns:['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'updated_at'],
                 lista:'obreros',
                 isAutorized: false
             }

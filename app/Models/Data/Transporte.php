@@ -3,7 +3,7 @@
 namespace App\Models\Data;
 
 use Illuminate\Database\Eloquent\Model;
-use Carbon\Carbon;
+use App\Presenters\DatePresenter;
 
 use App\Zona;
 use App\User;
@@ -11,14 +11,11 @@ use App\User;
 
 class Transporte extends Model
 {
+    use DatePresenter;
+
 	protected $fillable = [
 		'zona_id', 'name', 'unidad', 'tipo', 'tarifa'
 	];
-	
-	public function getCreatedAtAttribute($value)
-	{
-	  return Carbon::parse($value)->format('d/m/Y');
-	}
 
 	public function zona()
 	{

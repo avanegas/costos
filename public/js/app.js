@@ -52918,7 +52918,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa', 'created_at'],
+            gridColumns: ['grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa', 'updated_at'],
             lista: 'equipos',
             isAutorized: false
         };
@@ -53087,6 +53087,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -53143,7 +53153,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             if (str.substring(0, 4) === "grup") {
                 str = "grupo";
             }
-            if (str.substring(0, 4) === "crea") {
+            if (str.substring(0, 4) === "upda") {
                 str = "fecha";
             }
             if (str.substring(0, 4) === "gran") {
@@ -53225,8 +53235,6 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].grupo_equipo_id) +
-                                "  " +
                                 _vm._s(_vm.filteredData[i].grupo_equipo.name) +
                                 "\n                    "
                             )
@@ -53237,8 +53245,6 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].grupo_material_id) +
-                                "  " +
                                 _vm._s(
                                   _vm.filteredData[i].grupo_material.name
                                 ) +
@@ -53251,8 +53257,6 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].grupo_obrero_id) +
-                                "  " +
                                 _vm._s(_vm.filteredData[i].grupo_obrero.name) +
                                 "\n                    "
                             )
@@ -53263,8 +53267,6 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].zona_id) +
-                                "  " +
                                 _vm._s(_vm.filteredData[i].zona.name) +
                                 "\n                    "
                             )
@@ -53275,8 +53277,6 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].grupo_precio_id) +
-                                "  " +
                                 _vm._s(_vm.filteredData[i].grupo_precio.name) +
                                 "\n                    "
                             )
@@ -53287,9 +53287,37 @@ var render = function() {
                         ? [
                             _vm._v(
                               "\n                        " +
-                                _vm._s(_vm.filteredData[i].user_id) +
-                                "  " +
                                 _vm._s(_vm.filteredData[i].user.name) +
+                                "\n                    "
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.lista === "categories"
+                        ? [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.filteredData[i].id) +
+                                "\n                    "
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.lista === "posts"
+                        ? [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.filteredData[i].name) +
+                                "\n                    "
+                            )
+                          ]
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _vm.lista === "tags"
+                        ? [
+                            _vm._v(
+                              "\n                        " +
+                                _vm._s(_vm.filteredData[i].id) +
                                 "\n                    "
                             )
                           ]
@@ -53324,26 +53352,6 @@ var render = function() {
                             )
                           ]
                         : _vm._e()
-                    ]
-                  : _vm._e(),
-                _vm._v(" "),
-                index === 2
-                  ? [
-                      _vm.lista === "roles"
-                        ? [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(_vm.hola) +
-                                "\n                    "
-                            )
-                          ]
-                        : [
-                            _vm._v(
-                              "\n                        " +
-                                _vm._s(entry[key]) +
-                                "\n                    "
-                            )
-                          ]
                     ]
                   : [
                       _vm._v(
@@ -53547,7 +53555,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['grupo_material_id', 'name', 'unidad', 'precio', 'created_at'],
+            gridColumns: ['grupo_material_id', 'name', 'unidad', 'precio', 'updated_at'],
             lista: 'materials',
             isAutorized: false
         };
@@ -53747,7 +53755,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'created_at'],
+            gridColumns: ['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'updated_at'],
             lista: 'obreros',
             isAutorized: false
         };
@@ -53947,7 +53955,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'created_at'],
+            gridColumns: ['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'updated_at'],
             lista: 'transportes',
             isAutorized: false
         };
@@ -54155,7 +54163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['id', 'roles', 'name', 'email', 'created_at'],
+            gridColumns: ['id', 'roles', 'name', 'email', 'updated_at'],
             lista: 'users',
             isAutorized: false
         };
@@ -55124,7 +55132,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             scrollPosition: 0,
             searchQuery: '',
             gridData: [],
-            gridColumns: ['id', 'name', 'status', 'file', 'updated_at'],
+            gridColumns: ['name', 'status', 'file', 'updated_at'],
             lista: 'posts',
             isAutorized: false
         };
@@ -55160,7 +55168,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md" }, [
         _c("div", { staticClass: "form-group row" }, [
-          _c("h3", { staticClass: "col-7" }, [_vm._v("Articulos")]),
+          _c("h3", { staticClass: "col-7" }, [_vm._v("Apuntes")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-4 form-group" }, [
             _c("input", {
@@ -55974,7 +55982,7 @@ var render = function() {
     _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md" }, [
         _c("div", { staticClass: "form-group row" }, [
-          _c("h3", { staticClass: "col-7" }, [_vm._v("Categorias")]),
+          _c("h3", { staticClass: "col-7" }, [_vm._v("Categorías de apuntes")]),
           _vm._v(" "),
           _c("div", { staticClass: "col-4 form-group" }, [
             _c("input", {

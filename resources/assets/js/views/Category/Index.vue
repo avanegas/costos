@@ -4,7 +4,7 @@
             <div class="col-md" >
                 
                 <div class="form-group row">
-                    <h3 class="col-7">Categorias</h3>
+                    <h3 class="col-7">Categorías de apuntes</h3>
                     <div class="col-4 form-group">
                         <input
                             type="text"

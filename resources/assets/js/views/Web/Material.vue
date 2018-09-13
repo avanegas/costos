@@ -43,7 +43,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['grupo_material_id', 'name', 'unidad', 'precio', 'created_at'],
+                gridColumns:['grupo_material_id', 'name', 'unidad', 'precio', 'updated_at'],
                 lista:'materials',
                 isAutorized: false
             }

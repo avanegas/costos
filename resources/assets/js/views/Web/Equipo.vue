@@ -43,7 +43,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa', 'created_at'],
+                gridColumns:['grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa', 'updated_at'],
                 lista:'equipos',
                 isAutorized: false
             }

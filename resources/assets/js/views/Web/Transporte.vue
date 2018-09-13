@@ -43,7 +43,7 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'created_at'],
+                gridColumns:['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'updated_at'],
                 lista:'transportes',
                 isAutorized: false
             }
