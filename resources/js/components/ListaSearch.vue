@@ -34,7 +34,6 @@
                         <template v-if= "lista === 'proyectos'">
                             {{ filteredData[i].user.name }}
                         </template>
-
                         <template v-if= "lista === 'categories'">
                             {{ filteredData[i].id }}
                         </template>
@@ -54,16 +53,29 @@
                         <template v-if= "lista === 'permissions'">
                             {{ filteredData[i].id }}
                         </template>
+
                     </template>
 
-                    <!--<template v-if = "index === 2">
-                        <template v-if= "lista === 'roles'">
-                            {{ hola }}
+                    <template v-else-if = "index === 1">
+                        <template v-if= "lista === 'users'">
+                            <span v-for="role in filteredData[i].roles">
+                                {{ role.name }},
+                            </span>
                         </template>
                         <template v-else>
                             {{entry[key]}}
                         </template>
-                    </template>-->
+                    </template>
+                    <template v-else-if = "index === 2">
+                        <template v-if= "lista === 'roles'">
+                            <span v-for="permission in filteredData[i].permissions">
+                                {{ permission.name }},
+                            </span>
+                        </template>
+                        <template v-else>
+                            {{entry[key]}}
+                        </template>
+                    </template>
 
                     <template v-else>
                         {{entry[key]}}
@@ -136,7 +148,7 @@
                 this.sortOrders[key] = this.sortOrders[key] * -1
             },
             putData: function(entry) {
-                console.log(entry.id, this.lista, entry.name);
+                console.log(entry, entry.name, entry.id, this.lista);
             }
         }
     };
