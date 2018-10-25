@@ -16,7 +16,7 @@ class EquipoController extends Controller
      */
     public function index()
     {
-        $equipos = Equipo::with([grupo_equipo])->orderBy('id', 'DESC')->paginate(20);
+        $equipos = Equipo::with(['grupo_equipo'])->orderBy('name', 'asc')->get();
 
         return response()
             ->json(['equipos' => $equipos]);

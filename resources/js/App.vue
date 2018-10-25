@@ -1,13 +1,12 @@
 <template>
     <div class="container">
-
         <header>
             <h2>Menu</h2>
             <a href="#" class="stuts">INFOASISTENCIA <span>Costos</span></a>
         </header>
         <nav class="menu">
             <ul>
-               <li><router-link to="/">-Apuntes-</router-link></li>
+                <li><router-link to="/">-Apuntes-</router-link></li>
                 <li>
                     <a href="#">Datos</a>
                     <nav class="submenu">
@@ -17,7 +16,6 @@
                         <router-link to="/transporte">Transportes</router-link>
                     </nav>
                 </li>
-
                 <li><router-link to="/precios">Precios</router-link></li>
                 <li><router-link to="/proyectos">Proyectos</router-link></li>
                 <li><router-link to="#">Ofertas</router-link></li>
@@ -38,7 +36,6 @@
                 </li>
             </ul>
         </nav>
-        
 		<div class="alert alert-danger" role="alert" v-if="flash.error">
 			{{flash.error}}
 		</div>
@@ -46,7 +43,6 @@
 			{{flash.success}}
 		</div>
 		<router-view></router-view>
-
 	</div>
 </template>
 <script type="text/javascript">

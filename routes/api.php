@@ -2,11 +2,11 @@
 
 use Illuminate\Http\Request;
 
-Route::post('login', 'AuthController@login');
-Route::post('logout', 'AuthController@logout');
+Route::post('login', 	'AuthController@login');
+Route::post('logout', 	'AuthController@logout');
 Route::post('register', 'AuthController@register');
 
-Route::get('/blog', 			'Web\PageController@blog')->name('blog');
+Route::get('/blog', 	'Web\PageController@blog')->name('blog');
 
 //web
 Route::get('/post/{slug}', 		'Web\PageController@post')->name('post');

@@ -12,48 +12,32 @@
         </tr>
         </thead>
         <tbody>
-            <tr @click="putData(entry)" v-for="(entry, i) in filteredData">
+            <tr v-for="(entry, i) in filteredData" :entry="entry" @click="agrega(entry)">
                 <td v-for="(key, index) in columns">
                     <template v-if = "index === 0">
                         <template v-if= "lista === 'equipos'">
                             {{ filteredData[i].grupo_equipo.name }}
                         </template>
-                        <template v-if= "lista === 'materials'">
+                        <template v-else-if= "lista === 'materials'">
                             {{ filteredData[i].grupo_material.name }}
                         </template>
-                        <template v-if= "lista === 'obreros'">
+                        <template v-else-if= "lista === 'obreros'">
                             {{ filteredData[i].grupo_obrero.name }}
                         </template>
-                        <template v-if= "lista === 'transportes'">
+                        <template v-else-if= "lista === 'transportes'">
                             {{ filteredData[i].zona.name }}
                         </template>
 
-                        <template v-if= "lista === 'precios'">
+                        <template v-else-if= "lista === 'precios'">
                             {{ filteredData[i].grupo_precio.name }}
                         </template>
-                        <template v-if= "lista === 'proyectos'">
+                        <template v-else-if= "lista === 'proyectos'">
                             {{ filteredData[i].user.name }}
                         </template>
-                        <template v-if= "lista === 'categories'">
-                            {{ filteredData[i].id }}
-                        </template>
-                        <template v-if= "lista === 'posts'">
-                            {{ filteredData[i].name }}
-                        </template>
-                        <template v-if= "lista === 'tags'">
-                            {{ filteredData[i].id }}
-                        </template>
 
-                        <template v-if= "lista === 'users'">
+                        <template v-else>
                             {{ filteredData[i].id }}
                         </template>
-                        <template v-if= "lista === 'roles'">
-                            {{ filteredData[i].id }}
-                        </template>
-                        <template v-if= "lista === 'permissions'">
-                            {{ filteredData[i].id }}
-                        </template>
-
                     </template>
 
                     <template v-else-if = "index === 1">
@@ -66,10 +50,16 @@
                             {{entry[key]}}
                         </template>
                     </template>
+
                     <template v-else-if = "index === 2">
                         <template v-if= "lista === 'roles'">
                             <span v-for="permission in filteredData[i].permissions">
                                 {{ permission.name }},
+                            </span>
+                        </template>
+                        <template v-else-if= "lista === 'posts'">
+                            <span >
+                                <img :src="`../images/${filteredData[i].file}`" width="75px" class="img-thumbnail">
                             </span>
                         </template>
                         <template v-else>
@@ -104,7 +94,9 @@
             })
             return {
                 sortKey: '',
-                sortOrders: sortOrders
+                sortOrders: sortOrders,
+                id:0,
+                name:0,
             }
         },
         computed: {
@@ -147,76 +139,17 @@
                 this.sortKey = key
                 this.sortOrders[key] = this.sortOrders[key] * -1
             },
-            putData: function(entry) {
-                console.log(entry, entry.name, entry.id, this.lista);
+            agrega(entry) {
+
+                if(this.isAutorized){
+                    console.log(entry)
+                    this.$emit("agrega", entry);
+                }
+                else{
+                    this.$router.push(`/${this.lista}/${entry['id']}`)
+                }
+                
             }
         }
     };
 </script>
-
-<style lang="scss">
-
-// COPIADO DE :::>>>>>>  https://jsfiddle.net/xkkbfL3L/8519/
-//                       https://vuejs.org/v2/examples/grid-component.html
-
-body {
-/*  font-family: Helvetica Neue, Arial, sans-serif;
-  font-size: 14px;
-  color: #444;*/
-}
-
-table {
-/*  border: 2px solid #42b983;
-  border-radius: 3px;
-  background-color: #fff;*/
-}
-
-th {
-    background-color: #42b983;
-    /* color: rgba(255,255,255,0.66);*/
-    cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-td {
-  /*background-color: #f9f9f9;*/
-}
-
-th, td {
-    min-width: 120px;
-    /*padding: 5px 10px;    */
-}
-
-th.active {
-    color: #fff;
-}
-
-th.active .arrow {
-    opacity: 1;
-}
-
-.arrow {
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 0;
-    margin-left: 4px;
-    padding-right: 0px;
-    opacity: 0.66;
-}
-
-.arrow.asc {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-}
-
-.arrow.dsc {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #fff;
-}
-</style>

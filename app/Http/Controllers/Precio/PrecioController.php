@@ -5,8 +5,20 @@ namespace App\Http\Controllers\Precio;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\Models\Data\GrupoEquipo;
+use App\Models\Data\GrupoMaterial;
+use App\Models\Data\GrupoObrero;
+use App\Models\Data\Equipo;
+use App\Models\Data\Material;
+use App\Models\Data\Obrero;
+use App\Models\Data\Transporte;
+
 use App\Models\Precio\GrupoPrecio;
 use App\Models\Precio\Precio;
+use App\Models\Precio\PrecioEquipo;
+use App\Models\Precio\PrecioMaterial;
+use App\Models\Precio\PrecioObrero;
+use App\Models\Precio\PrecioTransporte;
 
 use App\User;
 
@@ -54,7 +66,13 @@ class PrecioController extends Controller
      */
     public function show($id)
     {
-        //
+        $precio = Precio::with(['user','grupo_precio', 'equipos', 'obreros', 'materials', 'transportes'])
+            ->findOrFail($id);
+
+        return response()
+            ->json([
+                'precio' => $precio
+            ]);
     }
 
     /**
@@ -63,9 +81,17 @@ class PrecioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, Request $request)
     {
-        //
+        $form = Precio::with(['grupo_precio', 'equipos', 'obreros', 'materials', 'transportes'])
+            ->findOrFail($id);
+        $grupo_precios = GrupoPrecio::get();        
+        
+        return response()
+            ->json([
+                'form' => $form,
+                'grupo_precios' => $grupo_precios
+            ]);
     }
 
     /**

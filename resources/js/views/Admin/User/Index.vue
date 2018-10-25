@@ -2,17 +2,22 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md">
-
-	            <h3><i class="fas fa-lock-open"></i> Administración
-                    <router-link to="/roles" class="btn btn-sm btn-secondary float-right">Roles</router-link>
-                    <router-link to="/permissions" class="btn btn-sm btn-secondary float-right">Permisos</router-link>
-	            </h3>
-
-	            <hr>
+                <div class="form-group row border">
+                    <div class="col-md-8">
+	                   <h3><i class="fa fa-lock-open"></i> Administración </h3>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <router-link to="/users" class="btn btn-secondary btn-sm">Usuarios</router-link>&nbsp
+                        <router-link to="/roles" class="btn btn-secondary btn-sm">Roles</router-link>&nbsp
+                        <router-link to="/permissions" class="btn btn-secondary btn-sm">Permisos</router-link>
+                    </div>
+                </div>
 	            
 	            <div class="form-group row">
-	                <h3 class="col-7"><i class="fa fa-users"></i> Usuarios</h3>
-	                <div class="col-4 form-group">
+                    <div class="form-group col-md-6">
+	                   <h3><i class="fa fa-users"></i> Usuarios</h3>
+                    </div>
+	                <div class="form-group col-md-4">
                         <input
                             type="text"
                             class="form-control mr-sm-2 mb-2 mb-sm-0"
@@ -20,7 +25,9 @@
                             autocomplete="off"
                             v-model="searchQuery">
                     </div>
-                    <a href="#" class="btn btn-sm btn-primary"> Nuevo</a>
+                    <div class="form-group col-md-2">
+                        <a href="#" class="btn btn-primary btn-sm"> Nuevo</a>
+                    </div>
 	            </div>
 
 	            <div class="card">

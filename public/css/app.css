@@ -10471,6 +10471,46 @@ a.text-dark:focus {
   }
 }
 
+body {
+  font: 12px/1.3 Arial,sans-serif;
+  /* background-image: url("images/back.png");*/
+  background: #ebeef3;
+  /*rgb(235, 238, 243);*/
+  color: #616161;
+}
+
+table {
+  margin: 2em auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /*width: 75%;
+    min-width: 750px;*/
+}
+
+th {
+  background: teal;
+  color: #fff;
+  padding: .5em;
+  border-right: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+th:last-child {
+  border-right: none;
+}
+
+th:first-child {
+  border-left: 1px solid teal;
+}
+
+tr:nth-child(even) {
+  background: #eee;
+}
+
+td {
+  border: 1px solid #ccc;
+  padding: .3em;
+}
+
 /* --------------1. NAVS ---------------- */
 
 .menu {
@@ -10602,15 +10642,6 @@ header .stuts span {
   margin-left: 5px;
 }
 
-/*
-
-	margin-top: 0;
-	margin-bottom: 0;
-	padding-left: 0;
-	list-style: none;
-}
-*/
-
 li {
   position: relative;
 }
@@ -10629,22 +10660,6 @@ li:hover {
 li:hover > ul {
   display: block;
 }
-
-/*
-.menu {
-    background: #343a40; //#333;
-    display: flex;
-    //border-bottom: 1px solid rgba(255,255,255,.5);
-    //border: 2px solid #fff;
-}
-
-.item { margin: 5px;}
-
-.item:nth-child(5) {
-  margin-right: auto;
-  background: #fff;
-}
-*/
 
 .item a {
   font-size: 14px;
@@ -10680,5 +10695,144 @@ a {
           align-items: center;
   padding-right: 10px;
   font-size: 14px;
+}
+
+.modal {
+  /*
+     * Los siguientes estilos se aplican automaticamentea a los elementos
+     * del modal transition cuando su visibilidad es activada por Vue.js.
+     *
+     * Pude modificar facilmente el modal transition editando estos estilos.
+     */
+}
+
+.modal__mask {
+  position: fixed;
+  z-index: 9998;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: table;
+  -webkit-transition: opacity .3s ease;
+  transition: opacity .3s ease;
+}
+
+.modal__wrapper {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.modal__container {
+  width: 400px;
+  margin: 0px auto;
+  padding: 10px 20px;
+  background-color: #fff;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+  -webkit-transition: all .3s ease;
+  transition: all .3s ease;
+  font-family: Helvetica, Arial, sans-serif;
+  max-height: 600px;
+  overflow-y: scroll;
+}
+
+.modal__header h3 {
+  margin-top: 0;
+  color: #42b983;
+}
+
+.modal__body {
+  margin: 20px 0;
+}
+
+.modal__body table {
+  width: 100%;
+}
+
+.modal__default-button {
+  float: right;
+}
+
+.modal__enter {
+  opacity: 0;
+}
+
+.modal__leave-active {
+  opacity: 0;
+}
+
+.modal__enter .modal__container,
+.modal__leave-active .modal__container {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.modal__cerrar {
+  font-weight: 600;
+  text-align: right;
+}
+
+.modal__cerrar a {
+  color: red;
+  cursor: default;
+}
+
+.modal__search {
+  height: 40px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.09) 0 1px 0;
+          box-shadow: rgba(0, 0, 0, 0.09) 0 1px 0;
+  background: #fff;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0px 15px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th,
+td {
+  min-width: 120px;
+  /*padding: 5px 10px;*/
+}
+
+th.active {
+  color: #fff;
+}
+
+th.active .arrow {
+  opacity: 1;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  padding-right: 0px;
+  opacity: 0.66;
+}
+
+.arrow.asc {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+
+.arrow.dsc {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #fff;
 }
 

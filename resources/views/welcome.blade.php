@@ -17,22 +17,19 @@
 	
 	<div id="root"></div>
 
-<script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+    <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
+    <script type="text/javascript">
+    	let user = document.head.querySelector('meta[name="user"]');
+    	
+    	window.Laravel = {!! json_encode([
+        	'csrfToken' => csrf_token(),
+        	'user' => Auth::user()
+    	]) !!};
 
-<script type="text/javascript">
-	
-	let user = document.head.querySelector('meta[name="user"]');
-	
-	window.Laravel = {!! json_encode([
-    	'csrfToken' => csrf_token(),
-    	'user' => Auth::user()
-	]) !!};
-
-    function markNotificationAsRead(){
-        $.get('/markAsRead');
-    }
-
-</script>	
+        function markNotificationAsRead(){
+            $.get('/markAsRead');
+        }
+    </script>	
 </body>
 
 </html>

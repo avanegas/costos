@@ -1,91 +1,79 @@
 <template>
-        <transition name="modal">
-            <div class="modal__mask">
-                <div class="modal__wrapper">
-                    <div class="modal__container"  @scroll="handleScroll">
+    <transition name="modal">
+        <div class="modal__mask">
+            <div class="modal__wrapper">
+                <div class="modal__container"  @scroll="handleScroll">
 
-                        <div class="modal__cerrar modal__header">
-                                <a  @click="$emit('close')">Cerrar  <em>X</em></a>
-                        </div>
-
-                        <div class="modal__header">
-                            <slot  name="header">
-                                <button class="btn btn__warning btn__block"><em>Borrar datos en esta linea. .  .?</em></button>
-                            </slot>
-                        </div>
-
-                        <div class="modal__body">
-                            <slot name="body">
-                                <div class="modal__search">
-                                    <h3>{{ this.elegido + 's' }}</h3>
-                                    <div class="form__search">
-                                        <input
-                                                type="search"
-                                                class="search__input"
-                                                name="query"
-                                                placeholder="Search"
-                                                v-model="searchQuery">
-                                    </div>
-                                </div>
-                                <lista-search
-                                        :data="gridData"
-                                        :columns="gridColumns"
-                                        :filter-key="searchQuery">
-                                </lista-search>
-                            </slot>
-                        </div>
-
-                        <div class="modal__footer">
-                            <slot name="footer">
-                                << 1.2.3.4..>>
-                            </slot>
-                        </div>
-                        
+                    <div class="modal__cerrar modal__header">
+                        <a  @click="$emit('close')">Cerrar  <em>X</em></a>
                     </div>
+
+                    <div class="modal__header">
+                        <slot  name="header">
+                            <button class="btn btn__warning btn__block"><em>Borrar datos en esta linea. .  .?</em></button>
+                        </slot>
+                    </div>
+
+                    <div class="modal__body">
+                        <slot name="body">
+                            <div class="modal__search">
+                                <h3>{{ this.lista }}</h3>
+                                <div class="form__search">
+                                    <input
+                                        type="search"
+                                        class="search__input"
+                                        name="query"
+                                        placeholder="Search"
+                                        v-model="searchQuery">
+                                </div>
+                            </div>
+                            <lista-search
+                                :data="gridData"
+                                :columns="gridColumns"
+                                :filter-key="searchQuery"
+                                :lista="lista"
+                                :isAutorized="isAutorized"
+                                @agrega="$emit('agrega', 'item');"
+                                :item="item">
+                            </lista-search>
+                        </slot>
+                    </div>
+
+                    <div class="modal__footer">
+                        <slot name="footer">
+                            << 1.2.3.4..>>
+                        </slot>
+                    </div>
+                    
                 </div>
             </div>
-        </transition>
+        </div>
+    </transition>
 </template>
 
 <script type="text/javascript">
     import { get } from '../helpers/api'
     import ListaSearch from '../components/ListaSearch.vue'
     export default {
-        props: [
-            'elegido'
-        ],
+        props: {
+            item: Array,
+            lista: String
+        },
         components: {
             ListaSearch
         },
-        mounted() {
-            var dataURL = '/api/' + this.elegido + 's';
-            var list = this.elegido + 's';
-            switch(list) {
-                case 'equipos':
-                    console.log('equipos');
-                    break;
-                case 'materials':
-                    console.log('materials');
-                    break;
-                case 'obreros':
-                    console.log('obreros');
-                    break;
-                case 'transportes':
-                    console.log('transportes');
-                    break;
-            }
-        },
-
         data() {
             return {
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['name', 'tarifa']
+                gridColumns:['name', 'tarifa'],
+                isAutorized: true,
+                showModal:true,
             }
         },
         created() {
-            get(`/api/equipos`)
+            get(`/api/${this.lista} `)
                 .then((res) => {
                     this.gridData = res.data.equipos
                 })
@@ -102,7 +90,7 @@
     }
 </script>
 
-<style lang="scss">
+ <style lang="scss">
     .modal {
         &__mask {
             position: fixed;
@@ -146,12 +134,10 @@
         }
 
         /*
-         * The following styles are auto-applied to elements with
-         * transition="modal" when their visibility is toggled
-         * by Vue.js.
+         * Los siguientes estilos se aplican automaticamentea a los elementos
+         * del modal transition cuando su visibilidad es activada por Vue.js.
          *
-         * You can easily play with the modal transition by editing
-         * these styles.
+         * Pude modificar facilmente el modal transition editando estos estilos.
          */
 
         &__enter {
@@ -186,4 +172,4 @@
             margin-right: auto;
         }
     }
-</style>
+ </style>

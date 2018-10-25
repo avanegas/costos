@@ -6,6 +6,7 @@
 	            <h3><i class="fas fa-lock-open"></i> Administración
                     <router-link to="/users" class="btn btn-sm btn-secondary float-right">Usuarios</router-link>
                     <router-link to="/roles" class="btn btn-sm btn-secondary float-right">Roles</router-link>
+                    <router-link to="/permissions" class="btn btn-sm btn-secondary float-right">Permisos</router-link>
 	            </h3>
 
 	            <hr>

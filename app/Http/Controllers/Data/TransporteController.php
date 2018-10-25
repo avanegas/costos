@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Zona;
+use App\Models\Data\Transporte;
 
 class TransporteController extends Controller
 {
@@ -14,7 +16,10 @@ class TransporteController extends Controller
      */
     public function index()
     {
-        //
+        $transportes = Transporte::with(['zona'])->orderBy('name', 'asc')->get();
+
+        return response()
+            ->json(['transportes' => $transportes]);
     }
 
     /**

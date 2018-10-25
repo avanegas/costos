@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Data\GrupoObrero;
+use App\Models\Data\Obrero;
 
 class ObreroController extends Controller
 {
@@ -14,7 +16,10 @@ class ObreroController extends Controller
      */
     public function index()
     {
-        //
+        $obreros = Obrero::with(['grupo_obrero'])->orderBy('name', 'asc')->get();
+
+        return response()
+            ->json(['obreros' => $obreros]);
     }
 
     /**

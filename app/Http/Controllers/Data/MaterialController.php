@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Data\GrupoMaterial;
+use App\Models\Data\Material;
 
 class MaterialController extends Controller
 {
@@ -14,7 +16,10 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        //
+        $materials = Material::with(['grupo_material'])->orderBy('name', 'asc')->get();
+
+        return response()
+            ->json(['materials' => $materials]);
     }
 
     /**

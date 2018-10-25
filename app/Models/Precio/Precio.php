@@ -3,10 +3,14 @@
 namespace App\Models\Precio;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Presenters\DatePresenter;
+
 use App\User;
 
 class Precio extends Model
 {
+	use DatePresenter;
+	
 	protected $fillable = [
 		'grupo_precio_id','name', 'unidad', 'detalle', 'directo', 'indirecto'
 	];
