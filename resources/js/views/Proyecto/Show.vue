@@ -1,114 +1,118 @@
 <template>
-	<div class="panel" v-if="show">
-		<div class="panel-heading">
-			<span class="panel-title">AUTOR: {{proyecto.user.name}}</span>
-			<div v-if="authState.api_token && authState.user_id === proyecto.user_id" class="recipe__foot">
-				<router-link to="/proyectos" class="btn">Back</router-link>
-				<router-link :to="`/proyectos/${proyecto.id}/edit`" class="btn btn__primary">Edit</router-link>
-				<button class="btn btn__danger" @click="deleteItem">Delete</button>
+	<div class="row" v-if="show">
+		<div class="col-md">
+			<div class="form-group row">
+				<div class="col-9">
+					<p><strong>AUTOR: </strong>{{proyecto.user.name}}</p>
+				</div>
+				<div v-if="authState.api_token && authState.user_id === proyecto.user_id" class="col-3">
+					<router-link to="/proyectos" class="btn btn-secondary">Back</router-link>
+					<router-link :to="`/proyectos/${proyecto.id}/edit`" class="btn btn-primary">Edit</router-link>
+					<button type="button" class="btn btn-danger" @click="deleteItem">Delete</button>
+				</div>
 			</div>
-		</div>
 
-		<div class="recipe__header">
-			<div class="recipe__box">
-				<div class="recipe__row">
-					<div class="form__group recipe__eight">
-						<label>Proyecto</label>
-						<h4 class="recipe__title">{{proyecto.name}}</h4>
+			<div class="card">
+				<div class="card-body">
+					<div class="form-group row">
+						<div class="col-8">
+							<label>PROYECTO</label>
+							<h6>{{proyecto.name}}</h6>
+						</div>
+						<div class="col-3">
+							<label>UBICACION</label>
+							<p>{{proyecto.ubicacion}}</p>
+						</div>
+						<div class="col-1">
+							<label>DISTANCIA</label>
+							<p>{{proyecto.distancia}}</p>
+						</div>
 					</div>
-					<div class="form__group recipe__three">
-						<label>Ubicacion</label>
-						<p>{{proyecto.ubicacion}}</p>
+					<div class="form-group row">
+						<div class="col-8">
+							<label>CONTRATANTE</label>
+							<p>{{proyecto.contratante}}</p>
+						</div>
+						<div class="col-2">
+							<label>PRESENTACION</label>
+							<p>{{proyecto.entrega}}</p>
+						</div>
+						<div class="col-1">
+							<label>FORMATO</label>
+							<p>{{proyecto.formato}}</p>
+						</div>
+						<div class="col-1">
+							<label>DECIMAL</label>
+							<p>{{proyecto.precision}}</p>
+						</div>
 					</div>
-					<div class="form__group recipe__one">
-						<label>Distancia</label>
-						<p>{{proyecto.distancia}}</p>
+					<div class="form-group row">
+						<div class="col-4">
+							<label>OFERENTE</label>
+							<p>{{proyecto.oferente}}</p>
+						</div>
+						<div class="col-4">
+							<label>REPRESENTANTE</label>
+							<p>{{proyecto.representante}}</p>
+						</div>
+	                    <div class="col-2">
+	                        <label>REFERENCIAL</label>
+	                        <p>{{proyecto.referencial}}</p>
+	                    </div>
+						<div class="col-1">
+							<label>INDIRECTO</label>
+							<p>{{proyecto.indirecto}}</p>
+						</div>
+						<div class="col-1">
+							<label>IVA</label>
+							<p>{{proyecto.descuento}}</p>
+						</div>
 					</div>
-				</div>
-				<div class="recipe__row">
-					<div class="form__group recipe__eight">
-						<label>Contratante</label>
-						<p>{{proyecto.contratante}}</p>
-					</div>
-					<div class="form__group recipe__two">
-						<label>Presentacion</label>
-						<p>{{proyecto.entrega}}</p>
-					</div>
-					<div class="form__group recipe__one">
-						<label>Forma</label>
-						<p>{{proyecto.formato}}</p>
-					</div>
-					<div class="form__group recipe__one">
-						<label>Decimales</label>
-						<p>{{proyecto.precision}}</p>
-					</div>
-				</div>
-				<div class="recipe__row">
-					<div class="form__group recipe__four">
-						<label>Oferente</label>
-						<p>{{proyecto.oferente}}</p>
-					</div>
-					<div class="form__group recipe__four">
-						<label>Representante</label>
-						<p>{{proyecto.representante}}</p>
-					</div>
-                    <div class="form__group recipe__two">
-                        <label>Referencial</label>
-                        <p>{{proyecto.referencial}}</p>
-                    </div>
-					<div class="form__group recipe__one">
-						<label>Indirectos</label>
-						<p>{{proyecto.indirecto}}</p>
-					</div>
-					<div class="form__group recipe__one">
-						<label>IVA %</label>
-						<p>{{proyecto.descuento}}</p>
-					</div>
-				</div>
-				<br>
-				<table class="recipe__box">
-					<caption>TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS</caption>
-					<thead>
-						<tr>
-							<th class="recipe__one">Id</th>
-							<th class="recipe__one">Rubro Nº</th>
-							<th class="recipe__six">Descripcion</th>
-							<th class="recipe__one">Unidad</th>
-							<th class="recipe__one">Cantidad</th>
-							<th class="recipe__one">Precio</th>
-							<th class="recipe__one">Total</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr v-for="rubro in proyecto.rubros" :key="rubro.id">
-							<td>{{rubro.precio_id}}</td>
-							<td>{{rubro.orden}}</td>
-							<td>{{rubro.rubro}}</td>
-							<td>{{rubro.unidad}}</td>
-							<td class="right">{{rubro.cantidad}}</td>
-							<td class="right">{{rubro.precio}}</td>
-							<td class="right">{{rubro.cantidad * rubro.precio}}</td>
-						</tr>
-					</tbody>
+					
+					<h5 class="text-center">TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS</h5>
+					<table class="table table-bordered table-striped table-sm">
+						<thead>
+							<tr>
+								<th>Id</th>
+								<th>Rubro Nº</th>
+								<th>Descripcion</th>
+								<th>Unidad</th>
+								<th>Cantidad</th>
+								<th>Precio</th>
+								<th>Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr v-for="rubro in proyecto.rubros" :key="rubro.id">
+								<td>{{rubro.precio_id}}</td>
+								<td>{{rubro.orden}}</td>
+								<td>{{rubro.rubro}}</td>
+								<td>{{rubro.unidad}}</td>
+								<td>{{rubro.cantidad}}</td>
+								<td>{{rubro.precio}}</td>
+								<td>{{rubro.cantidad * rubro.precio}}</td>
+							</tr>
+						</tbody>
 
-					<tfoot>
-						<tr>
-							<td colspan="5"></td>
-							<td> Subtotal</td>
-							<td class="right">{{ proyecto.sub_total }}</td>
-						</tr>
-						<tr>
-							<td colspan="5"></td>
-							<td>IVA %</td>
-							<td class="right">{{ proyecto.descuento }}</td>
-						</tr>
-						<tr>
-							<td colspan="5"></td>
-							<td>Total</td>
-							<td class="right">{{ proyecto.gran_total }}</td>
-						</tr>
-					</tfoot>
-				</table>
+						<tfoot>
+							<tr>
+								<td colspan="5"></td>
+								<td> Subtotal</td>
+								<td>{{ proyecto.sub_total }}</td>
+							</tr>
+							<tr>
+								<td colspan="5"></td>
+								<td>IVA %</td>
+								<td>{{ proyecto.descuento }}</td>
+							</tr>
+							<tr>
+								<td colspan="5"></td>
+								<td>Total</td>
+								<td>{{ proyecto.gran_total }}</td>
+							</tr>
+						</tfoot>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -133,6 +137,7 @@
         beforeRouteEnter(to, from, next) {
             get(`/api/proyectos/${to.params.id}`)
                 .then((res) => {
+                	console.log(res);
                     next(vm => vm.setData(res))
                 })
         },
@@ -140,6 +145,7 @@
             this.show = false
             get(`/api/proyectos/${to.params.id}`)
                 .then((res) => {
+                	console.log(res);
                     this.setData(res)
                     next()
                 })

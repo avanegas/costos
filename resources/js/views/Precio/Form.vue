@@ -1,268 +1,266 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
-                <div class="form-group row">
-                    <div class="form-group col-10">
-                        <h3>{{action}} Precio</h3>
-                    </div>
-                    <div>
-                        <button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
-                        <button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
-                    </div>
-                </div> 
-
-                <div class="card" >
-                    <div class="card-block">
-                        <h5 class="text-center">ANALISIS  DE  PRECIO  UNITARIO</h5>
-                        <table class="table table-bordered table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th>GRUPO:</th>
-                                    <td colspan="4">
-                                        <select name="" id="" class="form-control" v-model="form.grupo_precio_id">
-                                            <option disabled value="">seleccione</option>
-                                            <option v-for="gp in grupo_precios" :value="gp.id" :selected="form.grupo_precio_id == gp.id ? true : false">{{ gp.name }}</option>
-                                        </select>
-                                    </td>
-                                    <th>FECHA:</th>
-                                    <td >{{form.updated_at}}</td>
-                                </tr>
-                                <tr>
-                                    <th>RUBRO:</th>
-                                    <td colspan="4"><input type="text" class="form-control" v-model="form.name"><small class="error-control" v-if="error.name">{{error.name[0]}}</small></td>
-                                    <th>UNIDAD:</th>
-                                    <td ><input type="text" class="form-control" v-model="form.unidad"><small class="error-control" v-if="error.unidad">{{error.unidad[0]}}</small></td>
-                                </tr>
-                                <tr>
-                                    <th>ESPECIFICACION:</th>
-                                    <td colspan="6"><input type="text" class="form-control" v-model="form.detalle"><small class="error-control" v-if="error.detalle">{{error.detalle[0]}}</small></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="7">EQUIPOS</td>
-                                </tr>
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>Descripcion</th>
-                                    <th>Cantidad</th>
-                                    <th>Tarifa</th>
-                                    <th>Costo Hora</th>
-                                    <th>Rendimiento</th>
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr v-for="(equipo, index) in form.equipos">
-                                    <td @click="abrirModal(lista='equipos')"><input type="text" class="form-control" v-model="equipo.equipo_id" :class="[error[`equipos.${index}.equipo_id`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="equipo.name" :class="[error[`equipos.${index}.name`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="equipo.cantidad" :class="[error[`equipos.${index}.cantidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="equipo.tarifa" :class="[error[`equipos.${index}.tarifa`] ? 'error-bg' : '']"></td>
-                                    <td>{{(equipo.cantidad*equipo.tarifa).toFixed(5)}}</td>
-                                    <td><input type="text" class="form-control" v-model="equipo.rendimiento" :class="[error[`equipos.${index}.rendimiento`] ? 'error-bg' : '']"></td>
-                                    <td>{{(equipo.cantidad * equipo.tarifa*equipo.rendimiento).toFixed(5)}}</td>
-                                </tr>
-                                <tr v-for="number in (5-form.equipos.length)" v-if="(5-form.equipos.length) > 0">
-                                    <td @click="abrirModal(lista='equipos')"><input type="text" class="form-control" value="Ingrese Equipo"></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                    <td><input type="text" class="form-control" ></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="5">MANO DE OBRA</td>
-                                    <td> Subtotal</td>
-                                    <td>{{ subTotalEquipos.toFixed(5) }}</td>
-                                </tr>
-                                <!-- FIN EQUIPO -->
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th>Descripcion</th>
-                                    <th>Cantidad</th>
-                                    <th>Jornal Hora</th>
-                                    <th>Costo Hora</th>
-                                    <th>Rendimiento</th>
-                                    <th>Total</th>
-                                </tr>
-
-                                <tr v-for="(obrero, index) in form.obreros">
-                                    <td @click="abrirModal(lista='obreros')"><input type="text" class="form-control" v-model="obrero.obrero_id" :class="[error[`obreros.${index}.obrero_id`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="obrero.name" :class="[error[`obreros.${index}.name`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="obrero.cantidad" :class="[error[`obreros.${index}.cantidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="obrero.jornalhora" :class="[error[`obreros.${index}.jornalhora`] ? 'error-bg' : '']"></td>
-                                    <td>{{(obrero.cantidad*obrero.jornalhora).toFixed(5)}}</td>
-                                    <td><input type="text" class="form-control" v-model="obrero.rendimiento" :class="[error[`obreros.${index}.rendimiento`] ? 'error-bg' : '']"></td>
-                                    <td>{{(obrero.cantidad * obrero.jornalhora*obrero.rendimiento).toFixed(5)}}</td>
-                                </tr>
-                                <tr v-for="number in (7-form.obreros.length)" v-if="(7-form.obreros.length) > 0">
-                                    <td @click="abrirModal(lista='obreros')">Ingrese Obrero</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="5">MATERIALES</td>
-                                    <td> Subtotal</td>
-                                    <td>{{ subTotalObreros.toFixed(5) }}</td>
-                                </tr>
-                                <!-- FIN OBRERO -->
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th colspan="2">Descripcion</th>
-                                    <th>unidad</th>
-                                    <th>Cantidad</th>
-                                    <th>Precio</th>
-                                    <th>Total</th>
-                                </tr>
-
-                                <tr v-for="(material, index) in form.materials">
-                                    <td @click="abrirModal(lista='materials')"><input type="text" class="form-control" v-model="material.material_id" :class="[error[`materials.${index}.material_id`] ? 'error-bg' : '']"></td>
-                                    <td colspan="2"><input type="text" class="form-control" v-model="material.name" :class="[error[`materials.${index}.name`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="material.unidad" :class="[error[`materials.${index}.unidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="material.cantidad" :class="[error[`materials.${index}.cantidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="material.precio" :class="[error[`materials.${index}.precio`] ? 'error-bg' : '']"></td>
-                                    <td>{{(material.cantidad * material.precio).toFixed(5)}}</td>
-                                </tr>
-                                <tr v-for="number in (7-form.materials.length)" v-if="(7-form.materials.length) > 0">
-                                    <td @click="abrirModal(lista='materials')">Ingrese Material</td>
-                                    <td colspan="2"></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="5">TRANSPORTES</td>
-                                    <td> Subtotal</td>
-                                    <td>{{ subTotalMaterials.toFixed(5) }}</td>
-                                </tr>
-                                <!-- FIN MATERIAL -->
-                                <tr>
-                                    <th>&nbsp;</th>
-                                    <th colspan="2">Descripcion</th>
-                                    <th>Unidad</th>
-                                    <th>Cantidad</th>
-                                    <th>Tarifa</th>
-                                    <th>Total</th>
-                                </tr>
-
-                                <tr v-for="(transporte, index) in form.transportes">
-                                    <td @click="abrirModal(lista='transportes')"><input type="text" class="form-control" v-model="transporte.transporte_id" :class="[error[`transportes.${index}.transporte_id`] ? 'error-bg' : '']"></td>
-                                    <td colspan="2"><input type="text" class="form-control" v-model="transporte.name" :class="[error[`transportes.${index}.name`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="transporte.unidad" :class="[error[`transportes.${index}.unidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="transporte.cantidad" :class="[error[`transportes.${index}.cantidad`] ? 'error-bg' : '']"></td>
-                                    <td><input type="text" class="form-control" v-model="transporte.tarifa" :class="[error[`transportes.${index}.tarifa`] ? 'error-bg' : '']"></td>
-                                    <td>{{(transporte.cantidad * transporte.tarifa).toFixed(5)}}</td>
-                                </tr>
-                                <tr v-for="number in (4-form.transportes.length)" v-if="(4-form.transportes.length) > 0">
-                                    <td @click="abrirModal(lista='transportes')">Ingrese Transporte</td>
-                                    <td colspan="2"></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="5">&nbsp;</td>
-                                    <td> Subtotal</td>
-                                    <td>{{ subTotalTransportes.toFixed(5) }}</td>
-                                </tr>
-                                <!-- FIN TRANSPORTE -->
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                    <td colspan="3">TOTAL DE COSTO DIRECTO</td>
-                                    <td>{{ directo.toFixed(5) }}</td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                    <td colspan="2">INDIRECTOS Y UTILIDADES %</td>
-                                    <td>{{ indirectos }}%</td>
-                                    <td>{{ indirecto.toFixed(5) }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                    <td colspan="2">OTROS INDIRECTOS %</td>
-                                    <td v-model="otros">{{ otros }}%</td>
-                                    <td>{{ otro.toFixed(5) }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                    <td colspan="3">COSTO TOTAL DEL RUBRO</td>
-                                    <td>{{ total.toFixed(5) }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">&nbsp;</td>
-                                    <td colspan="3">VALOR OFERTADO</td>
-                                    <td>{{ ofertado.toFixed(5) }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+    <div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="form-group col-10">
+                    <h3>{{action}} Precio</h3>
                 </div>
+                <div>
+                    <button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
+                    <button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+                </div>
+            </div> 
 
-                <!-- Inicio de Modal -->
-                <transition name="modal" v-if="showModal">
-                    <div class="modal__mask">
-                        <div class="modal__wrapper">
-                            <div class="modal__container"  @scroll="handleScroll">
+            <div class="card" >
+                <div class="card-block">
+                    <h5 class="text-center">ANALISIS  DE  PRECIO  UNITARIO</h5>
+                    <table class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>GRUPO:</th>
+                                <td colspan="4">
+                                    <select name="" id="" class="form-control" v-model="form.grupo_precio_id">
+                                        <option disabled value="">seleccione</option>
+                                        <option v-for="gp in grupo_precios" :value="gp.id" :selected="form.grupo_precio_id == gp.id ? true : false">{{ gp.name }}</option>
+                                    </select>
+                                </td>
+                                <th>FECHA:</th>
+                                <td >{{form.updated_at}}</td>
+                            </tr>
+                            <tr>
+                                <th>RUBRO:</th>
+                                <td colspan="4"><input type="text" class="form-control" v-model="form.name"><small class="error-control" v-if="error.name">{{error.name[0]}}</small></td>
+                                <th>UNIDAD:</th>
+                                <td ><input type="text" class="form-control" v-model="form.unidad"><small class="error-control" v-if="error.unidad">{{error.unidad[0]}}</small></td>
+                            </tr>
+                            <tr>
+                                <th>ESPECIFICACION:</th>
+                                <td colspan="6"><input type="text" class="form-control" v-model="form.detalle"><small class="error-control" v-if="error.detalle">{{error.detalle[0]}}</small></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">EQUIPOS</td>
+                            </tr>
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Tarifa</th>
+                                <th>Costo Hora</th>
+                                <th>Rendimiento</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(equipo, index) in form.equipos">
+                                <td @click="abrirModal(lista='equipos',indice=equipo.equipo_id)"><input type="text" class="form-control" v-model="equipo.equipo_id" :class="[error[`equipos.${index}.equipo_id`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="equipo.name" :class="[error[`equipos.${index}.name`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="equipo.cantidad" :class="[error[`equipos.${index}.cantidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="equipo.tarifa" :class="[error[`equipos.${index}.tarifa`] ? 'error-bg' : '']"></td>
+                                <td>{{(equipo.cantidad*equipo.tarifa).toFixed(5)}}</td>
+                                <td><input type="text" class="form-control" v-model="equipo.rendimiento" :class="[error[`equipos.${index}.rendimiento`] ? 'error-bg' : '']"></td>
+                                <td>{{(equipo.cantidad * equipo.tarifa*equipo.rendimiento).toFixed(5)}}</td>
+                            </tr>
+                            <tr v-for="number in (5-form.equipos.length)" v-if="(5-form.equipos.length) > 0">
+                                <td @click="abrirModal(lista='equipos',indice=0)"><input type="text" class="form-control" value="Ingrese Equipo"></td>
+                                <td><input type="text" class="form-control" ></td>
+                                <td><input type="text" class="form-control" ></td>
+                                <td><input type="text" class="form-control" ></td>
+                                <td><input type="text" class="form-control" ></td>
+                                <td><input type="text" class="form-control" ></td>
+                                <td><input type="text" class="form-control" ></td>
+                            </tr>
 
-                                <div class="modal__cerrar modal__header">
-                                    <a  @click="cerrarModal">Cerrar  <em>X</em></a>
-                                </div>
+                            <tr>
+                                <td colspan="5">MANO DE OBRA</td>
+                                <td> Subtotal</td>
+                                <td>{{ subTotalEquipos.toFixed(5) }}</td>
+                            </tr>
+                            <!-- FIN EQUIPO -->
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th>Descripcion</th>
+                                <th>Cantidad</th>
+                                <th>Jornal Hora</th>
+                                <th>Costo Hora</th>
+                                <th>Rendimiento</th>
+                                <th>Total</th>
+                            </tr>
 
-                                <div class="modal__header">
-                                    <slot  name="header">
-                                        <button class="btn btn__warning btn__block"><em>Borrar datos en esta linea. .  .?</em></button>
-                                    </slot>
-                                </div>
+                            <tr v-for="(obrero, index) in form.obreros">
+                                <td @click="abrirModal(lista='obreros')"><input type="text" class="form-control" v-model="obrero.obrero_id" :class="[error[`obreros.${index}.obrero_id`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="obrero.name" :class="[error[`obreros.${index}.name`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="obrero.cantidad" :class="[error[`obreros.${index}.cantidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="obrero.jornalhora" :class="[error[`obreros.${index}.jornalhora`] ? 'error-bg' : '']"></td>
+                                <td>{{(obrero.cantidad*obrero.jornalhora).toFixed(5)}}</td>
+                                <td><input type="text" class="form-control" v-model="obrero.rendimiento" :class="[error[`obreros.${index}.rendimiento`] ? 'error-bg' : '']"></td>
+                                <td>{{(obrero.cantidad * obrero.jornalhora*obrero.rendimiento).toFixed(5)}}</td>
+                            </tr>
+                            <tr v-for="number in (7-form.obreros.length)" v-if="(7-form.obreros.length) > 0">
+                                <td @click="abrirModal(lista='obreros')">Ingrese Obrero</td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
 
-                                <div class="modal__body">
-                                    <slot name="body">
-                                        <div class="modal__search">
-                                            <h3>{{ this.lista }}</h3>
-                                            <div class="form__search">
-                                                <input
-                                                    type="search"
-                                                    class="search__input"
-                                                    name="query"
-                                                    placeholder="Search"
-                                                    v-model="searchQuery">
-                                            </div>
-                                        </div>
-                                        <lista-search
-                                            :data="gridData"
-                                            :columns="gridColumns"
-                                            :filter-key="searchQuery"
-                                            :lista="lista"
-                                            :isAutorized="isAutorized"
-                                            :entry="arrayItem"
-                                            @agrega="agregaItem">
-                                        </lista-search>
-                                    </slot>
-                                </div>
+                            <tr>
+                                <td colspan="5">MATERIALES</td>
+                                <td> Subtotal</td>
+                                <td>{{ subTotalObreros.toFixed(5) }}</td>
+                            </tr>
+                            <!-- FIN OBRERO -->
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th colspan="2">Descripcion</th>
+                                <th>unidad</th>
+                                <th>Cantidad</th>
+                                <th>Precio</th>
+                                <th>Total</th>
+                            </tr>
 
-                                <div class="modal__footer">
-                                    <slot name="footer">
-                                        << 1.2.3.4..>>
-                                    </slot>
-                                </div>
-                                
+                            <tr v-for="(material, index) in form.materials">
+                                <td @click="abrirModal(lista='materials')"><input type="text" class="form-control" v-model="material.material_id" :class="[error[`materials.${index}.material_id`] ? 'error-bg' : '']"></td>
+                                <td colspan="2"><input type="text" class="form-control" v-model="material.name" :class="[error[`materials.${index}.name`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="material.unidad" :class="[error[`materials.${index}.unidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="material.cantidad" :class="[error[`materials.${index}.cantidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="material.precio" :class="[error[`materials.${index}.precio`] ? 'error-bg' : '']"></td>
+                                <td>{{(material.cantidad * material.precio).toFixed(5)}}</td>
+                            </tr>
+                            <tr v-for="number in (7-form.materials.length)" v-if="(7-form.materials.length) > 0">
+                                <td @click="abrirModal(lista='materials')">Ingrese Material</td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="5">TRANSPORTES</td>
+                                <td> Subtotal</td>
+                                <td>{{ subTotalMaterials.toFixed(5) }}</td>
+                            </tr>
+                            <!-- FIN MATERIAL -->
+                            <tr>
+                                <th>&nbsp;</th>
+                                <th colspan="2">Descripcion</th>
+                                <th>Unidad</th>
+                                <th>Cantidad</th>
+                                <th>Tarifa</th>
+                                <th>Total</th>
+                            </tr>
+
+                            <tr v-for="(transporte, index) in form.transportes">
+                                <td @click="abrirModal(lista='transportes')"><input type="text" class="form-control" v-model="transporte.transporte_id" :class="[error[`transportes.${index}.transporte_id`] ? 'error-bg' : '']"></td>
+                                <td colspan="2"><input type="text" class="form-control" v-model="transporte.name" :class="[error[`transportes.${index}.name`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="transporte.unidad" :class="[error[`transportes.${index}.unidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="transporte.cantidad" :class="[error[`transportes.${index}.cantidad`] ? 'error-bg' : '']"></td>
+                                <td><input type="text" class="form-control" v-model="transporte.tarifa" :class="[error[`transportes.${index}.tarifa`] ? 'error-bg' : '']"></td>
+                                <td>{{(transporte.cantidad * transporte.tarifa).toFixed(5)}}</td>
+                            </tr>
+                            <tr v-for="number in (4-form.transportes.length)" v-if="(4-form.transportes.length) > 0">
+                                <td @click="abrirModal(lista='transportes')">Ingrese Transporte</td>
+                                <td colspan="2"></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="5">&nbsp;</td>
+                                <td> Subtotal</td>
+                                <td>{{ subTotalTransportes.toFixed(5) }}</td>
+                            </tr>
+                            <!-- FIN TRANSPORTE -->
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="3">TOTAL DE COSTO DIRECTO</td>
+                                <td>{{ directo.toFixed(5) }}</td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="2">INDIRECTOS Y UTILIDADES %</td>
+                                <td>{{ indirectos }}%</td>
+                                <td>{{ indirecto.toFixed(5) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="2">OTROS INDIRECTOS %</td>
+                                <td v-model="otros">{{ otros }}%</td>
+                                <td>{{ otro.toFixed(5) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="3">COSTO TOTAL DEL RUBRO</td>
+                                <td>{{ total.toFixed(5) }}</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;</td>
+                                <td colspan="3">VALOR OFERTADO</td>
+                                <td>{{ ofertado.toFixed(5) }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Inicio de Modal -->
+            <transition name="modal" v-if="showModal">
+                <div class="modal__mask">
+                    <div class="modal__wrapper">
+                        <div class="modal__container"  @scroll="handleScroll">
+
+                            <div class="modal__cerrar modal__header">
+                                <a  @click="cerrarModal">Cerrar  <em>X</em></a>
                             </div>
+
+                            <div class="modal__header">
+                                <slot  name="header">
+                                    <button class="btn btn__warning btn__block"><em>Borrar datos en esta linea. .  .?</em></button>
+                                </slot>
+                            </div>
+
+                            <div class="modal__body">
+                                <slot name="body">
+                                    <div class="modal__search">
+                                        <h3>{{ this.lista }}</h3>
+                                        <div class="form__search">
+                                            <input
+                                                type="search"
+                                                class="search__input"
+                                                name="query"
+                                                placeholder="Search"
+                                                v-model="searchQuery">
+                                        </div>
+                                    </div>
+                                    <lista-search
+                                        :data="gridData"
+                                        :columns="gridColumns"
+                                        :filter-key="searchQuery"
+                                        :lista="lista"
+                                        :isAutorized="isAutorized"
+                                        :entry="arrayItem"
+                                        @agrega="agregaItem">
+                                    </lista-search>
+                                </slot>
+                            </div>
+
+                            <div class="modal__footer">
+                                <slot name="footer">
+                                    << 1.2.3.4..>>
+                                </slot>
+                            </div>
+                            
                         </div>
                     </div>
-                </transition>
-                <!-- Fin de Modal -->
-            </div>    
-        </div>
+                </div>
+            </transition>
+            <!-- Fin de Modal -->
+        </div>    
     </div>
 </template>
 <script type="text/javascript">
@@ -300,6 +298,7 @@
                 gridData: [],
                 gridColumns:[],
                 isAutorized: true,
+                indice:0,
             }
         },
         created() {
@@ -437,18 +436,32 @@
             },
             agregaItem(arrayItem){
                 switch(this.lista) {
+
                     case "equipos":
                     {
-                        //console.log(arrayItem.name, this.form.id, this.lista);
-                        this.form.equipos.push({
-                            equipo_id:arrayItem.id,
-                            precio_id:this.form.id,
-                            name:arrayItem.name,
-                            cantidad:0,
-                            tarifa:arrayItem.tarifa,
-                            rendimiento:0,
-                            total:0
-                        });
+                        console.log(arrayItem.id, this.indice, this.lista, this.form.equipos.length);                        
+                        if( (5-this.form.equipos.length) > 0){
+                            if(this.indice !== 0){
+                                //this.equipo.precio_id = this.form.precio_id;
+                                this.equipo.equipo_id = arrayItem.id;
+                                this.equipo.name = arrayItem.name;
+                                this.equipo.cantidad = 0;
+                                this.equipo.tarifa = arrayItem.tarifa;
+                                this.equipo.rendimiento = 0;
+                                this.equipo.total = 0;
+
+                            } else {
+                                this.form.equipos.push({
+                                precio_id:this.form.precio_id,
+                                equipo_id:arrayItem.id,
+                                name:arrayItem.name,
+                                cantidad:0,
+                                tarifa:arrayItem.tarifa,
+                                rendimiento:0,
+                                total:0
+                                });                                
+                            }
+                        }
                         this.arrayItem={};
                         break;
                     }

@@ -17,6 +17,11 @@ class ProyectoRubro extends Model
 		return $this->belongsTo(Proyecto::class);
 	}
 
+    public function precio()
+    {
+        return $this->belongsTo(Precio::class);
+    }	
+
 	public static function form()
 	{
 	return [

@@ -46,3 +46,6 @@ Route::resource('comments',			'Post\CommentController');
 Route::resource('grupo_precios',	'Precio\GrupoPrecioController');
 Route::resource('precios',			'Precio\PrecioController');
 Route::resource('proyectos',		'Proyecto\ProyectoController');
+
+// Listas JSon
+Route::get('listaprecios', 'Precio\PrecioController@search');

@@ -24,6 +24,20 @@ use App\User;
 
 class PrecioController extends Controller
 {
+    public function search()
+    {
+        $results = Precio::orderBy('name')
+                    ->when(request('q'), function($query) {
+                        $query->where('name', 'like', '%'.request('q').'%')
+                            ->orWhere('detalle', 'like', '%'.request('q').'%');
+                    })
+                    ->limit(6)
+                    ->get();
+
+        return response()
+            ->json(['results' => $results]);
+    }
+
     /**
      * Display a listing of the resource.
      *

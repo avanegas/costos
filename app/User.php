@@ -46,10 +46,10 @@ class User extends Authenticatable
     {   
         $this->attributes['password'] = bcrypt($password);
     }
-
-    public function zonas()
+    
+    public function comments()
     {
-        return $this->hasMany(Zona::class);
+        return $this->hasMany(Comment::class);
     }
 
     public function precios()
@@ -61,9 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Proyecto::class);
     }
-    
-    public function comments()
+
+    public function zonas()
     {
-        return $this->hasMany(Comment::class);
+        return $this->hasMany(Zona::class);
     }
 }

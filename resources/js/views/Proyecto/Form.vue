@@ -1,152 +1,146 @@
 <template>
-	<div class="recipe__show">
-		<div class="recipe__header">
-			<h3>{{action}} Proyecto</h3>
-			<div>
-				<button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
-				<button class="btn " @click="$router.back()" :disabled="isProcessing">Cancel</button>
+	<div class="row">	
+		<div class="col-md">
+			<div class="form-group row">
+				<div class="form-group col-9">
+					<h5>{{action}} Proyecto</h5>
+				</div>
+				<div class="form-group col-3">
+					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
+					<button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+				</div>
+
 			</div>
-
-		</div>
-		<div class="recipe__header">
-
-			<div class="recipe__box">
-				<div class="recipe__row">
-					<div class="form__group recipe__eight">
-					    <label>Proyecto</label>
-					    <input type="text" class="form__control" v-model="form.name">
-					    <small class="error__control" v-if="error.name">{{error.name[0]}}</small>
+			<div class="card">
+				<div class="card-body">
+					<div class="form-group row">
+						<div class="form-group col-8">
+						    <label>PROYECTO</label>
+						    <input type="text" class="form-control" v-model="form.name">
+						    <small class="error-control" v-if="error.name">{{error.name[0]}}</small>
+						</div>
+						<div class="form-group col-3">
+						    <label>UBICACION</label>
+						    <input type="text" class="form-control" v-model="form.ubicacion">
+						    <small class="error-control" v-if="error.ubicacion">{{error.ubicacion[0]}}</small>
+						</div>
+						<div class="form-group col-1">
+						    <label>DISTANCIA</label>
+						    <input type="text" class="form-control" v-model="form.distancia">
+						    <small class="error-control" v-if="error.distancia">{{error.distancia[0]}}</small>
+						</div>
 					</div>
-					<div class="form__group recipe__three">
-					    <label>Ubicación</label>
-					    <input type="text" class="form__control" v-model="form.ubicacion">
-					    <small class="error__control" v-if="error.ubicacion">{{error.ubicacion[0]}}</small>
+					<div class="form-group row">
+						<div class="form-group col-8">
+						    <label>CONTRATANTE</label>
+						    <input type="text" class="form-control" v-model="form.contratante">
+						    <small class="error-control" v-if="error.contratante">{{error.contratante[0]}}</small>
+						</div>
+						<div class="form-group col-2">
+						    <label>FECHA</label>
+						    <input type="date" class="form-control" v-model="form.entrega">
+						    <small class="error-control" v-if="error.entrega">{{error.entrega[0]}}</small>
+						</div>
+						<div class="form-group col-1">
+						    <label>FORMA</label>
+						    <input type="text" class="form-control" v-model="form.formato">
+						    <small class="error-control" v-if="error.formato">{{error.formato[0]}}</small>
+						</div>
+						<div class="form-group col-1">
+						    <label>DECIMAL</label>
+						    <input type="text" class="form-control" v-model="form.precision">
+						    <small class="error-control" v-if="error.precision">{{error.precision[0]}}</small>
+						</div>
 					</div>
-					<div class="form__group recipe__one">
-					    <label>Distancia</label>
-					    <input type="text" class="form__control" v-model="form.distancia">
-					    <small class="error__control" v-if="error.distancia">{{error.distancia[0]}}</small>
+					<div class="form-group row">
+						<div class="form-group col-4">
+						    <label>OFERENTE</label>
+						    <input type="text" class="form-control" v-model="form.oferente">
+						    <small class="error-control" v-if="error.oferente">{{error.oferente[0]}}</small>
+						</div>
+						<div class="form-group col-4">
+						    <label>REPRESENTANTE</label>
+						    <input type="text" class="form-control" v-model="form.representante">
+						    <small class="error-control" v-if="error.representante">{{error.representante[0]}}</small>
+						</div>
+						<div class="form-group col-2">
+						    <label>REFERENCIAL</label>
+						    <input type="text" class="form-control" v-model="form.referencial">
+						    <small class="error-control" v-if="error.referencial">{{error.referencial[0]}}</small>
+						</div>
+	                    <div class="form-group col-1">
+	                        <label>INDIRECTO</label>
+	                        <input type="text" class="form-control" v-model="form.indirecto">
+	                        <small class="error-control" v-if="error.indirecto">{{error.indirecto[0]}}</small>
+	                    </div>
+	                    <div class="form-group col-1">
+	                        <label>IVA</label>
+	                        <input type="text" class="form-control" v-model="form.descuento">
+	                        <small class="error-control" v-if="error.descuento">{{error.descuento[0]}}</small>
+	                    </div>
 					</div>
-				</div>
-				<div class="recipe__row">
-					<div class="form__group recipe__eight">
-					    <label>Contratante</label>
-					    <input type="text" class="form__control" v-model="form.contratante">
-					    <small class="error__control" v-if="error.contratante">{{error.contratante[0]}}</small>
-					</div>
-					<div class="form__group recipe__two">
-					    <label>Presentacion</label>
-					    <input type="date" class="form__control" v-model="form.entrega">
-					    <small class="error__control" v-if="error.entrega">{{error.entrega[0]}}</small>
-					</div>
-					<div class="form__group recipe__one">
-					    <label>Forma</label>
-					    <input type="text" class="form__control" v-model="form.formato">
-					    <small class="error__control" v-if="error.formato">{{error.formato[0]}}</small>
-					</div>
-					<div class="form__group recipe__one">
-					    <label>Punto</label>
-					    <input type="text" class="form__control" v-model="form.precision">
-					    <small class="error__control" v-if="error.precision">{{error.precision[0]}}</small>
-					</div>
-				</div>
-				<div class="recipe__row">
-					<div class="form__group recipe__four">
-					    <label>Oferente</label>
-					    <input type="text" class="form__control" v-model="form.oferente">
-					    <small class="error__control" v-if="error.oferente">{{error.oferente[0]}}</small>
-					</div>
-					<div class="form__group recipe__four">
-					    <label>Representante</label>
-					    <input type="text" class="form__control" v-model="form.representante">
-					    <small class="error__control" v-if="error.representante">{{error.representante[0]}}</small>
-					</div>
-					<div class="form__group recipe__two">
-					    <label>Referencial</label>
-					    <input type="text" class="form__control" v-model="form.referencial">
-					    <small class="error__control" v-if="error.referencial">{{error.referencial[0]}}</small>
-					</div>
-                    <div class="form__group recipe__one">
-                        <label>Indirectos</label>
-                        <input type="text" class="form__control" v-model="form.indirecto">
-                        <small class="error__control" v-if="error.indirecto">{{error.indirecto[0]}}</small>
-                    </div>
-                    <div class="form__group recipe__one">
-                        <label>IVA %</label>
-                        <input type="text" class="form__control" v-model="form.descuento">
-                        <small class="error__control" v-if="error.descuento">{{error.descuento[0]}}</small>
-                    </div>
-				</div>
-				<div class="proyecto__body">
-					<table>
-						<caption>TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS</caption>
+					<h5 class="text-center">TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS</h5>
+					<table class="table table-bordered table-striped table-sm">
 						<thead>
 							<tr>
-								<th class="recipe__one">Select</th>
-								<th class="recipe__one">Id</th>
-								<th class="recipe__one">Rubro Nº</th>
-								<th class="recipe__four">Descripcion</th>
-								<th class="recipe__one">Unidad</th>
-								<th class="recipe__one">Cantidad</th>
-								<th class="recipe__one">Precio</th>
-								<th class="recipe__one">Total</th>
-								<th class="recipe__cero">&nbsp;</th>
+								<th>Select</th>
+								<th>Id</th>
+								<th>Rubro Nº</th>
+								<th>Descripcion</th>
+								<th>Unidad</th>
+								<th>Cantidad</th>
+								<th>Precio</th>
+								<th>Total</th>
+								<th>&nbsp;</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr v-for="(item, index) in form.rubros">
 
 								<td>
-									<typeahead :url="precioURL" :initialize="item.precio_id"
-											   @input="onPrecio(index, $event)" />
+									<typeahead :url="precioURL" :initialize="item.precio_id" @input="onPrecio(index, $event)" />
 
                                     <small class="error-control" v-if="error[`rubros.${index}.precio_id`]">
                                         {{error[`rubros.${index}.precio_id`]}}
                                     </small>
-
 								</td>
 								<td>
 									<input
-											type="text"
-											class="form__control"
-											v-model="item.precio_id"
-											:class="[error[`rubros.${index}.precio_id`] ? 'error__bg' : '']"
+										type="text"
+										class="form-control"
+										v-model="item.precio_id"
+										:class="[error[`rubros.${index}.precio_id`] ? 'error__bg' : '']"
 									>
 								</td>
-								<td><input type="text" class="form__control" v-model="item.orden"
-									:class="[error[`rubros.${index}.orden`] ? 'error__bg' : '']"></td>
-								<td><input type="text" class="form__control" v-model="item.rubro"
-									:class="[error[`rubros.${index}.rubro`] ? 'error__bg' : '']"></td>
-								<td><input type="text" class="form__control" v-model="item.unidad"
-									:class="[error[`rubros.${index}.unidad`] ? 'error__bg' : '']"></td>
-								<td><input type="text" class="form__control right" v-model="item.cantidad"
-									:class="[error[`rubros.${index}.cantidad`] ? 'error__bg' : '']"></td>
-								<td><input type="text" class="form__control right" v-model="item.precio"
-									:class="[error[`rubros.${index}.precio`] ? 'error__bg' : '']"></td>
-								<td class="right">{{item.cantidad * item.precio}}</td>
+								<td><input type="text" class="form-control" v-model="item.orden" :class="[error[`rubros.${index}.orden`] ? 'error__bg' : '']"></td>
+								<td><input type="text" class="form-control" v-model="item.rubro" :class="[error[`rubros.${index}.rubro`] ? 'error__bg' : '']"></td>
+								<td><input type="text" class="form-control" v-model="item.unidad" :class="[error[`rubros.${index}.unidad`] ? 'error__bg' : '']"></td>
+								<td><input type="text" class="form-control right" v-model="item.cantidad" :class="[error[`rubros.${index}.cantidad`] ? 'error__bg' : '']"></td>
+								<td><input type="text" class="form-control right" v-model="item.precio" :class="[error[`rubros.${index}.precio`] ? 'error__bg' : '']"></td>
+								<td>{{item.cantidad * item.precio}}</td>
 								<td>
-									<button @click="remove('rubros', index)" class="btn btn__danger">&times;</button>
+									<button @click="remove('rubros', index)" class="btn btn-danger">&times;</button>
 								</td>
 							</tr>
 						</tbody>
 						<tfoot>
 							<tr>
-								<td colspan="6"><button class="btn btn__success" @click="addRubro">Add Rubro</button></td>
+								<td colspan="6"><button class="btn btn-success" @click="addRubro">Add Rubro</button></td>
 								<td>SubTotal</td>
-								<td class="right">{{ sub_total }}</td>
+								<td>{{ sub_total }}</td>
 							</tr>
 							<tr>
 								<td colspan="6"></td>
 								<td>IVA %</td>
 								<td>
-									<input type="text" class="form__control right" v-model="form.descuento">
-									<small class="error__control" v-if="error.descuento">{{error.descuento[0]}}</small>
+									<input type="text" class="form-control right" v-model="form.descuento">
+									<small class="error-control" v-if="error.descuento">{{error.descuento[0]}}</small>
 								</td>
 							</tr>
 							<tr>
 								<td colspan="6"></td>
 								<td>Total</td>
-								<td class="right">{{ gran_total }}</td>
+								<td>{{ gran_total }}</td>
 							</tr>
 						</tfoot>
 					</table>

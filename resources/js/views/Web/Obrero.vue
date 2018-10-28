@@ -1,35 +1,30 @@
 <template>
-	<div class="container">
-	    <div class="row">
-	        <div class="col-md" >
-                
-                <div class="form-group row">
-                	<h3 class="col-7">Obreros</h3>
-                    <div class="col-4 form-group">
-                        <input
-                        	type="text"
-                        	class="form-control mr-sm-2 mb-2 mb-sm-0"
-                        	placeholder="Search..."
-                        	autocomplete="off"
-                        	v-model="searchQuery">
-                    </div>
+    <div class="row">
+        <div class="col-md" >                
+            <div class="form-group row">
+            	<h3 class="col-7">Obreros</h3>
+                <div class="col-4 form-group">
+                    <input
+                    	type="text"
+                    	class="form-control mr-sm-2 mb-2 mb-sm-0"
+                    	placeholder="Search..."
+                    	autocomplete="off"
+                    	v-model="searchQuery">
                 </div>
-
-				<div class="card">
-					<div class="card-block">
-				        <lista-search
-                                :data="gridData"
-                                :columns="gridColumns"
-                                :filter-key="searchQuery"
-                                :lista="lista"
-                                :isAutorized="isAutorized">
-                        </lista-search>
-					</div>
-	            </div>
-
-	        </div>
-	    </div>
-	</div>
+            </div>
+			<div class="card">
+				<div class="card-block">
+			        <lista-search
+                            :data="gridData"
+                            :columns="gridColumns"
+                            :filter-key="searchQuery"
+                            :lista="lista"
+                            :isAutorized="isAutorized">
+                    </lista-search>
+				</div>
+            </div>
+        </div>
+    </div>
 </template>
 <script type="text/javascript">
     import { get } from '../../helpers/api'

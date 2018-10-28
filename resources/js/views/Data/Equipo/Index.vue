@@ -1,45 +1,40 @@
 <template>
-    <div class="container">
-        <div class="row">
-            <div class="col-md">
+    <div class="row">
+        <div class="col-md">
+            <div class="card">
+                <div class="card-title">
+                    <router-link to="/equipos/create" title="Equipo nuevo" class="w-50 text-muted">
+                        Equipos
+                    </router-link>
+                    <input type="search" name="search" placeholder="Search" class="w-50 float-right">
+                </div>
                 <div class="card">
-                    <div class="card-title">
-
-                        <router-link to="/equipos/create" title="Equipo nuevo" class="w-50 text-muted">
-                            Equipos
-                        </router-link>
-                        <input type="search" name="search" placeholder="Search" class="w-50 float-right">
+                    <div class="card-block">
+                        <table class="table table-striped table-hover">
+                            <thead>
+                            <tr>
+                                <th>Grupo</th>
+                                <th>Descripción</th>
+                                <th>Marca</th>
+                                <th>Tipo</th>
+                                <th>Tarifa</th>
+                                <th>Fecha</th>
+                                <th>Proveedor</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="equipo in searchEquipos" @click="detailsPage(equipo)">
+                                <td class="w-1">{{equipo.grupo_equipo.name}}</td>
+                                <td class="w-6">{{equipo.name}}</td>
+                                <td class="w-6">{{equipo.marca}}</td>
+                                <td class="w-3">{{equipo.tipo}}</td>
+                                <td class="w-3">{{equipo.tarifa | formatMoney}}</td>
+                                <td class="w-3">{{equipo.created_at}}</td>
+                                <td class="w-3">Proveedor</td>
+                            </tr>
+                            </tbody>
+                        </table>
                     </div>
-
-                    <div class="card">
-                        <div class="card-block">
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Grupo</th>
-                                    <th>Descripción</th>
-                                    <th>Marca</th>
-                                    <th>Tipo</th>
-                                    <th>Tarifa</th>
-                                    <th>Fecha</th>
-                                    <th>Proveedor</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr v-for="equipo in searchEquipos" @click="detailsPage(equipo)">
-                                    <td class="w-1">{{equipo.grupo_equipo.name}}</td>
-                                    <td class="w-6">{{equipo.name}}</td>
-                                    <td class="w-6">{{equipo.marca}}</td>
-                                    <td class="w-3">{{equipo.tipo}}</td>
-                                    <td class="w-3">{{equipo.tarifa | formatMoney}}</td>
-                                    <td class="w-3">{{equipo.created_at}}</td>
-                                    <td class="w-3">Proveedor</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
