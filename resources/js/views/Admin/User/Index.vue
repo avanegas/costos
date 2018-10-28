@@ -2,9 +2,9 @@
 	<div class="row">
 		<div class="col-md">
             <h3><i class="fa fa-lock-open"></i> Administración                
-                <router-link to="/users" class="btn btn-secondary btn-sm  float-right">Usuarios</router-link>
-                <router-link to="/roles" class="btn btn-secondary btn-sm  float-right">Roles</router-link>
-                <router-link to="/permissions" class="btn btn-secondary btn-sm  float-right">Permisos</router-link>
+                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Usuarios</router-link>
+                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
+                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
             </h3>
 			<hr>
             <div class="form-group row">
@@ -53,6 +53,7 @@
         created() {
             get(`../api/users`)
                 .then((res) => {
+                    console.log(res);
                     this.gridData = res.data.users
                 })
         },

@@ -35,10 +35,37 @@
                             {{ filteredData[i].user.name }}
                         </template>
 
+                        <template v-else-if= "lista === 'users'">
+                            <span v-for="role in filteredData[i].roles">
+                                {{ role.name }},
+                            </span>                            
+                        </template>
+
+                        <template v-else-if= "lista === 'roles'">
+                            {{ filteredData[i].name }}                          
+                        </template>
+
+                        <template v-else-if= "lista === 'permissions'">
+                            {{ filteredData[i].name }}
+                        </template>
+
+                        <template v-else-if= "lista === 'posts'">
+                            {{ filteredData[i].name }}
+                        </template>
+
+                        <template v-else-if= "lista === 'categories'">
+                            {{ filteredData[i].name }}
+                        </template>
+
+                        <template v-else-if= "lista === 'tags'">
+                            {{ filteredData[i].name }}
+                        </template>
+
                         <template v-else>
                             {{ filteredData[i].id }}
                         </template>
                     </template>
+
 
                     <template v-else-if = "index === 1">
                         <template v-if= "lista === 'users'">
@@ -46,26 +73,32 @@
                                 {{ role.name }},
                             </span>
                         </template>
+
+                        <template v-else-if= "lista === 'roles'">
+                            <span v-for="permission in filteredData[i].permissions">
+                                {{ permission.name }},
+                            </span>
+                        </template>
+
                         <template v-else>
                             {{entry[key]}}
                         </template>
                     </template>
 
+
                     <template v-else-if = "index === 2">
-                        <template v-if= "lista === 'roles'">
-                            <span v-for="permission in filteredData[i].permissions">
-                                {{ permission.name }},
-                            </span>
-                        </template>
-                        <template v-else-if= "lista === 'posts'">
+
+                        <template v-if= "lista === 'posts'">
                             <span >
                                 <img :src="`../images/${filteredData[i].file}`" width="75px" class="img-thumbnail">
                             </span>
                         </template>
+
                         <template v-else>
                             {{entry[key]}}
                         </template>
                     </template>
+
 
                     <template v-else>
                         {{entry[key]}}

@@ -52641,7 +52641,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             lista: 'equipos',
             isAutorized: false,
             arrayGrupo: [],
-
             modal: 0,
             tituloModal: '',
             errorEquipo: 0,
@@ -52675,6 +52674,39 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -52952,13 +52984,76 @@ var render = function() {
                                           "\n                    "
                                       )
                                     ]
-                                  : [
-                                      _vm._v(
-                                        "\n                        " +
-                                          _vm._s(_vm.filteredData[i].id) +
-                                          "\n                    "
+                                  : _vm.lista === "users"
+                                    ? _vm._l(
+                                        _vm.filteredData[i].roles,
+                                        function(role) {
+                                          return _c("span", [
+                                            _vm._v(
+                                              "\n                            " +
+                                                _vm._s(role.name) +
+                                                ",\n                        "
+                                            )
+                                          ])
+                                        }
                                       )
-                                    ]
+                                    : _vm.lista === "roles"
+                                      ? [
+                                          _vm._v(
+                                            "\n                        " +
+                                              _vm._s(_vm.filteredData[i].name) +
+                                              "                          \n                    "
+                                          )
+                                        ]
+                                      : _vm.lista === "permissions"
+                                        ? [
+                                            _vm._v(
+                                              "\n                        " +
+                                                _vm._s(
+                                                  _vm.filteredData[i].name
+                                                ) +
+                                                "\n                    "
+                                            )
+                                          ]
+                                        : _vm.lista === "posts"
+                                          ? [
+                                              _vm._v(
+                                                "\n                        " +
+                                                  _vm._s(
+                                                    _vm.filteredData[i].name
+                                                  ) +
+                                                  "\n                    "
+                                              )
+                                            ]
+                                          : _vm.lista === "categories"
+                                            ? [
+                                                _vm._v(
+                                                  "\n                        " +
+                                                    _vm._s(
+                                                      _vm.filteredData[i].name
+                                                    ) +
+                                                    "\n                    "
+                                                )
+                                              ]
+                                            : _vm.lista === "tags"
+                                              ? [
+                                                  _vm._v(
+                                                    "\n                        " +
+                                                      _vm._s(
+                                                        _vm.filteredData[i].name
+                                                      ) +
+                                                      "\n                    "
+                                                  )
+                                                ]
+                                              : [
+                                                  _vm._v(
+                                                    "\n                        " +
+                                                      _vm._s(
+                                                        _vm.filteredData[i].id
+                                                      ) +
+                                                      "\n                    "
+                                                  )
+                                                ]
                     ]
                   : index === 1
                     ? [
@@ -52972,17 +53067,7 @@ var render = function() {
                                 )
                               ])
                             })
-                          : [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(entry[key]) +
-                                  "\n                    "
-                              )
-                            ]
-                      ]
-                    : index === 2
-                      ? [
-                          _vm.lista === "roles"
+                          : _vm.lista === "roles"
                             ? _vm._l(_vm.filteredData[i].permissions, function(
                                 permission
                               ) {
@@ -52994,27 +53079,36 @@ var render = function() {
                                   )
                                 ])
                               })
-                            : _vm.lista === "posts"
-                              ? [
-                                  _c("span", [
-                                    _c("img", {
-                                      staticClass: "img-thumbnail",
-                                      attrs: {
-                                        src:
-                                          "../images/" +
-                                          _vm.filteredData[i].file,
-                                        width: "75px"
-                                      }
-                                    })
-                                  ])
-                                ]
-                              : [
-                                  _vm._v(
-                                    "\n                        " +
-                                      _vm._s(entry[key]) +
-                                      "\n                    "
-                                  )
-                                ]
+                            : [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(entry[key]) +
+                                    "\n                    "
+                                )
+                              ]
+                      ]
+                    : index === 2
+                      ? [
+                          _vm.lista === "posts"
+                            ? [
+                                _c("span", [
+                                  _c("img", {
+                                    staticClass: "img-thumbnail",
+                                    attrs: {
+                                      src:
+                                        "../images/" + _vm.filteredData[i].file,
+                                      width: "75px"
+                                    }
+                                  })
+                                ])
+                              ]
+                            : [
+                                _vm._v(
+                                  "\n                        " +
+                                    _vm._s(entry[key]) +
+                                    "\n                    "
+                                )
+                              ]
                         ]
                       : [
                           _vm._v(
@@ -54131,6 +54225,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* get */])('../api/users').then(function (res) {
+            console.log(res);
             _this.gridData = res.data.users;
         });
     },
@@ -54164,7 +54259,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-secondary btn-sm  float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/users" }
             },
             [_vm._v("Usuarios")]
@@ -54173,7 +54268,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-secondary btn-sm  float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/roles" }
             },
             [_vm._v("Roles")]
@@ -54182,7 +54277,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-secondary btn-sm  float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/permissions" }
             },
             [_vm._v("Permisos")]
@@ -54382,6 +54477,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* get */])('../api/roles').then(function (res) {
+            console.log(res);
             _this.gridData = res.data.roles;
         });
     },
@@ -54415,7 +54511,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/users" }
             },
             [_vm._v("Usuarios")]
@@ -54424,7 +54520,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/roles" }
             },
             [_vm._v("Roles")]
@@ -54433,7 +54529,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/permissions" }
             },
             [_vm._v("Permisos")]
@@ -54633,6 +54729,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         var _this = this;
 
         Object(__WEBPACK_IMPORTED_MODULE_0__helpers_api__["c" /* get */])('../api/permissions').then(function (res) {
+            console.log(res);
             _this.gridData = res.data.permissions;
         });
     },
@@ -54666,7 +54763,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/users" }
             },
             [_vm._v("Usuarios")]
@@ -54675,7 +54772,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/roles" }
             },
             [_vm._v("Roles")]
@@ -54684,7 +54781,7 @@ var render = function() {
           _c(
             "router-link",
             {
-              staticClass: "btn btn-sm btn-secondary float-right",
+              staticClass: "btn btn-secondary btn-sm float-right",
               attrs: { to: "/permissions" }
             },
             [_vm._v("Permisos")]
@@ -54698,7 +54795,7 @@ var render = function() {
       _c("div", { staticClass: "form-group row" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group", attrs: { "col-4": "" } }, [
+        _c("div", { staticClass: "form-group col-4" }, [
           _c("input", {
             directives: [
               {

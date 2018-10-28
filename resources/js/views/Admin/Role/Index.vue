@@ -2,9 +2,9 @@
 	<div class="row">
 		<div class="col-md">
             <h3><i class="fa fa-lock-open"></i> Administración
-                <router-link to="/users" class="btn btn-sm btn-secondary float-right">Usuarios</router-link>
-                <router-link to="/roles" class="btn btn-sm btn-secondary float-right">Roles</router-link>
-                <router-link to="/permissions" class="btn btn-sm btn-secondary float-right">Permisos</router-link>
+                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Usuarios</router-link>
+                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
+                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
             </h3>
             <hr>
             <div class="form-group row">
@@ -22,11 +22,11 @@
             <div class="card">
                 <div class="card-block">
                     <lista-search
-                            :data="gridData"
-                            :columns="gridColumns"
-                            :filter-key="searchQuery"
-                            :lista="lista"
-                            :isAutorized="isAutorized">
+                        :data="gridData"
+                        :columns="gridColumns"
+                        :filter-key="searchQuery"
+                        :lista="lista"
+                        :isAutorized="isAutorized">
                     </lista-search>
                 </div>
             </div>
@@ -53,6 +53,7 @@
         created() {
             get(`../api/roles`)
                 .then((res) => {
+                    console.log(res);
                     this.gridData = res.data.roles
                 })
         },
