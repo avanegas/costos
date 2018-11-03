@@ -22,7 +22,7 @@ class MaterialsTableSeeder extends Seeder
         		'grupo_material_id' => $i,
         		'name' => $faker->unique()->name,
         		'unidad' => $faker->word,
-        		'precio' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 400)
+        		'precio' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 100)
         	]);
         }
     }

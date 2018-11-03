@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md" >                
             <div class="form-group row">
-                <h3 class="col-7">Categorías de apuntes</h3>
+                <h3 class="col-7">Categorías de artículos</h3>
                 <div class="col-4 form-group">
                     <input
                         type="text"
@@ -10,6 +10,9 @@
                         placeholder="Search..."
                         autocomplete="off"
                         v-model="searchQuery">
+                </div>
+                 <div v-if="authState.api_token && authState.user_id === 1">
+                    <router-link to="/categories/create" class="btn btn-primary"> Nuevo</router-link>
                 </div>
             </div>
             <div class="card">
@@ -27,6 +30,7 @@
     </div>
 </template>
 <script type="text/javascript">
+    import Auth from '../../store/auth'
     import { get } from '../../helpers/api'
     import ListaSearch from '../../components/ListaSearch.vue'
     export default {
@@ -35,6 +39,7 @@
         },
         data() {
             return {
+                authState: Auth.state,
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],

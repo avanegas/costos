@@ -3,7 +3,7 @@
         <div class="col-md">
 			<div class="form-group row">
 				<div class="form-group col-9">
-					<h3>{{action}} Equipo</h3>
+					<h3>{{action}} User</h3>
 				</div>
 				<div>
 					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
@@ -16,33 +16,49 @@
 
 			<div class="card">
 				<div class="card card-body">
-					<div class="form-group">
-						<label>Grupo de equipo</label>
-						<select :id="form.grupo_equipo_id" :name="form.grupo_equipo_id" class="form-control" v-model="form.grupo_equipo_id">
-							<option disabled value="">seleccione</option>
-							<option v-for="ge in grupo_equipos" :value="ge.id" selected = " form.grupo_equipo_id == ge.id ? true : false ">{{ ge.name }}</option>
-						</select>
-						<small class="error-control" v-if="error.errors.grupo_equipo_id">{{error.errors.grupo_equipo_id[0]}}</small>
-					</div>
+
 					<div class="form-group">
 					    <label>Name</label>
 					    <input type="text" class="form-control" v-model="form.name">
 					    <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
 					</div>
 					<div class="form-group">
-					    <label>Marca</label>
-					    <input type="text" class="form-control" v-model="form.marca">
-					    <small class="error-control" v-if="error.errors.marca">{{error.errors.marca[0]}}</small>
+					    <label>Email</label>
+					    <input type="email" class="form-control" v-model="form.email">
+					    <small class="error-control" v-if="error.errors.email">{{error.errors.email[0]}}</small>
+					</div>
+<!--
+					<div class="form-group">
+						<label>Role</label>
+						<select :id="form.role_id" :name="form.role_id" class="form-control" v-model="form.role_id">
+							<option disabled value="">seleccione</option>
+							<option v-for="role in roles" :value="role.id" selected = " form.role_id == role.id ? true : false ">{{ role.name }}</option>
+						</select>
+						<small class="error-control" v-if="error.errors.role_id">{{error.errors.role_id[0]}}</small>
+					</div>
+					-->
+					<div class="form-group">
+						<label>Asignar rol</label>
+	                    <div class="checkboxes offset-md-1" v-for="role in roles">
+	                		<input type="checkbox" 
+	                				:id="role.id" 
+	                				name="form.roles" 
+	                				:value="role.name" 
+	                				v-model="form.roles" 
+	                				value="role.name">
+	                		<label>{{role.name}}</label>
+	                    </div>
+                	</div>
+
+					<div class="form-group">
+					    <label>Password</label>
+					    <input type="password" class="form-control" v-model="form.password">
+					    <small class="error-control" v-if="error.errors.password">{{error.errors.password[0]}}</small>
 					</div>
 					<div class="form-group">
-					    <label>Tipo</label>
-					    <input type="text" class="form-control" v-model="form.tipo">
-					    <small class="error-control" v-if="error.errors.tipo">{{error.errors.tipo[0]}}</small>
-					</div>
-					<div class="form-group">
-					    <label>Tarifa</label>
-					    <input type="number" step="any" class="form-control" v-model="form.tarifa">
-					    <small class="error-control" v-if="error.errors.tarifa">{{error.errors.tarifa[0]}}</small>
+					    <label>Confirme Password</label>
+					    <input type="password" step="any" class="form-control" v-model="form.password_confirmation">
+					    <small class="error-control" v-if="error.errors.password_confirmation">{{error.errors.password_confirmation[0]}}</small>
 					</div>
 				</div>
 			</div>
@@ -62,42 +78,45 @@
 		},
 		data() {
 			return {
-				grupo_equipos:[],
-
-				form: {},
+				roles:[],
+				form: {
+					roles:[]
+				},
 				error: {
 					errors:{}
 				},
 				isProcessing: false,
-				initializeURL: `/api/equipos/create`,
-				storeURL: `/api/equipos`,
+				initializeURL: `/api/users/create`,
+				storeURL: `/api/users`,
 				action: 'Create'
 			}
 		},
 		created() {
 			if(this.$route.meta.mode === 'edit') {
-				this.initializeURL = `/api/equipos/${this.$route.params.id}/edit`
-				this.storeURL = `/api/equipos/${this.$route.params.id}?_method=PUT`
+				this.initializeURL = `/api/users/${this.$route.params.id}/edit`
+				this.storeURL = `/api/users/${this.$route.params.id}?_method=PUT`
 				this.action = 'Update'
 			}
 			get(this.initializeURL)
 				.then((res) => {
 					Vue.set(this.$data, 'form', res.data.form)
 				}),
-			get(`/api/grupo_equipos`)
+			get(`/api/roles`)
 				.then((res) => {
-					this.grupo_equipos = res.data.grupo_equipos
+					this.roles = res.data.roles
 				})
 		},
 		methods: {
 			save() {
 				this.isProcessing = true
 				const form = toMulipartedForm(this.form, this.$route.meta.mode)
+				console.log(form);			
 				post(this.storeURL, form)
 				    .then((res) => {
+
 				        if(res.data.saved) {
 				            Flash.setSuccess(res.data.message)
-				            this.$router.push(`/equipo`)
+				            this.$router.push(`/users`)
 				        }
 				        this.isProcessing = false
 				    })
@@ -109,8 +128,8 @@
 				    })
 			  },
 			remove() {
-				del(`/api/equipos/${this.$route.params.id}`).then((res) => {
-					Flash.setSuccess('Ha eliminado correctamente el equipo!')
+				del(`/api/users/${this.$route.params.id}`).then((res) => {
+					Flash.setSuccess('Ha eliminado correctamente el user!')
 					this.$router.back()
 				});
       		}

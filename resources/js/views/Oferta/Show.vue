@@ -1,24 +1,15 @@
 <template>
-	<div class="row">
-		<div class="col-md">
-            <h3><i class="fa fa-lock-open"></i> Administración
-                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Usuarios</router-link>
-                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
-                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
-            </h3>
-            <hr>	            
+    <div class="row">
+        <div class="col-md" >                
             <div class="form-group row">
-                <h3 class="col-7"><i class="fa fa-users"></i> Permisos</h3>
-                <div class="form-group col-4">
+                <h3 class="col-7">Apuntes</h3>
+                <div class="col-4 form-group">
                     <input
                         type="text"
                         class="form-control mr-sm-2 mb-2 mb-sm-0"
                         placeholder="Search..."
                         autocomplete="off"
                         v-model="searchQuery">
-                </div>
-                 <div>
-                    <router-link to="/permissions/create" class="btn btn-primary"> Nuevo</router-link>
                 </div>
             </div>
             <div class="card">
@@ -36,8 +27,8 @@
     </div>
 </template>
 <script type="text/javascript">
-    import { get } from '../../../helpers/api'
-    import ListaSearch from '../../../components/ListaSearch.vue'
+    import { get } from '../../helpers/api'
+    import ListaSearch from '../../components/ListaSearch.vue'
     export default {
         components: {
             ListaSearch
@@ -47,16 +38,15 @@
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
-                gridColumns:['name'],
-                lista:'permissions',
+                gridColumns:['name', 'status', 'file', 'updated_at'],
+                lista:'posts',
                 isAutorized: false
             }
         },
         created() {
-            get(`../api/permissions`)
+            get(`/api/posts/${this.$route.params.id}`)
                 .then((res) => {
-                    console.log(res);
-                    this.gridData = res.data.permissions
+                    this.gridData = res.data.posts
                 })
         },
         methods: {

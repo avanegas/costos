@@ -4,17 +4,30 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Data\GrupoEquipo;
 
 class GrupoEquipoController extends Controller
 {
-    /**
+/**
+    public function __construct()
+    {
+        $this->middleware('auth:api')
+            ->except(['index', 'show']);
+    }
+    
+    
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $grupo_equipos=GrupoEquipo::orderBy('name', 'asc')->get();
+
+        return response()
+            ->json([
+                'grupo_equipos' => $grupo_equipos
+            ]);
     }
 
     /**

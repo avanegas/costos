@@ -18,17 +18,30 @@
                 </li>
                 <li><router-link to="/precios">Precios</router-link></li>
                 <li><router-link to="/proyectos">Proyectos</router-link></li>
-                <li><router-link to="#">Ofertas</router-link></li>
+                <li><router-link to="/ofertas">Ofertas</router-link></li>
 
-                <li><router-link :to="`/posts/${authState.user_id}`"  v-if="auth">Entradas</router-link></li>
-                <li><router-link to="/categories"  v-if="auth">Categorias</router-link></li>
-                <li><router-link to="/tags"  v-if="auth">Etiquetas</router-link></li>
+                <li v-if="auth">
+                    <a href="#">Grupos</a>
+                    <nav class="submenu">
+                        <router-link to="/categories" >Categorias</router-link>
+                        <router-link to="/tags">Etiquetas</router-link>
+                        <router-link to="/grupo_equipos" >GEquipos</router-link>
+                        <router-link to="/grupo_materials">GMateriales</router-link>
+                        <router-link to="/grupo_obreros">GObreros</router-link>
+                        <router-link to="/grupo_precios">GPrecios</router-link>
+                        <router-link to="/zonas">Zonas</router-link>
 
-                <li><router-link to="/login" v-if="guest">LOGIN</router-link></li>
-                <li><router-link to="/register" v-if="guest">REGISTER</router-link></li>
+                    </nav>
+                </li>
+                <li v-if="auth"><router-link :to="`/posts/${authState.user_id}`" >Entradas</router-link></li>
+                <!--<li><router-link to="/categories"  v-if="auth">Categorias</router-link></li>
+                <li><router-link to="/tags"  v-if="auth">Etiquetas</router-link></li>-->
 
-                <li >
-                    <a href="#" v-if="auth">{{ authState.user_id }} <span class="caret"> Admin</span></a>
+                <li v-if="guest"><router-link to="/login">LOGIN</router-link></li>
+                <li v-if="guest"><router-link to="/register">REGISTER</router-link></li>
+
+                <li v-if="auth">
+                    <a href="#">{{ authState.user_id }} <span class="caret"> Admin</span></a>
                     <nav class="submenu">
                         <router-link to="/users" v-if="auth" >Administrar</router-link>
                         <a href="#" @click.stop="logout" v-if="auth">LOGOUT</a>

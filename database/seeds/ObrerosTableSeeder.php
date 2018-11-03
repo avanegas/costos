@@ -21,7 +21,7 @@ class ObrerosTableSeeder extends Seeder
         	Obrero::create([
         		'grupo_obrero_id' => $i,
         		'name' => $faker->unique()->name,
-				'jornalhora' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 80),
+				'jornalhora' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 10),
         		'factor' => '1.37525'
         	]);
         }

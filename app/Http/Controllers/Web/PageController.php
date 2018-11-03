@@ -52,7 +52,7 @@ class PageController extends Controller
     {
         $posts = Post::whereHas('tags', function($query) use ($slug) {
                 $query->where('slug', $slug);
-            })->with(['user', 'category', 'comments'])->orderBy('created_at', 'desc')->where('status', 'PUBLISHED')->get();
+            })->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->where('status', 'PUBLISHED')->get();
 
         return response()
             ->json(['posts' => $posts
@@ -70,7 +70,7 @@ class PageController extends Controller
 
     public function equipo()
     {
-        $equipos = Equipo::with(['grupo_equipo'])->orderBy('name', 'ASC')->get();
+        $equipos = Equipo::with(['grupo_equipo'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['equipos' => $equipos
@@ -79,7 +79,7 @@ class PageController extends Controller
 
     public function material()
     {
-        $materials = Material::with(['grupo_material'])->orderBy('name', 'ASC')->get();
+        $materials = Material::with(['grupo_material'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['materials' => $materials
@@ -88,7 +88,7 @@ class PageController extends Controller
 
     public function obrero()
     {
-        $obreros = Obrero::with(['grupo_obrero'])->orderBy('name', 'ASC')->get();
+        $obreros = Obrero::with(['grupo_obrero'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['obreros' => $obreros
@@ -97,7 +97,7 @@ class PageController extends Controller
 
     public function transporte()
     {
-        $transportes = Transporte::with(['zona'])->orderBy('name', 'ASC')->get();
+        $transportes = Transporte::with(['zona'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['transportes' => $transportes

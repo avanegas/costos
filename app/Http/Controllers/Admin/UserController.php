@@ -18,12 +18,12 @@ class UserController extends Controller
      * Create a new controller instance.
      *
      * @return void
-     
+        
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);   //middleware
     }
-    */
+*/ 
     /**
      * Display a listing of the resource.
      *
@@ -44,8 +44,15 @@ class UserController extends Controller
      */
     public function create()
     {
+        $form = User::form();
+
+        return response()
+            ->json(['form' => $form]);
+
+        /**    
         $roles = Role::get();
         return view('admin.users.create', compact('roles'));
+        */
     }
 
     /**
@@ -56,6 +63,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $this->validate($request, [
             'name'=>'required|max:120',
             'email'=>'required|email|unique:users',
@@ -64,7 +72,7 @@ class UserController extends Controller
 
         $user = User::create($request->only('email', 'name', 'password'));
 
-        $roles = $request['roles']; //Retrieving the roles field
+        $roles = $request['roles[]']; //Retrieving the roles field
 
         //Checking if a role was selected
         if (isset($roles)) {
@@ -72,9 +80,15 @@ class UserController extends Controller
                 $role_r = Role::where('id', '=', $role)->firstOrFail();            
                 $user->assignRole($role_r); //Assigning role to user
             }
-        } 
+        }
 
-        return redirect()->route('users.index')->with('info', 'Usuario creado con éxito');
+        return response()
+            ->json([
+                'saved' => true,
+                'id' => $user->id,
+                'message' => 'Ha ingresado correctamente un usuario!'
+                ]);
+        //return redirect()->route('users.index')->with('info', 'Usuario creado con éxito');
     }
 
     /**
@@ -97,12 +111,19 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $roles = Role::get(); //Get all roles
 
-        return view('admin.users.edit', compact('user', 'roles')); //pass user and roles data to view
+        $form = User::findOrFail($id);
+        $roles = Role::get();
+
+        return response()
+            ->json(['form' => $form, 'roles' => $roles]);
+
+        //$user = User::findOrFail($id);
+        //$roles = Role::get(); //Get all roles
+
+        //return view('admin.users.edit', compact('user', 'roles')); //pass user and roles data to view
     }
 
     /**

@@ -66,4 +66,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Zona::class);
     }
+
+    public static function form()
+    {
+      return [
+        'name'      => '',
+        'email'     => '',
+        'password'  =>'',
+        'roles'     =>[]
+      ];
+    }
 }

@@ -42,7 +42,7 @@
                         </template>
 
                         <template v-else-if= "lista === 'roles'">
-                            {{ filteredData[i].name }}                          
+                            {{ filteredData[i].name }}
                         </template>
 
                         <template v-else-if= "lista === 'permissions'">
@@ -69,9 +69,7 @@
 
                     <template v-else-if = "index === 1">
                         <template v-if= "lista === 'users'">
-                            <span v-for="role in filteredData[i].roles">
-                                {{ role.name }},
-                            </span>
+                            {{ filteredData[i].name }}
                         </template>
 
                         <template v-else-if= "lista === 'roles'">
@@ -168,18 +166,39 @@
             }
         },
         methods: {
+
             sortBy: function (key) {
                 this.sortKey = key
                 this.sortOrders[key] = this.sortOrders[key] * -1
             },
             agrega(entry) {
-
-                if(this.isAutorized){
-                    console.log(entry)
-                    this.$emit("agrega", entry);
-                }
-                else{
-                    this.$router.push(`/${this.lista}/${entry['id']}`)
+                
+                    switch (this.lista) {
+                        case "categories":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "equipos":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "users":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }                       
+                        default:
+                        {
+                            if(this.isAutorized){
+                                console.log(entry);
+                                this.$emit("agrega", entry);
+                            }
+                            else{
+                                this.$router.push(`/${this.lista}/${entry['id']}`);
+                            }
+                        }
                 }
                 
             }

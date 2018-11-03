@@ -12,12 +12,12 @@ use Session;
 use Auth;
 
 class PermissionController extends Controller {
-    /*
+    /*    
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
-    */
+*/
     public function index() 
     {
         $permissions = Permission::orderBy('name', 'ASC')->get();

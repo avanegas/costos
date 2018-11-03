@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePostsTable extends Migration
+class CreateOfertasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,26 +13,22 @@ class CreatePostsTable extends Migration
      */
     public function up()
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('ofertas', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned();
-            $table->integer('category_id')->unsigned();
+            $table->integer('user_id')->unsigned()->index();
             $table->string('name');
-            $table->string('slug')->unique();
-            $table->mediumText('excerpt')->nullable();
-            $table->text('body');
+            $table->string('unidad');
+            $table->mediumText('descripcion')->nullable();
+            $table->decimal('stock',9,2);
+            $table->decimal('precio',9,2);
             $table->string('file')->nullable();
-            $table->enum('status', ['PUBLISHED', 'DRAFT'])->default('DRAFT');
-                        
+            $table->enum('status', ['TRUE', 'FALSE'])->default('TRUE');
+
             //relation
             $table->foreign('user_id')->references('id')->on('users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->foreign('category_id')->references('id')->on('categories')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-                
             $table->timestamps();
         });
     }
@@ -44,6 +40,6 @@ class CreatePostsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('ofertas');
     }
 }

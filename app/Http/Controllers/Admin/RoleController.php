@@ -12,12 +12,12 @@ use Session;
 use Auth;
 
 class RoleController extends Controller {
-    /*
+    /*    
     public function __construct() 
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
-    */
+*/
     public function index() 
     {
         $roles = Role::with('permissions')->orderBy('name', 'ASC')->get();

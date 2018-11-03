@@ -1,46 +1,75 @@
 <template>
-	<div class="recipe__show">
-		<div class="recipe__header">
-			<h3>{{action}} Nota</h3>
-			<div>
-				<button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
-				<button class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>
-			</div>
-		</div>
-		<br>
-		<div class="image__show">
-			<div class="recipe__box">
-				<image-upload v-model="form.image"></image-upload>
-				<small class="error__control" v-if="error.image">{{error.image[0]}}</small>
-			</div>
-		</div>
-		<div class="recipe__details">
-			<div class="recipe__box">
-				<div class="form__group">
-					<label for="category_id">Categoría</label>
-					<select id="category_id" name="category_id" class="form__control" v-model="form.category_id">
-						<option disabled value="">seleccione</option>
-						<option v-for="c in categories" :value="c.id" selected = " form.category_id == c.id ? true : false ">{{ c.name }}</option>
-					</select>
+	<div class="row">
+		<div class="col-md">
+			<div class="form-group row">
+				<div class="form-group col-9">
+					<h3>{{action}} Articulo</h3>
 				</div>
-				<div class="form__group">
-					<label>Titulo</label>
-					<input type="text" class="form__control" v-model="form.name">
-					<small class="error__control" v-if="error.name">{{error.name[0]}}</small>
-				</div>
-				<div class="form__group">
-					<label>Contenido</label>
-					<textarea class="form__control form__description" v-model="form.content"></textarea>
-					<small class="error__control" v-if="error.content">{{error.content[0]}}</small>
-				</div>
-				<div class="form__group">
-					<label>Asociaciones</label>
-					<input type="text" class="form__control" v-model="form.tags">
-					<small class="error__control" v-if="error.tags">{{error.tags[0]}}</small>
+				<div>
+					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
+	        		<template v-if="action == 'Update'">
+	            		<button type="button" class="btn btn-danger" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+	        		</template>
+					<button type="button" class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>
 				</div>
 			</div>
-		</div>
+			<div class="card">
+				<div class="card card-body">
+					<div class="image-show">
+						<div class="recipe__box">
+							<image-upload v-model="form.image"></image-upload>
+							<small class="error-control" v-if="error.image">{{error.image[0]}}</small>
+						</div>
+					</div>
+					<div class="recipe-details">
+						<div class="recipe__box">
+							<div class="form-group">
+								<label for="category_id">Categoría</label>
+								<select id="category_id" name="category_id" class="form-control" v-model="form.category_id">
+									<option disabled value="">seleccione</option>
+									<option v-for="c in categories" :value="c.id" selected = " form.category_id == c.id ? true : false ">{{ c.name }}</option>
+								</select>
+							</div>
+							<div class="form-group">
+								<label>Titulo</label>
+								<input type="text" class="form-control" v-model="form.name">
+								<small class="error-control" v-if="error.name">{{error.name[0]}}</small>
+							</div>
+							<div class="form-group">
+								<label>Slug</label>
+								<input type="text" class="form-control" v-model="form.slug">
+								<small class="error-control" v-if="error.slug">{{error.slug[0]}}</small>
+							</div>
+							<div class="form-group">
+								<label>Resumen</label>
+								<input type="text" class="form-control" v-model="form.excerpt">
+								<small class="error-control" v-if="error.excerpt">{{error.excerpt[0]}}</small>
+							</div>
+							<div class="form-group">
+								<label>Contenido</label>
+								<textarea class="form-control form-description" v-model="form.bodyt"></textarea>
+								<small class="error-control" v-if="error.bodyt">{{error.bodyt[0]}}</small>
+							</div>
+							<p>Estado del articulo</p>							
+							<div class="form-group">
+								<input type="radio" name="draft" v-model="form.status" Checked>
+								<label for="draft">Draft</label>
+
+								<input type="radio" name="publicado" v-model="form.status">
+								<label for="publicado">Publicado</label>
+							</div>
+							<div class="form-group">
+								<label>Etiquetas de categorización específica</label>
+								<input type="text" class="form-control" v-model="form.tags">
+								<small class="error-control" v-if="error.tags">{{error.tags[0]}}</small>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>		
 	</div>
+
 </template>
 <script type="text/javascript">
 	import Vue from 'vue'
@@ -56,7 +85,6 @@
 		data() {
 			return {
 				categories:[],
-
 				form: {},
 				error: {},
 				isProcessing: false,

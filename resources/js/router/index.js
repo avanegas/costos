@@ -16,6 +16,7 @@ import Obrero from '../views/Web/Obrero.vue'
 import Transporte from '../views/Web/Transporte.vue'
 
 import UserIndex from '../views/Admin/User/Index.vue'
+import UserForm from '../views/Admin/User/Form.vue'
 import RoleIndex from '../views/Admin/Role/Index.vue'
 import PermissionIndex from '../views/Admin/Permission/Index.vue'
 
@@ -25,7 +26,6 @@ import PostShow from '../views/Post/Show.vue'
 import PostForm from '../views/Post/Form.vue'
 
 import CategoryIndex from '../views/Category/Index.vue'
-import CategoryShow from '../views/Category/Show.vue'
 import CategoryForm from '../views/Category/Form.vue'
 
 import TagIndex from '../views/Tag/Index.vue'
@@ -54,6 +54,10 @@ import ProyectoIndex from '../views/Proyecto/Index.vue'
 import ProyectoShow from '../views/Proyecto/Show.vue'
 import ProyectoForm from '../views/Proyecto/Form.vue'
 
+
+import OfertaIndex from '../views/Oferta/Index.vue'
+import OfertaForm from '../views/Oferta/Form.vue'
+
 import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
@@ -74,6 +78,9 @@ const router = new VueRouter({
 
 
         { path: '/users', component: UserIndex},
+        { path: '/users/create', component: UserForm, meta: { mode: 'create' }},
+        { path: '/users/:id/edit', component: UserForm, meta: { mode: 'edit' }},
+
         { path: '/roles', component: RoleIndex},
         { path: '/permissions', component: PermissionIndex},
 
@@ -86,7 +93,7 @@ const router = new VueRouter({
         { path: '/categories', component: CategoryIndex},
         { path: '/categories/create', component: CategoryForm, meta: { mode: 'create' }},
         { path: '/categories/:id/edit', component: CategoryForm, meta: { mode: 'edit' }},
-        { path: '/categories/:id', component: CategoryShow },
+
 
         { path: '/tags', component: TagIndex},
         { path: '/tags/create', component: TagForm, meta: { mode: 'create' }},
@@ -121,6 +128,10 @@ const router = new VueRouter({
         { path: '/proyectos/create', component: ProyectoForm},
         { path: '/proyectos/:id/edit', component: ProyectoForm, meta: { mode: 'edit' }},
         { path: '/proyectos/:id', component: ProyectoShow},
+
+        { path: '/ofertas', component: OfertaIndex},
+        { path: '/ofertas/create', component: OfertaForm, meta: { mode: 'create' }},
+        { path: '/ofertas/:id/edit', component: OfertaForm, meta: { mode: 'edit' }},
 
         { path: '/login', component: Login },
         { path: '/register', component: Register },

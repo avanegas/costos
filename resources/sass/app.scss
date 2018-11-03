@@ -161,7 +161,7 @@ li:hover {
 li:hover > ul {
 	display: block;
 }
-
+/* eliminado por ofertas
 .item a{
     font-size: 14px;                    //incluido
     color: rgba(255, 255, 255, 0.5);    //color:#fff;
@@ -175,7 +175,7 @@ a {
     text-decoration: none;
     color: #616161;
 }
-
+*/ /*eliminado por ofertas*/
 .progress {
     position: fixed;
     top: 0;
@@ -411,4 +411,123 @@ th.active .arrow {
 .typeahead-active {
   background: #3aa3e3 !important;
   color: #fff;
+}
+
+.error {
+    &-control {
+        color: #e53935;
+    }
+    &-bg {
+        background: #ffcdd2!important;
+    }
+}
+
+
+.flash {
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 2px;
+    &-success {
+        background: #a5d6a7;
+        border: 1px solid #81c784;
+        color: #1b5e20;
+    }
+    &-error {
+        background: #ef9a9a;
+        border: 1px solid #E57373;
+        color: #b71c1c;
+    }
+}
+
+.checkboxes input{
+  display: inline-block;
+  margin-right:10px;
+}
+
+.checkboxes label{
+  display: inline-block;
+}
+
+// OFERTAS
+.is-flex {
+  display:flex;
+  flex-wrap: wrap;
+}
+
+.action-panel {
+    margin-bottom: 10px;
+    margin-right: 5px;
+}
+
+.caption {
+  padding: 9px;
+  color: #333;
+}
+
+.margin-left-sm {
+  margin-left: 10px;
+}
+
+.thumbnail {
+    display: block;
+    padding: 4px;
+    margin-bottom: 20px;
+    line-height: 1.42857143;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+  }
+
+.pull-right {
+    float: right!important;
+}
+
+.thumbnail-image {
+    padding: 15px;
+}
+
+.h4, h4 {
+    font-size: 18px;
+}
+
+.h4, .h5, .h6, h4, h5, h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.grow {
+    transition: all .2s ease-in-out;
+}
+
+.thumbnail a>img, .thumbnail>img {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+img {
+    vertical-align: middle;
+}
+img {
+    border: 0;
+}
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+h4 a {
+    color: #337ab7;
+    text-decoration: none;
 }

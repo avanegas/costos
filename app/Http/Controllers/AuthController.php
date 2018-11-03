@@ -8,6 +8,7 @@ use Hash;
 
 class AuthController extends Controller
 {
+    /**/
 	public function __construct()
 	{
 	    $this->middleware('auth:api')->only('logout');

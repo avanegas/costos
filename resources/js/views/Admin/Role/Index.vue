@@ -17,7 +17,9 @@
                         autocomplete="off"
                         v-model="searchQuery">
                 </div>
-                <a href="#" class="btn btn-primary"> Nuevo</a>
+                 <div>
+                    <router-link to="/roles/create" class="btn btn-primary"> Nuevo</router-link>
+                </div>
             </div>
             <div class="card">
                 <div class="card-block">
