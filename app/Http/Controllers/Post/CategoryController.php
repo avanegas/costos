@@ -39,16 +39,16 @@ class CategoryController extends Controller
         $category = Category::create($request->all());
 
         return response()
-                ->json([
-                    'saved' => true,
-                    'id' => $category->id,
-                    'message' => 'Ha ingresado correctamente la categoría de artículos!'
-                    ]);
+	            ->json([
+	                'saved' 	=> true,
+	                'id' 		=> $category->id,
+	                'message' 	=> 'Ha ingresado correctamente la categoría para artículos!'
+	                ]);
     }
 
     public function edit(Request $request, $id)
     {
-            $form = Category::findOrFail($id);
+        $form = Category::findOrFail($id);
 
         return response()
                 ->json(['form' => $form]);
@@ -57,15 +57,14 @@ class CategoryController extends Controller
     public function update(CategoryUpdateRequest $request, $id)
     {
         $category = Category::find($id);
-
         $category->fill($request->all())->save();
 
         return response()
-            ->json([
-                'saved' => true,
-                'form' => $category,
-                'message' => 'Ha actualizado correctamente la categoría!'
-                ]);
+	            ->json([
+	                'saved' 	=> true,
+	                'form' 		=> $category,
+	                'message' 	=> 'Ha actualizado correctamente la categoría!'
+	                ]);
     }
 
     public function destroy(Request $request, $id)

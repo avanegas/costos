@@ -2,8 +2,8 @@
 	<div class="image">
 		<image-preview :preview="value" @close="$emit('input', null)"
 			 v-if="value"></image-preview>
-		<div class="image__upload" v-else>
-			<input type="file" accept="image/*" @change="upload">
+		<div class="image-upload" v-else>
+			<input type="file" accept="images/*" @change="upload">
 		</div>
 	</div>
 </template>

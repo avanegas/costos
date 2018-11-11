@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Post;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
@@ -15,8 +16,10 @@ use App\Models\Post\Category;
 use App\Models\Post\Post;
 use App\Models\Post\Tag;
 
+
 use App\User;
 use App\Auth;
+use File;
 
 class PostController extends Controller
 {
@@ -50,10 +53,16 @@ class PostController extends Controller
      */
     public function create()
     {
+        $form = Post::form();
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('name', 'ASC')->get();
 
-        return view('admin.posts.create', compact('categories', 'tags'));
+        return response()
+            ->json([
+                'form' => $form,
+                'categories' => $categories,
+                'tags' => $tags
+                ]);
     }
 
     /**
@@ -64,18 +73,44 @@ class PostController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        $post = Post::create($request->all());
+
+        //$post = Post::create($request->all());
 
         //IMAGE 
-        if($request->file('image')){
-            $path = Storage::disk('public')->put('image',  $request->file('image'));
-            $post->fill(['file' => asset($path)])->save();
+        //if($request->file('file')){
+        //    $path = Storage::disk('public')->put('images',  $request->file('file'));
+        //    $post->fill(['file' => asset($path)])->save();
+        //}
+        if(!$request->hasFile('file') && !$request->file('file')->isValid()) {
+            return abort(404, 'Image not uploaded!');
         }
 
-        //TAGS
-        $post->tags()->attach($request->get('tags'));
+        $filename = $this->getFileName($request->file);
+        $request->file->move(base_path('public/images'), $filename);
 
-        return redirect()->route('posts.edit', $post->id)->with('info', 'Entrada creada con éxito');
+        $post = new Post($request->only('category_id', 'user_id', 'name', 'slug', 'excerpt', 'body', 'status'));
+        $post->file = $filename;
+
+        //$request->user()->posts()
+        //    ->save($post);
+
+        $post->save();
+
+        //TAGS
+        $post->tags()->attach($request->get('$tags'));
+        
+
+        return response()
+            ->json([
+                'saved'     => true,
+                'id'        => $post->user_id,
+                'message'   => 'You have successfully created post!'
+            ]);
+    }
+
+    private function getFileName($file)
+    {
+        return str_random(32).'.'.$file->extension();
     }
 
     /**

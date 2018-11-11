@@ -137,7 +137,7 @@
         beforeRouteEnter(to, from, next) {
             get(`/api/proyectos/${to.params.id}`)
                 .then((res) => {
-                	console.log(res);
+                	//console.log(res);
                     next(vm => vm.setData(res))
                 })
         },
@@ -145,7 +145,7 @@
             this.show = false
             get(`/api/proyectos/${to.params.id}`)
                 .then((res) => {
-                	console.log(res);
+                	//console.log(res);
                     this.setData(res)
                     next()
                 })

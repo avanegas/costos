@@ -16,87 +16,88 @@
                 <td v-for="(key, index) in columns">
                     <template v-if = "index === 0">
                         <template v-if= "lista === 'equipos'">
-                            {{ filteredData[i].grupo_equipo.name }}
+                            {{ filteredData[i].grupo_equipo.name}}
+                        </template>
+                        <template v-else-if= "lista === 'grupo_equipos'">
+                            {{ filteredData[i].zona.name }}
+                        </template>                        
+                        <template v-else-if= "lista === 'grupo_materials'">
+                            {{ filteredData[i].zona.name }}
                         </template>
                         <template v-else-if= "lista === 'materials'">
                             {{ filteredData[i].grupo_material.name }}
                         </template>
+                        <template v-else-if= "lista === 'grupo_obreros'">
+                            {{ filteredData[i].zona.name }}
+                        </template>
                         <template v-else-if= "lista === 'obreros'">
                             {{ filteredData[i].grupo_obrero.name }}
                         </template>
+
                         <template v-else-if= "lista === 'transportes'">
                             {{ filteredData[i].zona.name }}
                         </template>
-
+                        <template v-else-if= "lista === 'grupo_precios'">
+                            {{ filteredData[i].zona.name }}
+                        </template>
                         <template v-else-if= "lista === 'precios'">
                             {{ filteredData[i].grupo_precio.name }}
                         </template>
                         <template v-else-if= "lista === 'proyectos'">
                             {{ filteredData[i].user.name }}
                         </template>
-
                         <template v-else-if= "lista === 'users'">
                             <span v-for="role in filteredData[i].roles">
                                 {{ role.name }},
                             </span>                            
                         </template>
-
                         <template v-else-if= "lista === 'roles'">
                             {{ filteredData[i].name }}
                         </template>
-
                         <template v-else-if= "lista === 'permissions'">
                             {{ filteredData[i].name }}
                         </template>
-
                         <template v-else-if= "lista === 'posts'">
                             {{ filteredData[i].name }}
                         </template>
-
                         <template v-else-if= "lista === 'categories'">
                             {{ filteredData[i].name }}
                         </template>
-
                         <template v-else-if= "lista === 'tags'">
                             {{ filteredData[i].name }}
                         </template>
-
+                        <template v-else-if= "lista === 'zonas'">
+                            {{ filteredData[i].name }}
+                        </template>
                         <template v-else>
                             {{ filteredData[i].id }}
                         </template>
                     </template>
 
-
                     <template v-else-if = "index === 1">
                         <template v-if= "lista === 'users'">
                             {{ filteredData[i].name }}
                         </template>
-
                         <template v-else-if= "lista === 'roles'">
                             <span v-for="permission in filteredData[i].permissions">
                                 {{ permission.name }},
                             </span>
                         </template>
-
                         <template v-else>
                             {{entry[key]}}
                         </template>
                     </template>
 
-
                     <template v-else-if = "index === 2">
-
                         <template v-if= "lista === 'posts'">
                             <span >
                                 <img :src="`../images/${filteredData[i].file}`" width="75px" class="img-thumbnail">
                             </span>
                         </template>
-
                         <template v-else>
                             {{entry[key]}}
                         </template>
                     </template>
-
 
                     <template v-else>
                         {{entry[key]}}
@@ -108,6 +109,7 @@
 </template>
 
 <script type="text/javascript">
+    import Auth from '../store/auth'
     export default {
         props: {
             data: Array,
@@ -124,6 +126,7 @@
                 sortOrders[key] = 1
             })
             return {
+                authState: Auth.state,
                 sortKey: '',
                 sortOrders: sortOrders,
                 id:0,
@@ -173,8 +176,20 @@
             },
             agrega(entry) {
                 
+                if ( this.authState.api_token && this.authState.user_id === 1 ) {
+                
                     switch (this.lista) {
+                        case "tags":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "categories":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "grupo_equipos":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
@@ -184,7 +199,27 @@
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
                         }
+                        case "grupo_materials":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "grupo_obreros":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "grupo_precios":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "users":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "zonas":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
@@ -199,8 +234,8 @@
                                 this.$router.push(`/${this.lista}/${entry['id']}`);
                             }
                         }
+                    }
                 }
-                
             }
         }
     };

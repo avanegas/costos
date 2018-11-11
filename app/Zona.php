@@ -55,8 +55,8 @@ class Zona extends Model
   {
   	  return [
         'name'         => '',
-    	'description'  => '',
-    	'user_id'      => ''
+    	  'description'  => '',
+    	  'user_id'      => ''
    	  ];
   }
 }

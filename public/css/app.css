@@ -10565,6 +10565,7 @@ td {
 
 .menu li:hover .submenu {
   display: block;
+  z-index: 99999;
 }
 
 .submenu {
@@ -10642,9 +10643,11 @@ header .stuts span {
   margin-left: 5px;
 }
 
+/*
 li {
-  position: relative;
+	position: relative;
 }
+*/
 
 li > ul {
   display: none;
@@ -10652,14 +10655,16 @@ li > ul {
   background: #333;
 }
 
+/*
 li:hover {
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 99999;
+	background: rgba(0,0,0,.5);
+    z-index: 99999;
 }
 
 li:hover > ul {
-  display: block;
+	display: block;
 }
+*/
 
 /* eliminado por ofertas
 .item a{
@@ -11011,10 +11016,6 @@ th.active .arrow {
   float: right !important;
 }
 
-.thumbnail-image {
-  padding: 15px;
-}
-
 .h4,
 h4 {
   font-size: 18px;
@@ -11035,6 +11036,10 @@ h6 {
   transition: all .2s ease-in-out;
 }
 
+.thumbnail-image {
+  padding: 15px;
+}
+
 .thumbnail a > img,
 .thumbnail > img {
   margin-right: auto;
@@ -11049,6 +11054,56 @@ h6 {
   display: block;
   max-width: 100%;
   height: auto;
+}
+
+.image-upload {
+  height: 257px;
+  background: #fafafa;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.image-preview {
+  position: relative;
+}
+
+.image-close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.image-show {
+  background: #fafafa;
+  padding-top: 15px;
+  border: 1px dashed rgba(0, 0, 0, 0.1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.foto {
+  width: 10%;
+  padding: 10px 15px 0px 0px;
+}
+
+img {
+  display: block;
+  width: 100%;
 }
 
 img {
@@ -11068,5 +11123,28 @@ img {
 h4 a {
   color: #337ab7;
   text-decoration: none;
+}
+
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+          box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+  -webkit-transition-property: transform;
+  -webkit-transition-property: -webkit-transform;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+}
+
+.hvr-grow:active,
+.hvr-grow:focus,
+.hvr-grow:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
 }
 

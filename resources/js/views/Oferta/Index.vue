@@ -14,18 +14,18 @@
 				</div>
 			</div>
 			<div class="is-flex">
-				<div class="col-md-4 item" v-for="post in posts">
+				<div class="col-md-4 item" v-for="oferta in ofertas">
 					<div class="thumbnail">
-						<img :src="`images/${post.file}`" v-if="post.file" alt class="grow thumbnail-image">
+						<img :src="`images/${oferta.file}`" v-if="oferta.file" alt class="hvr-grow thumbnail-image">
 						<div class="caption margin-left-sm">
-							<h4 class="pull-right">$ 1240,00</h4>
+							<h4 class="pull-right">$ {{ oferta.precio }}</h4>
 							<h4 class="">
-									<a href="#">{{ post.name }}</a>
+									<a href="#">{{ oferta.name }}</a>
 							</h4>
-							<p class="truncate">La nueva tecnologia a su alcanze con 3.0GHz Dual-core Haswell Intel Core i5 Turbo Boost up to 3.2 GHz, 3MB L3 cache 8GB (two 4GB SO-DIMMs ...</p>
+							<p class="truncate">{{ oferta.descripcion }} ...</p>
 						</div>
 						<div class="ratings margin-left-sm">
-							<span>10 left in stock</span>
+							<span>{{ oferta.stock }}, {{ oferta.unidad }} left in stock</span>
 							<p class="pull-right">
 								<button class="btn btn-success">Add to car</button>
 							</p>
@@ -42,13 +42,13 @@
 	export default {
 		data() {
 			return {
-				posts: []
+				ofertas: []
 			}
 		},
 		created() {
-			get(`/api/posts`)
+			get(`/api/ofertas`)
 			.then((res) => {
-				this.posts = res.data.posts
+				this.ofertas = res.data.ofertas
 			})
 		}
 	}

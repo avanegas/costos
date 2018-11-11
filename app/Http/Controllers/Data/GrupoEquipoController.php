@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Data;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Data\GrupoEquipo;
+use App\Zona;
 
 class GrupoEquipoController extends Controller
 {
@@ -14,85 +15,66 @@ class GrupoEquipoController extends Controller
         $this->middleware('auth:api')
             ->except(['index', 'show']);
     }
-    
-    
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        $grupo_equipos=GrupoEquipo::orderBy('name', 'asc')->get();
+        $grupo_equipos = GrupoEquipo::with(['zona'])->orderBy('updated_at', 'desc')->get();
 
         return response()
-            ->json([
-                'grupo_equipos' => $grupo_equipos
-            ]);
+            ->json(['grupo_equipos' => $grupo_equipos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = GrupoEquipo::form();
+        $zonas = Zona::orderBy('name', 'ASC')->get();
+
+        return response()
+                ->json([
+                    'form' => $form,
+                    'zonas' => $zonas
+                ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $grupo_equipo = GrupoEquipo::create($request->all());
+
+        return response()
+                ->json([
+                    'saved'     => true,
+                    'id'        => $grupo_equipo->id,
+                    'message'   => 'Ha ingresado correctamente el Grupo de Equipos!'
+                    ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $form = GrupoEquipo::findOrFail($id);
+
+        return response()
+                ->json(['form' => $form]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $grupo_equipo = GrupoEquipo::find($id);
+        $grupo_equipo->fill($request->all())->save();
+
+        return response()
+                ->json([
+                    'saved'     => true,
+                    'form'      => $grupo_equipo,
+                    'message'   => 'Ha actualizado correctamente el Grupo de Equipos!'
+                    ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $grupo_equipo = GrupoEquipo::find($id)->delete();
+        
+        return response()
+                ->json(['deleted' => true]);
     }
 }

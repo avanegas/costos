@@ -3,17 +3,27 @@
 namespace App\Models\Post;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 use App\Presenters\DatePresenter;
 
 use App\User;
 
 class Post extends Model
 {
-    use DatePresenter;
+    use DatePresenter, Sluggable;
 
     protected $fillable = [
         'user_id', 'category_id', 'name', 'slug', 'excerpt', 'body', 'status', 'file'
     ];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
+    }
 
     public function user()
     {
@@ -34,4 +44,21 @@ class Post extends Model
     {
       return $this->hasMany(Comment::class);
     }
+
+    public static function form()
+    {
+        return [
+            'user_id'       => '',
+            'category_id'   => '',
+            'name'          => '',
+            'slug'          => '',
+            'excerpt'       => '',
+            'body'          => '',
+            'status'        => 'DRAFT',
+            'file'          => '',
+            'tags'          => [
+            	PostTag::form()
+            ]
+        ];
+    } 
 }

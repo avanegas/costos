@@ -16,13 +16,14 @@
 			<div class="card">
 				<div class="card card-body">
 					<div class="image-show">
-						<div class="recipe__box">
-							<image-upload v-model="form.image"></image-upload>
-							<small class="error-control" v-if="error.image">{{error.image[0]}}</small>
+						<div class="card-body">
+							<image-upload v-model="form.file"></image-upload>
+							<small class="error-control" v-if="error.file">{{error.errors.file[0]}}</small>
 						</div>
 					</div>
-					<div class="recipe-details">
-						<div class="recipe__box">
+					<div class="card">
+						<div class="card-body">
+
 							<div class="form-group">
 								<label for="category_id">Categoría</label>
 								<select id="category_id" name="category_id" class="form-control" v-model="form.category_id">
@@ -33,35 +34,35 @@
 							<div class="form-group">
 								<label>Titulo</label>
 								<input type="text" class="form-control" v-model="form.name">
-								<small class="error-control" v-if="error.name">{{error.name[0]}}</small>
-							</div>
-							<div class="form-group">
-								<label>Slug</label>
-								<input type="text" class="form-control" v-model="form.slug">
-								<small class="error-control" v-if="error.slug">{{error.slug[0]}}</small>
+								<small class="error-control" v-if="error.name">{{error.errors.name[0]}}</small>
 							</div>
 							<div class="form-group">
 								<label>Resumen</label>
 								<input type="text" class="form-control" v-model="form.excerpt">
-								<small class="error-control" v-if="error.excerpt">{{error.excerpt[0]}}</small>
+								<small class="error-control" v-if="error.excerpt">{{error.errors.excerpt[0]}}</small>
 							</div>
 							<div class="form-group">
 								<label>Contenido</label>
-								<textarea class="form-control form-description" v-model="form.bodyt"></textarea>
-								<small class="error-control" v-if="error.bodyt">{{error.bodyt[0]}}</small>
-							</div>
-							<p>Estado del articulo</p>							
+								<textarea class="form-control form-description" v-model="form.body"></textarea>
+								<small class="error-control" v-if="error.bodyt">{{error.errors.bodyt[0]}}</small>
+							</div>			
 							<div class="form-group">
-								<input type="radio" name="draft" v-model="form.status" Checked>
-								<label for="draft">Draft</label>
-
-								<input type="radio" name="publicado" v-model="form.status">
-								<label for="publicado">Publicado</label>
+								<p>Estado del artículo</p>
+								<input type="radio" id="DRAFT" value="DRAFT" v-model="form.status">
+								<label for="DRAFT">DRAFT</label>
+								<input type="radio" id="PUBLISHED" value="PUBLISHED" v-model="form.status">
+								<label for="PUBLISHED">PUBLISHED</label>
 							</div>
 							<div class="form-group">
-								<label>Etiquetas de categorización específica</label>
-								<input type="text" class="form-control" v-model="form.tags">
-								<small class="error-control" v-if="error.tags">{{error.tags[0]}}</small>
+								<p>Seleccione las etiquétas de categoría específica</p>	
+								<span  v-for="tag in tags" :key=tag.id>
+									<input
+										type="checkbox"
+									  	id="tag.name"
+									  	:value="tag.id"
+									  	v-model="form.tags">
+									<label for="tag.name">{{ tag.name }}</label>,
+								</span>
 							</div>
 						</div>
 					</div>
@@ -69,10 +70,10 @@
 			</div>		
 		</div>		
 	</div>
-
 </template>
 <script type="text/javascript">
 	import Vue from 'vue'
+	import Auth from '../../store/auth'
 	import Flash from '../../helpers/flash'
 	import { get, post } from '../../helpers/api'
 	import { toMulipartedForm } from '../../helpers/form'
@@ -84,9 +85,15 @@
 		},
 		data() {
 			return {
-				categories:[],
-				form: {},
-				error: {},
+				authState: Auth.state,
+				categories: [],
+				tags:[],
+				form: {
+					tags: []
+				},
+				error: {
+					errors:{}
+				},
 				isProcessing: false,
 				initializeURL: `/api/posts/create`,
 				storeURL: `/api/posts`,
@@ -106,10 +113,16 @@
 			get(`/api/categories`)
 			.then((res) => {
 				this.categories = res.data.categories
+			}),
+			get(`/api/tags`)
+			.then((res) => {
+				this.tags = res.data.tags
 			})
 		},
 		methods: {
 			save() {
+				this.isProcessing = true
+				this.form.user_id = this.authState.user_id;
 				const form = toMulipartedForm(this.form, this.$route.meta.mode)
 				post(this.storeURL, form)
 				.then((res) => {

@@ -3,82 +3,70 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Zona;
 
 class ZonaController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    */
     public function index()
     {
-        //
+        $zonas = Zona::orderBy('name', 'desc')->get();
+
+        return response()
+                ->json(['zonas' => $zonas]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = Zona::form();
+
+        return response()
+                ->json(['form' => $form]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $zona = Zona::create($request->all());
+
+        return response()
+                ->json([
+                    'saved'     => true,
+                    'id'        => $zona->id,
+                    'message'   => 'Ha ingresado correctamente la zona!'
+                    ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = Zona::findOrFail($id);
+
+        return response()
+                ->json(['form' => $form]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        //
+        $zona = Zona::find($id);
+        $zona->fill($request->all())->save();
+
+        return response()
+                ->json([
+                    'saved'     => true,
+                    'form'      => $zona,
+                    'message'   => 'Ha actualizado correctamente la zona!'
+                    ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $zona = Zona::find($id)->delete();
+        
+        return response()
+                ->json(['deleted' => true]);
     }
 }

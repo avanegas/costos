@@ -11,7 +11,7 @@
                         autocomplete="off"
                         v-model="searchQuery">
                 </div>
-                 <div v-if="authState.api_token && authState.user_id === 1">
+                <div v-if="authState.api_token && authState.user_id === 1">
                     <router-link to="/equipos/create" class="btn btn-primary"> Nuevo</router-link>
                 </div>
             </div>

@@ -3,7 +3,7 @@
         <div class="col-md">
 			<div class="form-group row">
 				<div class="form-group col-9">
-					<h3>{{action}} Category</h3>
+					<h3>{{action}} Categoria</h3>
 				</div>
 				<div>
 					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
@@ -22,13 +22,8 @@
 					    <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
 					</div>
 					<div class="form-group">
-					    <label>Slug</label>
-					    <input type="text" class="form-control" v-model="form.slug">
-					    <small class="error-control" v-if="error.errors.slug">{{error.errors.slug[0]}}</small>
-					</div>
-					<div class="form-group">
 					    <label>body</label>
-					    <input type="text" class="form-control" v-model="form.body">
+					    <textarea name="body" class="form-control" rows="10" v-model="form.body"></textarea>
 					    <small class="error-control" v-if="error.errors.body">{{error.errors.body[0]}}</small>
 					</div>
 				</div>
@@ -87,7 +82,7 @@
 			  },
 			remove() {
 				del(`/api/categories/${this.$route.params.id}`).then((res) => {
-					Flash.setSuccess('Ha eliminado correctamente el category!')
+					Flash.setSuccess('Ha eliminado correctamente la categoria!')
 					this.$router.back()
 				});
       		}

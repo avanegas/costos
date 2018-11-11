@@ -91,7 +91,7 @@
 								<th>Cantidad</th>
 								<th>Precio</th>
 								<th>Total</th>
-								<th>&nbsp;</th>
+								<th width="40px">&nbsp;</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -109,8 +109,7 @@
 										type="text"
 										class="form-control"
 										v-model="item.precio_id"
-										:class="[error[`rubros.${index}.precio_id`] ? 'error__bg' : '']"
-									>
+										:class="[error[`rubros.${index}.precio_id`] ? 'error__bg' : '']">
 								</td>
 								<td><input type="text" class="form-control" v-model="item.orden" :class="[error[`rubros.${index}.orden`] ? 'error__bg' : '']"></td>
 								<td><input type="text" class="form-control" v-model="item.rubro" :class="[error[`rubros.${index}.rubro`] ? 'error__bg' : '']"></td>

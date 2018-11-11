@@ -4,25 +4,20 @@ namespace App\Http\Controllers\Proyecto;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests;
 use App\Models\Proyecto\ProyectoRubro;
 use App\Models\Proyecto\Proyecto;
-
 use App\User;
 
 class ProyectoController extends Controller
 {
- /**
+ /**     */
     public function __construct()
     {
         $this->middleware('auth:api')
             ->except(['index', 'show']);
     }
-   
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $proyectos = Proyecto::with(['user'])->orderBy('name', 'ASC')->get();
@@ -31,11 +26,6 @@ class ProyectoController extends Controller
                 ->json(['proyectos' => $proyectos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = Proyecto::form();
@@ -44,36 +34,30 @@ class ProyectoController extends Controller
             ->json(['form' => $form]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|max:255',
-            'contratante' => 'required|max:255',
-            'ubicacion' => 'required|max:255',
-            'oferente' => 'required|max:255',
-            'entrega' => 'required',
-            'referencial' => 'required',
-            'indirecto' => 'required',
-            'descuento' => 'required|min:0',
-            'distancia' => 'required|min:0',
-            'sub_total' => 'required|min:0',
-            'gran_total' => 'required|min:0',
-            'formato' => 'required',
-            'precision' => 'required',          
+            'name'          => 'required|max:255',
+            'contratante'   => 'required|max:255',
+            'ubicacion'     => 'required|max:255',
+            'oferente'      => 'required|max:255',
+            'entrega'       => 'required',
+            'referencial'   => 'required',
+            'indirecto'     => 'required',
+            'descuento'     => 'required|min:0',
+            'distancia'     => 'required|min:0',
+            'sub_total'     => 'required|min:0',
+            'gran_total'    => 'required|min:0',
+            'formato'       => 'required',
+            'precision'     => 'required',          
             'representante' => 'required',
-            'rubros' => 'required|array|min:1',
-            'rubros.*.precio_id' => 'required|max:255',
-            'rubros.*.orden' => 'required|max:255',
-            'rubros.*.rubro' => 'required|max:255',
-            'rubros.*.unidad' => 'required|max:255',
+            'rubros'        => 'required|array|min:1',
+            'rubros.*.precio_id'=> 'required|max:255',
+            'rubros.*.orden'    => 'required|max:255',
+            'rubros.*.rubro'    => 'required|max:255',
+            'rubros.*.unidad'   => 'required|max:255',
             'rubros.*.cantidad' => 'required|max:255',
-            'rubros.*.precio' => 'required|max:255'
+            'rubros.*.precio'   => 'required|max:255'
             //'rubros.*.total' => 'required|max:255'
         ]);
 
@@ -99,12 +83,6 @@ class ProyectoController extends Controller
             ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $proyecto = Proyecto::with(['user', 'rubros'])
@@ -114,12 +92,6 @@ class ProyectoController extends Controller
             ->json(['proyecto' => $proyecto]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $id)
     {
         $form = $request->user()->proyectos()->with(['rubros' => function($query) {
@@ -133,39 +105,32 @@ class ProyectoController extends Controller
             ->json(['form' => $form]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         // dd($request->all());
         $request->validate([
-            'name' => 'required|max:255',
-            'contratante' => 'required|max:255',
-            'ubicacion' => 'required|max:255',
-            'oferente' => 'required|max:255',
-            'entrega' => 'required',
-            'referencial' => 'required',
-            'indirecto' => 'required',
-            'descuento' => 'required|min:0',
-            'distancia' => 'required|min:0',
-            'sub_total' => 'required|min:0',
-            'gran_total' => 'required|min:0',
-            'formato' => 'required',
-            'precision' => 'required',          
+            'name'          => 'required|max:255',
+            'contratante'   => 'required|max:255',
+            'ubicacion'     => 'required|max:255',
+            'oferente'      => 'required|max:255',
+            'entrega'       => 'required',
+            'referencial'   => 'required',
+            'indirecto'     => 'required',
+            'descuento'     => 'required|min:0',
+            'distancia'     => 'required|min:0',
+            'sub_total'     => 'required|min:0',
+            'gran_total'    => 'required|min:0',
+            'formato'       => 'required',
+            'precision'     => 'required',          
             'representante' => 'required',
-            'rubros' => 'required|array|min:1',
-            'rubros.*.id' => 'integer|exists:proyecto_rubros',
+            'rubros'        => 'required|array|min:1',
+            'rubros.*.id'   => 'integer|exists:proyecto_rubros',
             'rubros.*.precio_id' => 'required|max:255',
-            'rubros.*.orden' => 'required|max:255',
-            'rubros.*.rubro' => 'required|max:255',
-            'rubros.*.unidad' => 'required|max:255',
-            'rubros.*.cantidad' => 'required|max:255',
-            'rubros.*.precio' => 'required|max:255'
+            'rubros.*.orden'     => 'required|max:255',
+            'rubros.*.rubro'     => 'required|max:255',
+            'rubros.*.unidad'    => 'required|max:255',
+            'rubros.*.cantidad'  => 'required|max:255',
+            'rubros.*.precio'    => 'required|max:255'
             //'rubros.*.total' => 'required|max:255'
         ]);
 
@@ -226,12 +191,6 @@ class ProyectoController extends Controller
             ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request, $id)
     {
         $proyecto = $request->user()->proyectos()

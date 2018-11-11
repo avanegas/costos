@@ -43,6 +43,8 @@ Route::resource('posts',			'Post\PostController');
 Route::resource('tags', 			'Post\TagController');
 Route::resource('comments',			'Post\CommentController');
 
+Route::resource('ofertas',			'Oferta\OfertaController');
+
 Route::resource('grupo_precios',	'Precio\GrupoPrecioController');
 Route::resource('precios',			'Precio\PrecioController');
 Route::resource('proyectos',		'Proyecto\ProyectoController');
