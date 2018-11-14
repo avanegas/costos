@@ -17,6 +17,7 @@ Route::get('/equipo',      		'Web\PageController@equipo')->name('equipo');
 Route::get('/material',      	'Web\PageController@material')->name('material');
 Route::get('/obrero',      		'Web\PageController@obrero')->name('obrero');
 Route::get('/transporte',      	'Web\PageController@transporte')->name('transporte');
+Route::get('/oferta',      		'Web\PageController@oferta')->name('oferta');
 
 Route::post('login', 			'AuthController@login');
 Route::post('logout',			'AuthController@logout');

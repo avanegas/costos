@@ -18,11 +18,12 @@
                 </li>
                 <li><router-link to="/precios">Precios</router-link></li>
                 <li><router-link to="/proyectos">Proyectos</router-link></li>
-                <li><router-link to="/ofertas">Ofertas</router-link></li>
+                <li><router-link to="/oferta">Ofertas</router-link></li>
 
                 <li v-if="auth">
                     <a href="#">Grupos</a>
                     <nav class="submenu">
+
                         <router-link to="/categories" >Categorias</router-link>
                         <router-link to="/tags">Etiquetas</router-link>
                         <router-link to="/grupo_equipos" >GEquipos</router-link>
@@ -33,7 +34,12 @@
 
                     </nav>
                 </li>
-                <li v-if="auth"><router-link :to="`/posts/${authState.user_id}`" >Entradas</router-link></li>
+                <li v-if="auth">
+                    <a href="#">Entradas</a>
+                    <nav class="submenu">
+						<router-link :to="`/posts/${authState.user_id}`" >Artículos</router-link>
+						<router-link :to="`/ofertas/${authState.user_id}`" >Ofertas</router-link>
+                    </nav>
                 <!--<li><router-link to="/categories"  v-if="auth">Categorias</router-link></li>
                 <li><router-link to="/tags"  v-if="auth">Etiquetas</router-link></li>-->
 

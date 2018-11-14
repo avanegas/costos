@@ -16,28 +16,18 @@ use App\Models\Post\Category;
 use App\Models\Post\Post;
 use App\Models\Post\Tag;
 
-
 use App\User;
 use App\Auth;
 use File;
 
 class PostController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-
+    /*
     public function __construct()
     {
         $this->middleware('auth');
-    }    */
-        
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    }
+    */     
     public function index()
     {
         $posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
@@ -46,11 +36,6 @@ class PostController extends Controller
             ->json(['posts' => $posts]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = Post::form();
@@ -65,15 +50,8 @@ class PostController extends Controller
                 ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(PostStoreRequest $request)
     {
-
         //$post = Post::create($request->all());
 
         //IMAGE 
@@ -113,12 +91,6 @@ class PostController extends Controller
         return str_random(32).'.'.$file->extension();
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $posts = Post::where('user_id', $id)->with(['user','category'])->orderBy('created_at', 'desc')->get();
@@ -127,30 +99,25 @@ class PostController extends Controller
             ->json(['posts' => $posts]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $post       = Post::find($id);
-        $this->authorize('pass', $post);
+        $form = Post::where('id', $id)->with(['comments', 'comments.user', 'user', 'category', 'tags'])->first();
+        //$form       = Post::find($id);
+        //$this->authorize('pass', $post);
 
         $categories = Category::orderBy('name', 'ASC')->pluck('name', 'id');
         $tags       = Tag::orderBy('name', 'ASC')->get();
 
-        return view('admin.posts.edit', compact('post', 'categories', 'tags'));
+        return response()
+            ->json([
+                'form'          => $form,
+                'categories'    => $categories,
+                'tags'          => $tags
+                ]);
+
+       // return view('admin.posts.edit', compact('post', 'categories', 'tags'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(PostUpdateRequest $request, $id)
     {
         $post = Post::find($id);
@@ -171,12 +138,6 @@ class PostController extends Controller
             ->with('info', 'Entrada actualizada con éxito');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         $post = Post::find($id);

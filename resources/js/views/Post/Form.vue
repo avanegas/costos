@@ -55,12 +55,13 @@
 							</div>
 							<div class="form-group">
 								<p>Seleccione las etiquétas de categoría específica</p>	
-								<span  v-for="tag in tags" :key=tag.id>
+								<span  v-for="tag in tags">
+									<!--<template v-for="t in form.tags" :value="t.id == tag.id ? true : false" v-model="select"></template>-->
 									<input
 										type="checkbox"
-									  	id="tag.name"
+									  	:id="tag.id"
 									  	:value="tag.id"
-									  	v-model="form.tags">
+									  	:v-model="form.tags">
 									<label for="tag.name">{{ tag.name }}</label>,
 								</span>
 							</div>
@@ -86,6 +87,7 @@
 		data() {
 			return {
 				authState: Auth.state,
+				select: Boolean,
 				categories: [],
 				tags:[],
 				form: {

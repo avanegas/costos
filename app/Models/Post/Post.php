@@ -56,8 +56,8 @@ class Post extends Model
             'body'          => '',
             'status'        => 'DRAFT',
             'file'          => '',
-            'tags'          => [
-            	PostTag::form()
+            'tags'          =>[
+                PostTag::form()
             ]
         ];
     } 

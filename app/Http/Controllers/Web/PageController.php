@@ -21,6 +21,8 @@ use App\Models\Data\Obrero;
 
 use App\Models\Data\Transporte;
 
+use App\Models\Oferta\Oferta;
+
 use App\Zona;
 use App\User;
 
@@ -101,6 +103,15 @@ class PageController extends Controller
 
         return response()
             ->json(['transportes' => $transportes
+        ]);
+    }
+
+    public function oferta()
+    {
+        $ofertas = Oferta::with(['user'])->orderBy('updated_at', 'desc')->get();
+
+        return response()
+            ->json(['ofertas' => $ofertas
         ]);
     }
 

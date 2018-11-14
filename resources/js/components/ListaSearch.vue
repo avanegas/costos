@@ -179,6 +179,11 @@
                 if ( this.authState.api_token && this.authState.user_id === 1 ) {
                 
                     switch (this.lista) {
+                        case "posts":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "tags":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);

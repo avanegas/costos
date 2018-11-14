@@ -4,9 +4,13 @@ namespace App\Http\Controllers\Oferta;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests;
 
+use Illuminate\Support\Facades\Storage;
 use App\Models\Oferta\Oferta;
 use App\User;
+use App\Auth;
+use File;
 
 class OfertaController extends Controller
 {
@@ -15,12 +19,12 @@ class OfertaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        $ofertas = Oferta::with(['user'])->orderBy('created_at', 'desc')->get();
+        $ofertas = Oferta::where('user_id', $id)->orderBy('created_at', 'desc')->get();
 
         return response()
-            ->json(['ofertas' => $ofertas]);        
+            ->json(['ofertas' => $ofertas]);
     }
 
     /**

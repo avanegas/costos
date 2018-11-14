@@ -14,6 +14,7 @@ import Equipo from '../views/Web/Equipo.vue'
 import Material from '../views/Web/Material.vue'
 import Obrero from '../views/Web/Obrero.vue'
 import Transporte from '../views/Web/Transporte.vue'
+import Oferta from '../views/Web/Oferta.vue'
 
 import UserIndex from '../views/Admin/User/Index.vue'
 import UserForm from '../views/Admin/User/Form.vue'
@@ -84,6 +85,7 @@ const router = new VueRouter({
         { path: '/material', component: Material},
         { path: '/obrero', component: Obrero},
         { path: '/transporte', component: Transporte},
+        { path: '/oferta', component: Oferta},
 
 
         { path: '/users', component: UserIndex},

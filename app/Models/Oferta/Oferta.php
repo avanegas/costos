@@ -19,4 +19,18 @@ class Oferta extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public static function form()
+    {
+      return [
+      	'user_id'		=> '',
+        'name'      	=> '',
+        'unidad'     	=> '',
+        'descripcion'  	=> '',
+        'stock'     	=> '',
+        'precio'		=> '',
+        'file'			=> '',
+        'status'		=> 'DRAFT'
+      ];
+    }
 }

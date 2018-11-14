@@ -13,6 +13,7 @@ use App\Models\Precio\Precio;
 use App\Models\Post\Post;
 use App\Models\Post\Comment;
 
+use App\Models\Oferta\Oferta;
 use App\Zona;
 
 class User extends Authenticatable
@@ -60,6 +61,11 @@ class User extends Authenticatable
     public function proyectos()
     {
         return $this->hasMany(Proyecto::class);
+    }
+
+    public function ofertas()
+    {
+        return $this->hasMany(Oferta::class);
     }
 
     public function zonas()
