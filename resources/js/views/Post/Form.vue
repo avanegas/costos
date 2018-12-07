@@ -2,15 +2,15 @@
 	<div class="row">
 		<div class="col-md">
 			<div class="form-group row">
-				<div class="form-group col-9">
-					<h3>{{action}} Articulo</h3>
+				<div class="form-group col-10">
+					<h5>{{action}} Articulo</h5>
 				</div>
 				<div>
-					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
-	        		<template v-if="action == 'Update'">
-	            		<button type="button" class="btn btn-danger" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
-	        		</template>
-					<button type="button" class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+					<button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing">Save</button>
+					<template v-if="action == 'Update'">
+						<button type="button" class="btn btn-danger btn-sm" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+					</template>
+					<button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing">Cancel</button>
 				</div>
 			</div>
 			<div class="card">
@@ -54,16 +54,29 @@
 								<label for="PUBLISHED">PUBLISHED</label>
 							</div>
 							<div class="form-group">
-								<p>Seleccione las etiquétas de categoría específica</p>	
-								<span  v-for="tag in tags">
-									<!--<template v-for="t in form.tags" :value="t.id == tag.id ? true : false" v-model="select"></template>-->
+								<p>Seleccione las etiquétas de categoría específica</p>
+								
+								<div class="form-check form-check-inline" v-for = "tag in tags" :paso="true">
+
+									<template v-for = "t in form.tags">
+										<template v-if="tag.id == t.id">
+											<input class="form-check-input" type="checkbox" id="t.name" :checked="true" :v-model="select" :paso="false"/>
+										</template>
+									</template>
+									<template v-if = "paso">
+										<input class="form-check-input" type="checkbox" id="tag.name" :checked="false" :v-model="select"/>
+									</template>	
+
+									<!--										
 									<input
-										type="checkbox"
-									  	:id="tag.id"
-									  	:value="tag.id"
-									  	:v-model="form.tags">
-									<label for="tag.name">{{ tag.name }}</label>,
-								</span>
+									type = "checkbox"
+									:id = "tag.id"
+									:value = "tag.id"
+									:v-model = "form.tags"
+									checked = "select">
+									-->
+									<label class="form-check-label" for = "tag.name">{{ tag.name }}</label>,
+								</div>
 							</div>
 						</div>
 					</div>
@@ -87,7 +100,8 @@
 		data() {
 			return {
 				authState: Auth.state,
-				select: Boolean,
+				select: false,
+				paso: true,
 				categories: [],
 				tags:[],
 				form: {

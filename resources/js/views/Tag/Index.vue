@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md" >                
             <div class="form-group row">
-                <h3 class="col-7">Etiquetas de categorización específica</h3>
+                <h5 class="col-7">Etiquetas de categorización específica</h5>
                 <div class="col-4 form-group">
                     <input
                         type="text"

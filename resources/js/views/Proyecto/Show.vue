@@ -1,20 +1,20 @@
 <template>
-	<div class="row" v-if="show">
+	<div class="row">
 		<div class="col-md">
 			<div class="form-group row">
-				<div class="col-9">
+				<div class="form-group col-10">
 					<p><strong>AUTOR: </strong>{{proyecto.user.name}}</p>
 				</div>
-				<div v-if="authState.api_token && authState.user_id === proyecto.user_id" class="col-3">
-					<router-link to="/proyectos" class="btn btn-secondary">Back</router-link>
-					<router-link :to="`/proyectos/${proyecto.id}/edit`" class="btn btn-primary">Edit</router-link>
-					<button type="button" class="btn btn-danger" @click="deleteItem">Delete</button>
+				<div v-if="authState.api_token && authState.user_id === proyecto.user_id">
+					<router-link to="/proyectos" class="btn btn-secondary btn-sm"> Back</router-link>
+					<router-link :to="`/proyectos/${proyecto.id}/edit`" class="btn btn-primary btn-sm"> Edit</router-link>
+					<button type="button" class="btn btn-danger btn-sm" @click="deleteItem"> Delete</button>
 				</div>
 			</div>
 
 			<div class="card">
 				<div class="card-body">
-					<div class="form-group row">
+					<div class="form-row row">
 						<div class="col-8">
 							<label>PROYECTO</label>
 							<h6>{{proyecto.name}}</h6>
@@ -28,7 +28,7 @@
 							<p>{{proyecto.distancia}}</p>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-row row">
 						<div class="col-8">
 							<label>CONTRATANTE</label>
 							<p>{{proyecto.contratante}}</p>
@@ -46,7 +46,7 @@
 							<p>{{proyecto.precision}}</p>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-row row">
 						<div class="col-4">
 							<label>OFERENTE</label>
 							<p>{{proyecto.oferente}}</p>
@@ -126,7 +126,6 @@
 	export default {
 		data() {
 			return {
-			    show: false,
 				authState: Auth.state,
 				proyecto: {
 					rubros: [],

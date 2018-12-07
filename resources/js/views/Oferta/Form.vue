@@ -1,7 +1,7 @@
 <template>
 	<div class="recipe__show">
 		<div class="recipe__header">
-			<h3>{{action}} Nota</h3>
+			<h5>{{action}} Nota</h5>
 			<div>
 				<button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
 				<button class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>

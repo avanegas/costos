@@ -6,8 +6,9 @@
                     <p><strong>AUTOR: </strong>{{precio.user.name}}</p>
                 </div>
                 <div v-if="authState.api_token && authState.user_id === precio.user_id">
-                    <router-link :to="`/precios/${precio.id}/edit`" class="btn btn-primary"> Edit</router-link>
-                    <button type="button" class="btn btn-danger" @click="remove" :disabled="isRemoving">Delete</button>
+                    <router-link to="/precios" class="btn btn-secondary btn-sm"> Back</router-link>
+                    <router-link :to="`/precios/${precio.id}/edit`" class="btn btn-primary btn-sm"> Edit</router-link>
+                    <button type="button" class="btn btn-danger btn-sm" @click="remove" :disabled="isRemoving"> Delete</button>
                 </div>
             </div>
 

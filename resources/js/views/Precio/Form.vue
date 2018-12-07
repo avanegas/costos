@@ -3,11 +3,11 @@
         <div class="col-md">
             <div class="form-group row">
                 <div class="form-group col-10">
-                    <h3>{{action}} Precio</h3>
+                    <h5>{{action}} Precio</h5>
                 </div>
                 <div>
-                    <button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
-                    <button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing"> Save</button>
+                    <button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing"> Cancel</button>
                 </div>
             </div> 
 

@@ -1,7 +1,7 @@
 <template>
     <div class="recipe__show">
         <div class="recipe__header">
-            <h3>{{action}} Transporte</h3>
+            <h5>{{action}} Transporte</h5>
             <div>
                 <button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
                 <template v-if="action == 'Update'">

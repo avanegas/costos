@@ -2,18 +2,18 @@
 	<div class="row">	
 		<div class="col-md">
 			<div class="form-group row">
-				<div class="form-group col-9">
+				<div class="form-group col-10">
 					<h5>{{action}} Proyecto</h5>
 				</div>
-				<div class="form-group col-3">
-					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
-					<button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+				<div>
+					<button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing"> Save</button>
+					<button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing"> Cancel</button>
 				</div>
-
 			</div>
+
 			<div class="card">
 				<div class="card-body">
-					<div class="form-group row">
+					<div class="form-row">
 						<div class="form-group col-8">
 						    <label>PROYECTO</label>
 						    <input type="text" class="form-control" v-model="form.name">
@@ -30,7 +30,7 @@
 						    <small class="error-control" v-if="error.distancia">{{error.distancia[0]}}</small>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-row row">
 						<div class="form-group col-8">
 						    <label>CONTRATANTE</label>
 						    <input type="text" class="form-control" v-model="form.contratante">
@@ -52,7 +52,7 @@
 						    <small class="error-control" v-if="error.precision">{{error.precision[0]}}</small>
 						</div>
 					</div>
-					<div class="form-group row">
+					<div class="form-row row">
 						<div class="form-group col-4">
 						    <label>OFERENTE</label>
 						    <input type="text" class="form-control" v-model="form.oferente">

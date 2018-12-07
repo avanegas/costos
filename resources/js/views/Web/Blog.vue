@@ -1,14 +1,19 @@
 <template>
 	<div class="row">
 		<div class="col-md">
-			<div class="card">
-				<div class="card-header">
-	            	<template class="w-50 text-muted">
-	                	Apuntes, detalles y teoría de la construcción.
-	            	</template>
-	            	<input type="search" name="search" placeholder="Search" class="w-50 float-right">
-				</div>
-			</div>
+
+            <div class="form-group row">
+                <h5 class="col-7"> Apuntes, detalles y teoría de la construcción.</h5>
+                <div class="form-group col-4">
+                    <input
+                        type="text"
+                        class="form-control mr-sm-2 mb-2 mb-sm-0"
+                        placeholder="Search..."
+                        autocomplete="off"
+                        v-model="searchQuery">
+                </div>
+            </div>
+
 			<div class="card" v-for="post in posts">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>

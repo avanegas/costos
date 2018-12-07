@@ -51620,6 +51620,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -51650,24 +51655,38 @@ var render = function() {
       "div",
       { staticClass: "col-md" },
       [
-        _c("div", { staticClass: "card" }, [
-          _c(
-            "div",
-            { staticClass: "card-header" },
-            [
-              [
-                _vm._v(
-                  "\n                \tApuntes, detalles y teoría de la construcción.\n            \t"
-                )
+        _c("div", { staticClass: "form-group row" }, [
+          _c("h5", { staticClass: "col-7" }, [
+            _vm._v(" Apuntes, detalles y teoría de la construcción.")
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group col-4" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
               ],
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "w-50 float-right",
-                attrs: { type: "search", name: "search", placeholder: "Search" }
-              })
-            ],
-            2
-          )
+              staticClass: "form-control mr-sm-2 mb-2 mb-sm-0",
+              attrs: {
+                type: "text",
+                placeholder: "Search...",
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchQuery = $event.target.value
+                }
+              }
+            })
+          ])
         ]),
         _vm._v(" "),
         _vm._l(_vm.posts, function(post) {
@@ -51701,7 +51720,7 @@ var render = function() {
                 "p",
                 { staticClass: "card-text text-justify" },
                 [
-                  _vm._v(_vm._s(post.excerpt) + "\n\t\t\t\t\t"),
+                  _vm._v(_vm._s(post.excerpt) + "\n\t\t\t\t\t\t"),
                   _c(
                     "router-link",
                     {
@@ -53289,7 +53308,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Equipos")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Equipos")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -53499,7 +53518,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Materiales")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Materiales")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -53692,7 +53711,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Obreros")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Obreros")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -53885,7 +53904,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Transportes")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Transportes")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -54310,10 +54329,10 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c(
-        "h3",
+        "h5",
         [
           _c("i", { staticClass: "fa fa-lock-open" }),
-          _vm._v(" Administración                \n                "),
+          _vm._v(" Administración\n                "),
           _c(
             "router-link",
             {
@@ -54419,7 +54438,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-7" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Usuarios")
     ])
@@ -55266,7 +55285,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c(
-        "h3",
+        "h5",
         [
           _c("i", { staticClass: "fa fa-lock-open" }),
           _vm._v(" Administración\n                "),
@@ -55375,7 +55394,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-7" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Roles")
     ])
@@ -55531,7 +55550,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c(
-        "h3",
+        "h5",
         [
           _c("i", { staticClass: "fa fa-lock-open" }),
           _vm._v(" Administración\n                "),
@@ -55640,7 +55659,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-7" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Permisos")
     ])
@@ -55792,7 +55811,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [
+        _c("h5", { staticClass: "col-7" }, [
           _vm._v("Categorías para artículos")
         ]),
         _vm._v(" "),
@@ -56037,8 +56056,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Categoria")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Categoria")])
         ]),
         _vm._v(" "),
         _c(
@@ -56047,7 +56066,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -56059,7 +56078,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -56076,7 +56095,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -56521,7 +56540,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Apuntes")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Apuntes")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -56735,6 +56754,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -56750,7 +56782,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	data: function data() {
 		return {
 			authState: __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state,
-			select: Boolean,
+			select: false,
+			paso: true,
 			categories: [],
 			tags: [],
 			form: {
@@ -56819,8 +56852,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Articulo")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Articulo")])
         ]),
         _vm._v(" "),
         _c(
@@ -56829,7 +56862,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -56841,7 +56874,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -56858,7 +56891,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -57113,21 +57146,58 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.tags, function(tag) {
-                    return _c("span", [
-                      _c("input", {
-                        attrs: {
-                          type: "checkbox",
-                          id: tag.id,
-                          "v-model": _vm.form.tags
-                        },
-                        domProps: { value: tag.id }
-                      }),
-                      _vm._v(" "),
-                      _c("label", { attrs: { for: "tag.name" } }, [
-                        _vm._v(_vm._s(tag.name))
-                      ]),
-                      _vm._v(",\n\t\t\t\t\t\t\t")
-                    ])
+                    return _c(
+                      "div",
+                      {
+                        staticClass: "form-check form-check-inline",
+                        attrs: { paso: true }
+                      },
+                      [
+                        _vm._l(_vm.form.tags, function(t) {
+                          return [
+                            tag.id == t.id
+                              ? [
+                                  _c("input", {
+                                    staticClass: "form-check-input",
+                                    attrs: {
+                                      type: "checkbox",
+                                      id: "t.name",
+                                      "v-model": _vm.select,
+                                      paso: false
+                                    },
+                                    domProps: { checked: true }
+                                  })
+                                ]
+                              : _vm._e()
+                          ]
+                        }),
+                        _vm._v(" "),
+                        _vm.paso
+                          ? [
+                              _c("input", {
+                                staticClass: "form-check-input",
+                                attrs: {
+                                  type: "checkbox",
+                                  id: "tag.name",
+                                  "v-model": _vm.select
+                                },
+                                domProps: { checked: false }
+                              })
+                            ]
+                          : _vm._e(),
+                        _vm._v(" "),
+                        _c(
+                          "label",
+                          {
+                            staticClass: "form-check-label",
+                            attrs: { for: "tag.name" }
+                          },
+                          [_vm._v(_vm._s(tag.name))]
+                        ),
+                        _vm._v(",\n\t\t\t\t\t\t\t")
+                      ],
+                      2
+                    )
                   })
                 ],
                 2
@@ -57286,7 +57356,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [
+        _c("h5", { staticClass: "col-7" }, [
           _vm._v("Etiquetas de categorización específica")
         ]),
         _vm._v(" "),
@@ -57526,8 +57596,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Etiqueta")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Etiqueta")])
         ]),
         _vm._v(" "),
         _c(
@@ -57536,7 +57606,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -57548,7 +57618,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -57565,7 +57635,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -57765,7 +57835,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Grupo de equipos")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Grupo de equipos")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -58022,8 +58092,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Grupo de equipos")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Grupo de equipos")])
         ]),
         _vm._v(" "),
         _c(
@@ -58032,7 +58102,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -58044,7 +58114,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -58061,7 +58131,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -58652,8 +58722,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Equipo")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Equipo")])
         ]),
         _vm._v(" "),
         _c(
@@ -58662,7 +58732,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -58674,7 +58744,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -58691,7 +58761,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -59053,7 +59123,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Grupo de materiales")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Grupo de materiales")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -59310,8 +59380,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Grupo de materiales")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Grupo de materiales")])
         ]),
         _vm._v(" "),
         _c(
@@ -59320,7 +59390,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -59332,7 +59402,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -59349,7 +59419,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -59936,7 +60006,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "recipe__show" }, [
     _c("div", { staticClass: "recipe__header" }, [
-      _c("h3", [_vm._v(_vm._s(_vm.action) + " Material")]),
+      _c("h5", [_vm._v(_vm._s(_vm.action) + " Material")]),
       _vm._v(" "),
       _c(
         "div",
@@ -60296,7 +60366,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Grupo de obreros")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Grupo de obreros")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -60553,8 +60623,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Grupo de obreros")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Grupo de obreros")])
         ]),
         _vm._v(" "),
         _c(
@@ -60563,7 +60633,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -60575,7 +60645,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -60592,7 +60662,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -61177,7 +61247,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "recipe__show" }, [
     _c("div", { staticClass: "recipe__header" }, [
-      _c("h3", [_vm._v(_vm._s(_vm.action) + " Obrero")]),
+      _c("h5", [_vm._v(_vm._s(_vm.action) + " Obrero")]),
       _vm._v(" "),
       _c(
         "div",
@@ -61848,7 +61918,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "recipe__show" }, [
     _c("div", { staticClass: "recipe__header" }, [
-      _c("h3", [_vm._v(_vm._s(_vm.action) + " Transporte")]),
+      _c("h5", [_vm._v(_vm._s(_vm.action) + " Transporte")]),
       _vm._v(" "),
       _c(
         "div",
@@ -62236,7 +62306,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Grupo de precios")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Grupo de precios")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -62493,8 +62563,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Grupo de precios")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Grupo de precios")])
         ]),
         _vm._v(" "),
         _c(
@@ -62503,7 +62573,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -62515,7 +62585,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -62532,7 +62602,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -62820,7 +62890,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Precios Unitarios")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Precios Unitarios")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -63124,6 +63194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -63230,7 +63301,16 @@ var render = function() {
                 _c(
                   "router-link",
                   {
-                    staticClass: "btn btn-primary",
+                    staticClass: "btn btn-secondary btn-sm",
+                    attrs: { to: "/precios" }
+                  },
+                  [_vm._v(" Back")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary btn-sm",
                     attrs: { to: "/precios/" + _vm.precio.id + "/edit" }
                   },
                   [_vm._v(" Edit")]
@@ -63239,11 +63319,11 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-danger",
+                    staticClass: "btn btn-danger btn-sm",
                     attrs: { type: "button", disabled: _vm.isRemoving },
                     on: { click: _vm.remove }
                   },
-                  [_vm._v("Delete")]
+                  [_vm._v(" Delete")]
                 )
               ],
               1
@@ -64215,24 +64295,24 @@ var render = function() {
       [
         _c("div", { staticClass: "form-group row" }, [
           _c("div", { staticClass: "form-group col-10" }, [
-            _c("h3", [_vm._v(_vm._s(_vm.action) + " Precio")])
+            _c("h5", [_vm._v(_vm._s(_vm.action) + " Precio")])
           ]),
           _vm._v(" "),
           _c("div", [
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
-              [_vm._v("Save")]
+              [_vm._v(" Save")]
             ),
             _vm._v(" "),
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -64240,7 +64320,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("Cancel")]
+              [_vm._v(" Cancel")]
             )
           ])
         ]),
@@ -65835,7 +65915,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Proyectos")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Proyectos")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -66100,7 +66180,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            show: false,
             authState: __WEBPACK_IMPORTED_MODULE_1__store_auth__["a" /* default */].state,
             proyecto: {
                 rubros: [],
@@ -66153,203 +66232,198 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.show
-    ? _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md" }, [
-          _c("div", { staticClass: "form-group row" }, [
-            _c("div", { staticClass: "col-9" }, [
-              _c("p", [
-                _c("strong", [_vm._v("AUTOR: ")]),
-                _vm._v(_vm._s(_vm.proyecto.user.name))
-              ])
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("p", [
+            _c("strong", [_vm._v("AUTOR: ")]),
+            _vm._v(_vm._s(_vm.proyecto.user.name))
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.authState.api_token &&
+        _vm.authState.user_id === _vm.proyecto.user_id
+          ? _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-secondary btn-sm",
+                    attrs: { to: "/proyectos" }
+                  },
+                  [_vm._v(" Back")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary btn-sm",
+                    attrs: { to: "/proyectos/" + _vm.proyecto.id + "/edit" }
+                  },
+                  [_vm._v(" Edit")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-danger btn-sm",
+                    attrs: { type: "button" },
+                    on: { click: _vm.deleteItem }
+                  },
+                  [_vm._v(" Delete")]
+                )
+              ],
+              1
+            )
+          : _vm._e()
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card-body" }, [
+          _c("div", { staticClass: "form-row row" }, [
+            _c("div", { staticClass: "col-8" }, [
+              _c("label", [_vm._v("PROYECTO")]),
+              _vm._v(" "),
+              _c("h6", [_vm._v(_vm._s(_vm.proyecto.name))])
             ]),
             _vm._v(" "),
-            _vm.authState.api_token &&
-            _vm.authState.user_id === _vm.proyecto.user_id
-              ? _c(
-                  "div",
-                  { staticClass: "col-3" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-secondary",
-                        attrs: { to: "/proyectos" }
-                      },
-                      [_vm._v("Back")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: { to: "/proyectos/" + _vm.proyecto.id + "/edit" }
-                      },
-                      [_vm._v("Edit")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { type: "button" },
-                        on: { click: _vm.deleteItem }
-                      },
-                      [_vm._v("Delete")]
-                    )
-                  ],
-                  1
-                )
-              : _vm._e()
+            _c("div", { staticClass: "col-3" }, [
+              _c("label", [_vm._v("UBICACION")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.ubicacion))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-1" }, [
+              _c("label", [_vm._v("DISTANCIA")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.distancia))])
+            ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-body" }, [
-              _c("div", { staticClass: "form-group row" }, [
-                _c("div", { staticClass: "col-8" }, [
-                  _c("label", [_vm._v("PROYECTO")]),
-                  _vm._v(" "),
-                  _c("h6", [_vm._v(_vm._s(_vm.proyecto.name))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-3" }, [
-                  _c("label", [_vm._v("UBICACION")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.ubicacion))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-1" }, [
-                  _c("label", [_vm._v("DISTANCIA")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.distancia))])
-                ])
-              ]),
+          _c("div", { staticClass: "form-row row" }, [
+            _c("div", { staticClass: "col-8" }, [
+              _c("label", [_vm._v("CONTRATANTE")]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c("div", { staticClass: "col-8" }, [
-                  _c("label", [_vm._v("CONTRATANTE")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.contratante))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-2" }, [
-                  _c("label", [_vm._v("PRESENTACION")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.entrega))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-1" }, [
-                  _c("label", [_vm._v("FORMATO")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.formato))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-1" }, [
-                  _c("label", [_vm._v("DECIMAL")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.precision))])
-                ])
-              ]),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.contratante))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-2" }, [
+              _c("label", [_vm._v("PRESENTACION")]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c("div", { staticClass: "col-4" }, [
-                  _c("label", [_vm._v("OFERENTE")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.oferente))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-4" }, [
-                  _c("label", [_vm._v("REPRESENTANTE")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.representante))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-2" }, [
-                  _c("label", [_vm._v("REFERENCIAL")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.referencial))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-1" }, [
-                  _c("label", [_vm._v("INDIRECTO")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.indirecto))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "col-1" }, [
-                  _c("label", [_vm._v("IVA")]),
-                  _vm._v(" "),
-                  _c("p", [_vm._v(_vm._s(_vm.proyecto.descuento))])
-                ])
-              ]),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.entrega))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-1" }, [
+              _c("label", [_vm._v("FORMATO")]),
               _vm._v(" "),
-              _c("h5", { staticClass: "text-center" }, [
-                _vm._v(
-                  "TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS"
-                )
-              ]),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.formato))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-1" }, [
+              _c("label", [_vm._v("DECIMAL")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.precision))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-row row" }, [
+            _c("div", { staticClass: "col-4" }, [
+              _c("label", [_vm._v("OFERENTE")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.oferente))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-4" }, [
+              _c("label", [_vm._v("REPRESENTANTE")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.representante))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-2" }, [
+              _c("label", [_vm._v("REFERENCIAL")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.referencial))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-1" }, [
+              _c("label", [_vm._v("INDIRECTO")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.indirecto))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-1" }, [
+              _c("label", [_vm._v("IVA")]),
+              _vm._v(" "),
+              _c("p", [_vm._v(_vm._s(_vm.proyecto.descuento))])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("h5", { staticClass: "text-center" }, [
+            _vm._v(
+              "TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS"
+            )
+          ]),
+          _vm._v(" "),
+          _c(
+            "table",
+            { staticClass: "table table-bordered table-striped table-sm" },
+            [
+              _vm._m(0),
               _vm._v(" "),
               _c(
-                "table",
-                { staticClass: "table table-bordered table-striped table-sm" },
-                [
-                  _vm._m(0),
-                  _vm._v(" "),
-                  _c(
-                    "tbody",
-                    _vm._l(_vm.proyecto.rubros, function(rubro) {
-                      return _c("tr", { key: rubro.id }, [
-                        _c("td", [_vm._v(_vm._s(rubro.precio_id))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(rubro.orden))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(rubro.rubro))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(rubro.unidad))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(rubro.cantidad))]),
-                        _vm._v(" "),
-                        _c("td", [_vm._v(_vm._s(rubro.precio))]),
-                        _vm._v(" "),
-                        _c("td", [
-                          _vm._v(_vm._s(rubro.cantidad * rubro.precio))
-                        ])
-                      ])
-                    })
-                  ),
-                  _vm._v(" "),
-                  _c("tfoot", [
-                    _c("tr", [
-                      _c("td", { attrs: { colspan: "5" } }),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(" Subtotal")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.proyecto.sub_total))])
-                    ]),
+                "tbody",
+                _vm._l(_vm.proyecto.rubros, function(rubro) {
+                  return _c("tr", { key: rubro.id }, [
+                    _c("td", [_vm._v(_vm._s(rubro.precio_id))]),
                     _vm._v(" "),
-                    _c("tr", [
-                      _c("td", { attrs: { colspan: "5" } }),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("IVA %")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.proyecto.descuento))])
-                    ]),
+                    _c("td", [_vm._v(_vm._s(rubro.orden))]),
                     _vm._v(" "),
-                    _c("tr", [
-                      _c("td", { attrs: { colspan: "5" } }),
-                      _vm._v(" "),
-                      _c("td", [_vm._v("Total")]),
-                      _vm._v(" "),
-                      _c("td", [_vm._v(_vm._s(_vm.proyecto.gran_total))])
-                    ])
+                    _c("td", [_vm._v(_vm._s(rubro.rubro))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(rubro.unidad))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(rubro.cantidad))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(rubro.precio))]),
+                    _vm._v(" "),
+                    _c("td", [_vm._v(_vm._s(rubro.cantidad * rubro.precio))])
                   ])
-                ]
-              )
-            ])
-          ])
+                })
+              ),
+              _vm._v(" "),
+              _c("tfoot", [
+                _c("tr", [
+                  _c("td", { attrs: { colspan: "5" } }),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(" Subtotal")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.proyecto.sub_total))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { colspan: "5" } }),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("IVA %")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.proyecto.descuento))])
+                ]),
+                _vm._v(" "),
+                _c("tr", [
+                  _c("td", { attrs: { colspan: "5" } }),
+                  _vm._v(" "),
+                  _c("td", [_vm._v("Total")]),
+                  _vm._v(" "),
+                  _c("td", [_vm._v(_vm._s(_vm.proyecto.gran_total))])
+                ])
+              ])
+            ]
+          )
         ])
       ])
-    : _vm._e()
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -67083,25 +67157,25 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
+        _c("div", { staticClass: "form-group col-10" }, [
           _c("h5", [_vm._v(_vm._s(_vm.action) + " Proyecto")])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group col-3" }, [
+        _c("div", [
           _c(
             "button",
             {
-              staticClass: "btn btn-primary",
+              staticClass: "btn btn-primary btn-sm",
               attrs: { type: "button", disabled: _vm.isProcessing },
               on: { click: _vm.save }
             },
-            [_vm._v("Save")]
+            [_vm._v(" Save")]
           ),
           _vm._v(" "),
           _c(
             "button",
             {
-              staticClass: "btn btn-secondary",
+              staticClass: "btn btn-secondary btn-sm",
               attrs: { type: "button", disabled: _vm.isProcessing },
               on: {
                 click: function($event) {
@@ -67109,14 +67183,14 @@ var render = function() {
                 }
               }
             },
-            [_vm._v("Cancel")]
+            [_vm._v(" Cancel")]
           )
         ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
         _c("div", { staticClass: "card-body" }, [
-          _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "form-row" }, [
             _c("div", { staticClass: "form-group col-8" }, [
               _c("label", [_vm._v("PROYECTO")]),
               _vm._v(" "),
@@ -67214,7 +67288,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "form-row row" }, [
             _c("div", { staticClass: "form-group col-8" }, [
               _c("label", [_vm._v("CONTRATANTE")]),
               _vm._v(" "),
@@ -67344,7 +67418,7 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "form-group row" }, [
+          _c("div", { staticClass: "form-row row" }, [
             _c("div", { staticClass: "form-group col-4" }, [
               _c("label", [_vm._v("OFERENTE")]),
               _vm._v(" "),
@@ -67989,7 +68063,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Ofertas")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Ofertas")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -68244,7 +68318,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "recipe__show" }, [
     _c("div", { staticClass: "recipe__header" }, [
-      _c("h3", [_vm._v(_vm._s(_vm.action) + " Nota")]),
+      _c("h5", [_vm._v(_vm._s(_vm.action) + " Nota")]),
       _vm._v(" "),
       _c("div", [
         _c(
@@ -68603,7 +68677,7 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("h3", { staticClass: "col-7" }, [_vm._v("Zona")]),
+        _c("h5", { staticClass: "col-7" }, [_vm._v("Zona")]),
         _vm._v(" "),
         _c("div", { staticClass: "col-4 form-group" }, [
           _c("input", {
@@ -68851,8 +68925,8 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h3", [_vm._v(_vm._s(_vm.action) + " Zona")])
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Zona")])
         ]),
         _vm._v(" "),
         _c(
@@ -68861,7 +68935,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -68873,7 +68947,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger btn-sm",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -68890,7 +68964,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary btn-sm",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {

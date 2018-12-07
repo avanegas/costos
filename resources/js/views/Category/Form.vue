@@ -2,15 +2,15 @@
     <div class="row">
         <div class="col-md">
 			<div class="form-group row">
-				<div class="form-group col-9">
-					<h3>{{action}} Categoria</h3>
+				<div class="form-group col-10">
+					<h5>{{action}} Categoria</h5>
 				</div>
 				<div>
-					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
+					<button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing">Save</button>
 	        		<template v-if="action == 'Update'">
-	            		<button type="button" class="btn btn-danger" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+	            		<button type="button" class="btn btn-danger btn-sm" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
 	        		</template>
-					<button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+					<button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing">Cancel</button>
 				</div>
 			</div>
 

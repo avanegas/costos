@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'api_token' => str_random(60)
         ]);
 
-        factory(User::class, 29)->create();
+        factory(User::class, 9)->create();
 
         //$user->roles()->attach($role_admin);
     }

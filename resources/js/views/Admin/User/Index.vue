@@ -1,14 +1,14 @@
 <template>
 	<div class="row">
 		<div class="col-md">
-            <h3><i class="fa fa-lock-open"></i> Administración                
+            <h5><i class="fa fa-lock-open"></i> Administración
                 <router-link to="/users" class="btn btn-secondary btn-sm float-right">Usuarios</router-link>
                 <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
                 <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
-            </h3>
-			<hr>
+            </h5>
+            <hr>
             <div class="form-group row">
-                <h3 class="col-7"><i class="fa fa-users"></i> Usuarios</h3>
+                <h5 class="col-7"><i class="fa fa-users"></i> Usuarios</h5>
                 <div class="form-group col-4">
                     <input
                         type="text"
