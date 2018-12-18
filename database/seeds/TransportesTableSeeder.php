@@ -20,10 +20,10 @@ class TransportesTableSeeder extends Seeder
   		foreach(range(1, 10) as $i) {
         	Transporte::create([
         		'zona_id' => $i,
-        		'name' => $faker->unique()->name,
-        		'unidad' => $faker->word,
-        		'tipo' => $faker->word,
-        		'tarifa' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 400)
+        		'name'    => $faker->unique()->name,
+        		'unidad'  => $faker->word,
+        		'tipo'    => $faker->word,
+        		'tarifa'  => $faker->randomFloat(5, 0.1, 80),
         	]);
         }
     }

@@ -20,10 +20,10 @@ class EquiposTableSeeder extends Seeder
         foreach(range(1, 10) as $i) {
         	Equipo::create([
         		'grupo_equipo_id' => $i,
-        		'name' => $faker->unique()->sentence($nbWords = 2, $variableNbWords = true),
-        		'marca' => $faker->sentence($nbWords = 2, $variableNbWords = true),
-        		'tipo' => $faker->sentence($nbWords = 3, $variableNbWords = true),
-        		'tarifa' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 400)
+        		'name'            => $faker->unique()->sentence(2, true),
+        		'marca'           => $faker->sentence(3, true),
+        		'tipo'            => $faker->sentence(2, true),
+        		'tarifa'          => $faker->randomFloat(5, 0.1, 100),
         	]);
         }
     }

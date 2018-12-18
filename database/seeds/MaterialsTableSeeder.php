@@ -20,9 +20,9 @@ class MaterialsTableSeeder extends Seeder
   		foreach(range(1, 10) as $i) {
         	Material::create([
         		'grupo_material_id' => $i,
-        		'name' => $faker->unique()->name,
-        		'unidad' => $faker->word,
-        		'precio' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 100)
+        		'name'    => $faker->unique()->name,
+        		'unidad'  => $faker->word,
+        		'precio'  => $faker->randomFloat(5, 0.1, 100),
         	]);
         }
     }

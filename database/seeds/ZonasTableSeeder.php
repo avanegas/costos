@@ -19,9 +19,9 @@ class ZonasTableSeeder extends Seeder
 
         foreach(range(1, 10) as $i) {
         	Zona::create([
-        		'name' => $faker->name,
-        		'description' => $faker->paragraph(mt_rand(10, 20)),
-        		'user_id' => $i
+        		'name'        => $faker->name,
+        		'description' => $faker->paragraph(mt_rand(2, 10)),
+        		'user_id'     => $i,
         	]);
         }
     }

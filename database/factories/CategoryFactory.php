@@ -4,7 +4,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Models\Post\Category::class, function (Faker $faker) {
 	
-	$title = $faker->sentence(2);
+	$title = $faker->sentence(6, true);
 
     return [
         'name' => $title,

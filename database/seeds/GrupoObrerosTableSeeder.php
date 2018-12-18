@@ -19,9 +19,9 @@ class GrupoObrerosTableSeeder extends Seeder
 
         foreach(range(1, 10) as $i) {
         	GrupoObrero::create([
-        		'zona_id' => $i,
-                'name' => $faker->unique()->sentence($nbWords = 2, $variableNbWords = true),
-        		'description' => $faker->paragraph(mt_rand(10, 20))
+        		'zona_id'     => $i,
+                'name'        => $faker->unique()->sentence(2, true),
+        		'description' => $faker->paragraph(mt_rand(10, 20)),
         	]);
         }
     }

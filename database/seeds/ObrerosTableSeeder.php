@@ -20,9 +20,9 @@ class ObrerosTableSeeder extends Seeder
   		foreach(range(1, 10) as $i) {
         	Obrero::create([
         		'grupo_obrero_id' => $i,
-        		'name' => $faker->unique()->name,
-				'jornalhora' => $faker->randomFloat($nbMaxDecimals = 5, $min = 0, $max = 10),
-        		'factor' => '1.37525'
+        		'name'        => $faker->unique()->name,
+				'jornalhora'  => $faker->randomFloat(5, 1, 10),
+        		'factor'      => $faker->randomFloat(5, 368, 420),
         	]);
         }
     }
