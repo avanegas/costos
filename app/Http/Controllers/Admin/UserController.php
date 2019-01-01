@@ -37,11 +37,6 @@ class UserController extends Controller
             ->json(['users' => $users]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = User::form();
@@ -55,15 +50,8 @@ class UserController extends Controller
         */
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-
         $this->validate($request, [
             'name'=>'required|max:120',
             'email'=>'required|email|unique:users',
@@ -91,12 +79,6 @@ class UserController extends Controller
         //return redirect()->route('users.index')->with('info', 'Usuario creado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         return redirect('users');
@@ -105,16 +87,10 @@ class UserController extends Controller
         //return view('admin.users.show', compact('user'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $id)
     {
-
-        $form = User::findOrFail($id);
+        $form = User::where('id', $id)->with(['roles'])->first();
+        //$form = User::findOrFail($id);
         $roles = Role::get();
 
         return response()

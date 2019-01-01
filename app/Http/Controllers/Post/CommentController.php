@@ -42,19 +42,28 @@ class CommentController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
-        $post = Post::findOrFail($request->post_id);
  
+        //$post = Post::findOrFail($request->post_id);
+        
+       
         $comment = Comment::create([
             'body'    => $request->body,
-            'user_id' => Auth::id(),
-            'post_id' => $post->id
+            'user_id' => $request->user_id,
+            'post_id' => $request->post_id
         ]);
+        $comment->save();
 
-        if ($post->user_id != $comment->user_id) {
-            $user = User::find($post->user_id); 
-            $user->notify(new NewCommentPost($comment));
-        }
-        return redirect()->route('post', $post->slug);
+        //if ($post->user_id != $comment->user_id) {
+        //    $user = User::find($post->user_id); 
+        //    $user->notify(new NewCommentPost($comment));
+        //}
+        //return redirect()->route('post', $post->slug);
+        //return response()
+        //    ->json([
+        //        'saved' => true,
+        //        'id' => $post->post_id,
+        //        'message' => 'You have successfully created comment!'
+        //    ]);
     }
 
     /**

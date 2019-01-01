@@ -14,7 +14,7 @@
                 </div>
             </div>
 
-			<div class="card" v-for="post in posts">
+			<div class="card mb-3 mt-3" v-for="post in posts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
 				</div>	
@@ -30,6 +30,7 @@
 					<p class="float-right">comentarios: {{post.comments.length}}</p>
 				</div>
 			</div>
+			<infinite-loading @infinite="infiniteHandler"></infinite-loading>
 		</div>
 	</div>
 </template>
@@ -38,7 +39,9 @@
 	export default {
 		data() {
 			return {
-				posts: []
+                searchQuery:'',
+				posts: [],
+				page:0
 			}
 		},
 		created() {
@@ -46,6 +49,11 @@
 			.then((res) => {
 				this.posts = res.data.posts
 			})
+		},
+		methods:{
+			infiniteHandler($state) {
+
+			}
 		}
 	}
 </script>

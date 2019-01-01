@@ -10,6 +10,7 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
+Vue.component('InfiniteLoading', require('vue-infinite-loading'));
 Vue.filter('formatMoney', (value) => {
     return Number(value)
         .toFixed(2)

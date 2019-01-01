@@ -23,30 +23,30 @@
 					    <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
 					</div>
 					<div class="form-group">
-					    <label>Email</label>
+					    <label >Email</label>
 					    <input type="email" class="form-control" v-model="form.email">
 					    <small class="error-control" v-if="error.errors.email">{{error.errors.email[0]}}</small>
 					</div>
-<!--
+<!---->
 					<div class="form-group">
-						<label>Role</label>
-						<select :id="form.role_id" :name="form.role_id" class="form-control" v-model="form.role_id">
+						<label>Asignar Rol</label>
+						<select class="form-control" id="role_id" name="role_id" :v-model="form.role_id">
 							<option disabled value="">seleccione</option>
-							<option v-for="role in roles" :value="role.id" selected = " form.role_id == role.id ? true : false ">{{ role.name }}</option>
+							<option v-for="r in roles" :key="r.id">{{ r.name }}</option>
 						</select>
 						<small class="error-control" v-if="error.errors.role_id">{{error.errors.role_id[0]}}</small>
 					</div>
-					-->
+					
 					<div class="form-group">
-						<label>Asignar rol</label>
-	                    <div class="checkboxes offset-md-1" v-for="role in roles">
-	                		<input type="checkbox" 
-	                				:id="role.id" 
-	                				name="form.roles" 
-	                				:value="role.name" 
-	                				v-model="form.roles" 
-	                				value="role.name">
-	                		<label>{{role.name}}</label>
+						<label>Asignar role</label>
+	                    <div class="checkboxes offset-md-1" v-for = "role in roles" :key="role.id">
+	                		<input class="form-check-input" 
+								type = "checkbox"
+	                			:id = "role.name"
+	                			value = "role"
+								unchecked-value = "activated"
+	                			v-model = "form.roles"/>
+	                		<label :for = "role.name">{{ role.name }}</label>,
 	                    </div>
                 	</div>
 
@@ -132,7 +132,15 @@
 					Flash.setSuccess('Ha eliminado correctamente el user!')
 					this.$router.back()
 				});
-      		}
+      		},
+			activated: function(role){
+				console.log(this.form.roles[0].id, role.id)
+				console.log(_.findIndex(this.form.roles, function(r) {
+					return r.id == role.id;})>= 0)
+
+			  	return _.findIndex(this.form.roles, function(r) {
+				  	return r.id == role.id;})>= 0;
+			}
 		}
 	}
 </script>

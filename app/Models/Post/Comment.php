@@ -24,4 +24,13 @@ class Comment extends Model
   {
     return $this->belongsTo(Post::class);
   }
+
+  public static function form()
+  {
+    return [
+      'user_id' => '',
+      'post_id' => '',
+      'body'    => ''
+    ];
+  }
 }

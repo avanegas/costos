@@ -33,7 +33,7 @@ class PreciosTableSeeder extends Seeder
         		'unidad'          => $faker->word,
         		'detalle'         => $faker->paragraph(mt_rand(4, 10)),
 				'directo'         => $faker->randomFloat(5, 1.20, 120),
-				'indirecto'       => 18%,
+				'indirecto'       => 18,
         	]);
 
         	foreach(range(1, mt_rand(3, 5)) as $j) {

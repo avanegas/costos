@@ -9,7 +9,7 @@
 	            	<input type="search" name="search" placeholder="Search" class="w-50 float-right">
 				</div>
 			</div>
-			<div class="card" v-for="post in posts">
+			<div class="card" v-for="post in posts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
 				</div>	

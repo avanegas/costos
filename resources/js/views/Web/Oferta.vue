@@ -14,7 +14,7 @@
 				</div>
 			</div>
 			<div class="is-flex">
-				<div class="col-md-4 item" v-for="oferta in ofertas">
+				<div class="col-md-4 item" v-for="oferta in ofertas" :key="oferta.id">
 					<div class="thumbnail">
 						<img :src="`images/${oferta.file}`" v-if="oferta.file" alt class="hvr-grow thumbnail-image">
 						<div class="caption margin-left-sm">

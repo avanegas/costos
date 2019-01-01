@@ -3,7 +3,7 @@
         <div class="col-md">	            
             <div class="card">
 				<div class="card-header">
-		            <router-link :to="`/category/${post.category.slug}`"  title="Selección por categoría" class="card-title">
+		            <router-link :to="`/category/${post.category.slug}`" title="Selección por categoría" class="card-title">
 		               	CATEGORIA: {{ post.category.name }}
 		           	</router-link>
 		        </div>
@@ -13,96 +13,48 @@
 		           	<p class="card-text text-justify">{{ post.body }}</p>
 
 					<p class="card-title">ETIQUETAS: 
-					<span v-for="tag in post.tags">
+					<span v-for="tag in post.tags" :key="tag.id">
 						<router-link :to="`/tag/${tag.slug}`" title="Selección por etiqueta"  class="alert-link">
 							{{ tag.name }}, 
 						</router-link>
 					</span>
 		            </p>
 		        </div>
-				<!-- Blog Coments -->
-		        <div class="card-footer">			        	
-		        	<div>
-		        		<button class="btn btn-outline-secondary float-right">Quiero comentar</button>
-		        		<h5>Comentarios: <strong> {{post.comments.length}}</strong></h5>
-		        	</div>
-					<div class="input-group mt-4" v-if="comentar">							
-						<textarea class="form-control" rows="3" aria-label="With textarea" placeholder="Escriba su comentario"  v-model="comment.body"></textarea>
-						<div class="input-group-append">
-							<button class="btn btn-outline-secondary" type="button">Publicar</button>
-						</div>							
-					</div>
-					<!--
-		         	<ul class="card-body" v-for="comment in post.comments">
-		         		<li class="list-group-item">
-				         	<a class="pull-left" href="#">
-								<img src="/img/persona1.jpg" width="64" height="64" alt="" class="d-flex align-self-start mr-3">
-							</a>
-	        				<p class="card-title">{{comment.user.name}} escribio el {{comment.created_at}}</p>
-	        				<p class="card-text">{{comment.body}}</p>
 
-							<div class="botones text-right">
-                                <a href="#">Responder</a>
-                                <a href="#">Editar</a>
-                                <a href="#">Borrar</a>
-                            </div>
-
-	        			</li>
-	        		</ul>
-					-->
-
-					<!-- Comments form 
-					<div class="well">-->
-						<!-- <h4>Comentar</h4>
-						<h5 class="card-title">Comentarios: <strong> {{post.comments.length}}</strong></h5>
-						<form role="form" @submit.prevent="addComment">
-							<div class="form-group">
-								<textarea class="form-control" rows="3" v-model="comment.body"></textarea>
-							</div>
-							<button type="submit" class="btn btn-primary">Submit</button>
-						</form>
-					</div> -->
-					<!--<hr> -->
-
-					<!-- Post Comments -->
-					<!-- Comments -->
-					<div class="media" v-for="comment in post.comments">
-						<div class="foto">
-							<a class="pull-left" href="#">
-								<img src="/images/persona1.jpg" width="64" height="64" alt="" class="d-flex align-self-start mr-3">
-							</a>
-						</div>
-						<div class="media-body">
-							<h6 class="media-heading">{{comment.user.name}}
-								<small>escribio el {{comment.created_at}}</small>
-							</h6>
-							{{comment.body}}
-							<div class="botones text-right">
-                                <a href="#">Responder</a>
-                                <a href="#">Editar</a>
-                                <a href="#">Borrar</a>
-                            </div>
-						</div>
-					</div>
+				<div class="card-body">			        	
+					<comment-add
+						:numero  = "post.comments.length"
+						:post_id = "post.id"
+						:user_id = "authState.user_id"
+						@new="addComment">
+					</comment-add>
+					<comment 
+						v-for="comment in post.comments" 
+						:key="comment.id" 
+						:comment="comment">
+					</comment>
 				</div>
 			</div>
         </div>
     </div>
 </template>
-<script type="text/javascript">
+<script>
 	import Auth from '../../store/auth'
 	import Flash from '../../helpers/flash'
 	import { get, post, del } from '../../helpers/api'
 	import { toMulipartedForm } from '../../helpers/form'
+	import CommentAdd  from '../Comment/CommentAdd.vue'
+	import Comment from '../Comment/Comment.vue'
 	export default {
+		components: {
+			Auth,
+            CommentAdd,
+            Comment
+        },
 		data() {
 			return {
 				authState: Auth.state,
-				comentar: true,
-				comments: [],
-				comment:{
-					body:''
-				},
+				form: {},
 				post: {
 					comments: {},
 					user: {},
@@ -117,15 +69,10 @@
 				this.post = res.data.post
 			})
 		},
-		methods: {
-		addComment() {
-			this.$http.post('api/comments',this.comment).then((response) => {
-				this.comments.push(this.comment)
-				this.comments.body = ''
-			}, (response) => {
-				//error callback
-			});
-		}			
-		}
+	    methods:{
+            addComment(form) {
+                this.post.comments.push(this.form)
+			}
+        }	
 	}
 </script>

@@ -16,12 +16,8 @@ class EquipoController extends Controller
         $this->middleware('auth:api')
             ->except(['index', 'show']);
     }
+*/
 
-    
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $equipos = Equipo::with(['grupo_equipo'])->orderBy('name', 'asc')->get();
@@ -30,11 +26,6 @@ class EquipoController extends Controller
             ->json(['equipos' => $equipos]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $form = Equipo::form();
@@ -43,20 +34,14 @@ class EquipoController extends Controller
             ->json(['form' => $form]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $request->validate([
-            'grupo_equipo_id' => 'required',
-            'name' => 'required|max:255',
-            'marca' => 'required|max:255',
-            'tipo' => 'required|max:255',
-            'tarifa' => 'required|numeric'
+            'grupo_equipo_id'   => 'required',
+            'name'              => 'required|max:60',
+            'marca'             => 'nullable|max:60',
+            'tipo'              => 'nullable|max:60',
+            'tarifa'            => 'required|numeric'
             ]);
 
         $equipo = new Equipo($request->only('grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa'));
@@ -65,18 +50,12 @@ class EquipoController extends Controller
 
         return response()
             ->json([
-                'saved' => true,
-                'id' => $equipo->id,
-                'message' => 'Ha ingresado correctamente un equipo!'
+                'saved'     => true,
+                'id'        => $equipo->id,
+                'message'   => 'Ha ingresado correctamente un equipo!'
                 ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $equipo = Equipo::with(['grupo_equipo'])
@@ -86,12 +65,6 @@ class EquipoController extends Controller
             ->json(['equipo' => $equipo]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Request $request, $id)
     {
         $form = Equipo::with(['grupo_equipo'])
@@ -101,39 +74,26 @@ class EquipoController extends Controller
             ->json(['form' => $form]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'grupo_equipo_id' => 'required',
-            'name' => 'required|max:255',
-            'marca' => 'required|max:255',
-            'tipo' => 'required|max:255',
-            'tarifa' => 'required|numeric'
+            'grupo_equipo_id'   => 'required',
+            'name'              => 'required|max:60',
+            'marca'             => 'nullable|max:60',
+            'tipo'              => 'nullable|max:60',
+            'tarifa'            => 'required|numeric'
         ]);
 
         $equipo = Equipo::findOrFail($id)->update($request->all());
 
         return response()
             ->json([
-                'saved' => true,
-                'form' => $equipo,
-                'message' => 'Ha actualizado correctamente un equipo!'
+                'saved'     => true,
+                'form'      => $equipo,
+                'message'   => 'Ha actualizado correctamente un equipo!'
                 ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Request $request, $id)
     {
         $equipo=Equipo::findOrFail($id)->delete();

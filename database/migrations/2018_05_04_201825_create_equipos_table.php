@@ -17,8 +17,8 @@ class CreateEquiposTable extends Migration
             $table->increments('id');
             $table->integer('grupo_equipo_id')->unsigned();
             $table->string('name')->unique();
-            $table->string('marca');
-            $table->string('tipo');
+            $table->string('marca')->nullable();
+            $table->string('tipo')->nullable();
             $table->string('tarifa');
             $table->timestamps();
         });

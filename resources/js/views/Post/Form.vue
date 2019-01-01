@@ -3,7 +3,7 @@
 		<div class="col-md">
 			<div class="form-group row">
 				<div class="form-group col-10">
-					<h5>{{action}} Articulo</h5>
+					<h5>{{action}} Artículo</h5>
 				</div>
 				<div>
 					<button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing">Save</button>
@@ -26,9 +26,9 @@
 
 							<div class="form-group">
 								<label for="category_id">Categoría</label>
-								<select id="category_id" name="category_id" class="form-control" v-model="form.category_id">
+								<select id="category_id" name="category_id" class="form-control" :v-model="form.category_id">
 									<option disabled value="">seleccione</option>
-									<option v-for="c in categories" :value="c.id" selected = " form.category_id == c.id ? true : false ">{{ c.name }}</option>
+									<option v-for="c in categories" :key="c.id">{{ c.name }}</option>
 								</select>
 							</div>
 							<div class="form-group">
@@ -56,25 +56,13 @@
 							<div class="form-group">
 								<p>Seleccione las etiquétas de categoría específica</p>
 								
-								<div class="form-check form-check-inline" v-for = "tag in tags" :paso="true">
-
-									<template v-for = "t in form.tags">
-										<template v-if="tag.id == t.id">
-											<input class="form-check-input" type="checkbox" id="t.name" :checked="true" :v-model="select" :paso="false"/>
-										</template>
-									</template>
-									<template v-if = "paso">
-										<input class="form-check-input" type="checkbox" id="tag.name" :checked="false" :v-model="select"/>
-									</template>	
-
-									<!--										
-									<input
-									type = "checkbox"
-									:id = "tag.id"
-									:value = "tag.id"
-									:v-model = "form.tags"
-									checked = "select">
-									-->
+								<div class="form-check form-check-inline" v-for = "tag in tags" :key="tag.id">
+									<input class="form-check-input" 
+										type = "checkbox"
+										:id  = "tag.name"
+										:value = "tag"
+										checked = "actived(tag)"
+										v-model = "form.tags"/>
 									<label class="form-check-label" for = "tag.name">{{ tag.name }}</label>,
 								</div>
 							</div>
@@ -135,6 +123,9 @@
 				this.tags = res.data.tags
 			})
 		},
+		computed: {
+
+		},
 		methods: {
 			save() {
 				this.isProcessing = true
@@ -157,7 +148,16 @@
 			},
 			remove() {
 				alert('borrar');
+			},
+			actived(tag){
+				console.log(this.form.tags[0].id, tag.id)
+				console.log(_.findIndex(this.form.tags, function(t) {
+					return t.id == tag.id;})>= 0)
+
+				return _.findIndex(this.form.tags, function(t) {
+					return t.id == tag.id;})>= 0;
 			}
+
 		}
 	}
 </script>

@@ -23,7 +23,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr v-for="equipo in searchEquipos" @click="detailsPage(equipo)">
+                            <tr v-for="equipo in searchEquipos" :key="equipo.id" @click="detailsPage(equipo)">
                                 <td class="w-1">{{equipo.grupo_equipo.name}}</td>
                                 <td class="w-6">{{equipo.name}}</td>
                                 <td class="w-6">{{equipo.marca}}</td>

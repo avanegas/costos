@@ -175,7 +175,7 @@
                 this.sortOrders[key] = this.sortOrders[key] * -1
             },
             agrega(entry) {
-                
+
                 if ( this.authState.api_token && this.authState.user_id === 1 ) {
                 
                     switch (this.lista) {
@@ -236,11 +236,29 @@
                                 this.$emit("agrega", entry);
                             }
                             else{
+                                console.log('2',entry)
                                 this.$router.push(`/${this.lista}/${entry['id']}`);
                             }
                         }
                     }
                 }
+                else {
+                    switch (this.lista) {
+                        case "precios":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}`);
+                            break;
+                        }
+                        case "proyectos":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}`);
+                            break;
+                        }
+                    }
+                }
+
+
+
             }
         }
     };

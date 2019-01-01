@@ -64,7 +64,7 @@ class PageController extends Controller
     public function post($slug)
     {
         $post = Post::where('slug', $slug)->with(['comments', 'comments.user', 'user', 'category', 'tags'])->first();
-        
+
         return response()
             ->json(['post' => $post
         ]);
