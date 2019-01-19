@@ -21,7 +21,7 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->mediumText('excerpt')->nullable();
             $table->text('body');
-            $table->string('file')->nullable();
+            $table->string('file')->default('test.png');
             $table->enum('status', ['PUBLISHED', 'DRAFT'])->default('DRAFT');
                         
             //relation

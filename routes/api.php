@@ -1,14 +1,12 @@
 <?php
 
-use Illuminate\Http\Request;
-
-Route::post('login', 	'AuthController@login');
-Route::post('logout', 	'AuthController@logout');
-Route::post('register', 'AuthController@register');
-
+//web
 Route::get('/blog', 	'Web\PageController@blog')->name('blog');
 
-//web
+Route::post('login', 			'AuthController@login');
+Route::post('logout',			'AuthController@logout');
+Route::post('register',			'AuthController@register');
+
 Route::get('/post/{slug}', 		'Web\PageController@post')->name('post');
 Route::get('/category/{slug}', 	'Web\PageController@category')->name('category');
 Route::get('/tag/{slug}', 		'Web\PageController@tag')->name('tag');
@@ -19,14 +17,11 @@ Route::get('/obrero',      		'Web\PageController@obrero')->name('obrero');
 Route::get('/transporte',      	'Web\PageController@transporte')->name('transporte');
 Route::get('/oferta',      		'Web\PageController@oferta')->name('oferta');
 
-Route::post('login', 			'AuthController@login');
-Route::post('logout',			'AuthController@logout');
-Route::post('register',			'AuthController@register');
-
 //admin
 Route::resource('users', 		'Admin\UserController');
 Route::resource('roles', 		'Admin\RoleController');
 Route::resource('permissions', 	'Admin\PermissionController');
+
 
 
 Route::resource('grupo_equipos',	'Data\GrupoEquipoController');
@@ -37,7 +32,6 @@ Route::resource('grupo_obreros',	'Data\GrupoObreroController');
 Route::resource('obreros',			'Data\ObreroController');
 Route::resource('transportes',		'Data\TransporteController');
 Route::resource('zonas',			'ZonaController');
-
 
 Route::resource('categories',		'Post\CategoryController');
 Route::resource('posts',			'Post\PostController');

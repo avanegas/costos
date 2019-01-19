@@ -38,6 +38,11 @@ class User extends Authenticatable
         return $this->hasMany(Comment::class);
     }
 
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password'] = bcrypt($password);
+    }
+
     public function precios()
     {
         return $this->hasMany(Precio::class);

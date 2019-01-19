@@ -13,10 +13,8 @@
 					<button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
 				</div>
 			</div>
-
 			<div class="card">
 				<div class="card card-body">
-
 					<div class="form-group">
 					    <label>Name</label>
 					    <input type="text" class="form-control" v-model="form.name">
@@ -27,29 +25,11 @@
 					    <input type="email" class="form-control" v-model="form.email">
 					    <small class="error-control" v-if="error.errors.email">{{error.errors.email[0]}}</small>
 					</div>
-<!---->
 					<div class="form-group">
-						<label>Asignar Rol</label>
-						<select class="form-control" id="role_id" name="role_id" :v-model="form.role_id">
-							<option disabled value="">seleccione</option>
-							<option v-for="r in roles" :key="r.id">{{ r.name }}</option>
-						</select>
-						<small class="error-control" v-if="error.errors.role_id">{{error.errors.role_id[0]}}</small>
+						<label>Asignar rol</label>
+						<v-select multiple label="name" :options="roles" v-model="form.roles">
+						</v-select>
 					</div>
-					
-					<div class="form-group">
-						<label>Asignar role</label>
-	                    <div class="checkboxes offset-md-1" v-for = "role in roles" :key="role.id">
-	                		<input class="form-check-input" 
-								type = "checkbox"
-	                			:id = "role.name"
-	                			value = "role"
-								unchecked-value = "activated"
-	                			v-model = "form.roles"/>
-	                		<label :for = "role.name">{{ role.name }}</label>,
-	                    </div>
-                	</div>
-
 					<div class="form-group">
 					    <label>Password</label>
 					    <input type="password" class="form-control" v-model="form.password">
@@ -68,14 +48,9 @@
 <script type="text/javascript">
 	import Vue from 'vue'
 	import Flash from '../../../helpers/flash'
-	import { get, post, del } from '../../../helpers/api'
+	import { get, post, del, byMethod } from '../../../helpers/api'
 	import { toMulipartedForm } from '../../../helpers/form'
-	import ImageUpload from '../../../components/ImageUpload.vue'
-		
 	export default {
-		components: {
-			ImageUpload
-		},
 		data() {
 			return {
 				roles:[],
@@ -110,13 +85,12 @@
 			save() {
 				this.isProcessing = true
 				const form = toMulipartedForm(this.form, this.$route.meta.mode)
-				console.log(form);			
 				post(this.storeURL, form)
 				    .then((res) => {
-
 				        if(res.data.saved) {
 				            Flash.setSuccess(res.data.message)
-				            this.$router.push(`/users`)
+				            this.$router.push(`/users/${res.data.id}`)
+							this.$router.back()
 				        }
 				        this.isProcessing = false
 				    })
@@ -132,15 +106,7 @@
 					Flash.setSuccess('Ha eliminado correctamente el user!')
 					this.$router.back()
 				});
-      		},
-			activated: function(role){
-				console.log(this.form.roles[0].id, role.id)
-				console.log(_.findIndex(this.form.roles, function(r) {
-					return r.id == role.id;})>= 0)
-
-			  	return _.findIndex(this.form.roles, function(r) {
-				  	return r.id == role.id;})>= 0;
-			}
+      		}
 		}
 	}
 </script>

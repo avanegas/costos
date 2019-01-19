@@ -12,7 +12,10 @@
                         autocomplete="off"
                         v-model="searchQuery">
                 </div>
-            </div>
+				<div v-if="authState.api_token && authState.user_id === 1">
+					<router-link to="/posts/create" class="btn btn-primary"> Nuevo</router-link>
+				</div>
+			</div>
 
 			<div class="card mb-3 mt-3" v-for="post in posts" :key="post.id">
 				<div class="card-header">
@@ -30,18 +33,18 @@
 					<p class="float-right">comentarios: {{post.comments.length}}</p>
 				</div>
 			</div>
-			<infinite-loading @infinite="infiniteHandler"></infinite-loading>
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
+	import Auth from '../../store/auth'
 	import { get } from '../../helpers/api'
 	export default {
 		data() {
 			return {
+				authState: Auth.state,
                 searchQuery:'',
 				posts: [],
-				page:0
 			}
 		},
 		created() {
@@ -49,11 +52,6 @@
 			.then((res) => {
 				this.posts = res.data.posts
 			})
-		},
-		methods:{
-			infiniteHandler($state) {
-
-			}
 		}
 	}
 </script>

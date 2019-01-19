@@ -5,9 +5,9 @@
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| Aquí es donde puede registrar rutas web para su aplicación.
+| RouteServiceProvider carga estas rutas dentro de un grupo que
+| contiene el grupo de middleware "web". ¡Ahora crea algo genial!
 |
 */
 /*
@@ -31,8 +31,8 @@ Route::resource('comments',		'Post\CommentController');
 */
 
 //admin
-// Admin Users, Roles, Permission resource route.
-//Route::group(['middleware' => ['auth']], function(){});
+//  Admin Users, Roles, Permission resource route.
+//  Route::group(['middleware' => ['auth']], function(){});
 //	Route::resource('users', 		'Admin\UserController');
 //	Route::resource('roles', 		'Admin\RoleController');
 //	Route::resource('permissions', 	'Admin\PermissionController');

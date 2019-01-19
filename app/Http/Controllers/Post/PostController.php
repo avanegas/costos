@@ -121,15 +121,25 @@ class PostController extends Controller
     public function update(PostUpdateRequest $request, $id)
     {
         $post = Post::find($id);
-        $this->authorize('pass', $post);
+        //$this->authorize('pass', $post);
 
         $post->fill($request->all())->save();
 
         //IMAGE 
-        if($request->file('file')){
-            $path = Storage::disk('public')->put('image',  $request->file('file'));
-            $post->fill(['file' => asset($path)])->save();
+        //if($request->file('file')){
+        //    $path = Storage::disk('public')->put('image',  $request->file('file'));
+        //    $post->fill(['file' => asset($path)])->save();
+        //}
+        if ($request->hasfile('image') && $request->file('image')->isValid()) {
+            $filename = $this->getFileName($request->image);
+            $request->image->move(base_path('/public/images'), $filename);
+
+            // remove old image
+            File::delete(base_path('/public/images/'.$post->image));
+            $post->image = $filename;
         }
+
+        $post->save();
 
         //TAGS
         $post->tags()->sync($request->get('tags'));

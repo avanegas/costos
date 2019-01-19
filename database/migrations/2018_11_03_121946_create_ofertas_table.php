@@ -21,7 +21,7 @@ class CreateOfertasTable extends Migration
             $table->mediumText('descripcion')->nullable();
             $table->decimal('stock',9,2);
             $table->decimal('precio',9,2);
-            $table->string('file')->nullable();
+            $table->string('file')->default('test.png');
             $table->enum('status', ['TRUE', 'FALSE'])->default('TRUE');
 
             //relation
