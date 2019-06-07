@@ -215,25 +215,25 @@
                         <div class="modal__container"  @scroll="handleScroll">
 
                             <div class="modal__cerrar modal__header">
-                                <a  @click="cerrarModal">Cerrar  <em>X</em></a>
+                                <a style="color: red" @click="cerrarModal">Cerrar  <strong>X</strong></a>
                             </div>
 
                             <div class="modal__header">
                                 <slot  name="header">
-                                    <button class="btn btn__warning btn__block"><em>Borrar datos en esta linea. .  .?</em></button>
+                                    <button class="btn btn-warning btn-block"><strong>Borrar datos en esta linea. .  .?</strong></button>
                                 </slot>
                             </div>
 
                             <div class="modal__body">
                                 <slot name="body">
-                                    <div class="modal__search">
-                                        <h3>{{ this.lista }}</h3>
-                                        <div class="form__search">
+                                    <div class="row">
+                                        <h5 class="col-6" style="text-transform: uppercase;">{{ this.lista }}</h5>
+                                        <div class="col-6">
                                             <input
                                                 type="search"
-                                                class="search__input"
+                                                class="form-control mr-sm-2 mb-2 mb-sm-0"
                                                 name="query"
-                                                placeholder="Search"
+                                                placeholder="Search..."
                                                 v-model="searchQuery">
                                         </div>
                                     </div>

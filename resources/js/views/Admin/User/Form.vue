@@ -3,7 +3,7 @@
         <div class="col-md">
 			<div class="form-group row">
 				<div class="form-group col-9">
-					<h3>{{action}} User</h3>
+					<h5>{{action}} User</h5>
 				</div>
 				<div>
 					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>

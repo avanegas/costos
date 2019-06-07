@@ -5,13 +5,13 @@
                 <h5 class="col-7">Apuntes</h5>
                 <div class="col-4 form-group">
                     <input
-                        type="text"
+                        type="search"
                         class="form-control mr-sm-2 mb-2 mb-sm-0"
                         placeholder="Search..."
                         autocomplete="off"
                         v-model="searchQuery">
                 </div>
-                 <div v-if="authState.api_token && authState.user_id === 1">
+                <div v-if="authState.api_token && authState.user_id === 1">
                     <router-link to="/posts/create" class="btn btn-primary"> Nuevo</router-link>
                 </div>
             </div>

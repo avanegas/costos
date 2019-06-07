@@ -79,7 +79,10 @@ class UserController extends Controller
         $roles = Role::get();
 
         return response()
-            ->json(['form' => $form, 'roles' => $roles]);
+            ->json([
+                'form' => $form,
+                'roles' => $roles
+                ]);
 
         //$user = User::findOrFail($id);
         //$roles = Role::get(); //Get all roles

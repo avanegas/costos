@@ -13,8 +13,8 @@ class PostsTableSeeder extends Seeder
     {
         factory(App\Models\Post\Post::class, 20)->create()->each(function(App\Models\Post\Post $post) {
         	$post->tags()->attach([
-        		rand(1,5), 
-        		rand(6,14), 
+        		rand(1,5),
+        		rand(6,14),
         		rand(15,20),
         	]);
         });

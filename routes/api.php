@@ -7,6 +7,9 @@ Route::post('login', 			'AuthController@login');
 Route::post('logout',			'AuthController@logout');
 Route::post('register',			'AuthController@register');
 
+Route::get('profile',			'ProfileController@edit');
+Route::post('profile',			'ProfileController@update');
+
 Route::get('/post/{slug}', 		'Web\PageController@post')->name('post');
 Route::get('/category/{slug}', 	'Web\PageController@category')->name('category');
 Route::get('/tag/{slug}', 		'Web\PageController@tag')->name('tag');

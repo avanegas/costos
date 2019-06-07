@@ -1,0 +1,85 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Vue-select
+@import '~vue-select/src/scss/vue-select.scss';
+
+body {
+    font:12px/1.3 Arial,sans-serif;
+    background: #ebeef3;
+    color: #616161;
+}
+
+
+
+
+/*------------------------------- anterior -------*/
+
+.inicio {
+  color: white;
+  font-size: 1.125rem;
+  /*display: inline-block;
+  padding-top: 0.32rem;
+  padding-bottom: 0.32rem;
+  margin-right: 1rem;
+  line-height: inherit;
+  white-space: nowrap;*/
+}
+
+/*
+li {
+	position: relative;
+}
+*/
+li > ul {
+	display: none;
+	position:absolute;
+	background: #333;
+}
+/*
+li:hover {
+	background: rgba(0,0,0,.5);
+    z-index: 99999;
+}
+
+li:hover > ul {
+	display: block;
+}
+*/
+
+/* eliminado por ofertas
+.item a{
+    font-size: 14px;                    //incluido
+    color: rgba(255, 255, 255, 0.5);    //color:#fff;
+    text-decoration: none;
+    display: block;
+    padding: 0; //.5em 1.5em;
+    white-space: nowrap;
+}
+
+a {
+    text-decoration: none;
+    color: #616161;
+}
+*/ 
+
+/*eliminado por ofertas*/
+
+
+
+
+// Lista search
+// COPIADO DE :::>>>>>>  https://jsfiddle.net/xkkbfL3L/8519/
+//                       https://vuejs.org/v2/examples/grid-component.html
+/*
+th, td {
+    min-width: 90px;
+    padding: 5px 10px;
+}
+*/

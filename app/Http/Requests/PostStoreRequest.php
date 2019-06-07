@@ -27,7 +27,7 @@ class PostStoreRequest extends FormRequest
         	'user_id'		=> 'required|integer', 
             'category_id'   => 'required|integer',            
             'name'          => 'required',
-            /*'slug'          => 'required|unique:posts,slug', */
+            'slug'          => 'required|unique:posts,slug',
             'excerpt'       => 'required',
             'body'          => 'required',
             'status'        => 'required|in:DRAFT,PUBLISHED',

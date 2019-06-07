@@ -27,7 +27,7 @@ class PostUpdateRequest extends FormRequest
         	'user_id'		=> 'required|integer', 
             'category_id'   => 'required|integer',         
             'name'          => 'required',
-            /*'slug'          => 'required|unique:posts,slug,'. $this->post, */
+            'slug'          => 'required|unique:posts,slug,' . $this->form,
             'excerpt'       => 'required',
             'body'          => 'required',
             'status'        => 'required|in:DRAFT,PUBLISHED',

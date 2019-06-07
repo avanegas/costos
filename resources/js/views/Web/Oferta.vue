@@ -1,6 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col-md-12">
+
 			<div class="row action-panel">
 				<div class="col-md-12">
 					<div class="btn-group pull-right">
@@ -13,6 +14,7 @@
 					</div>
 				</div>
 			</div>
+
 			<div class="is-flex">
 				<div class="col-md-4 item" v-for="oferta in ofertas" :key="oferta.id">
 					<div class="thumbnail">

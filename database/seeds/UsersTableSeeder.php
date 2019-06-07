@@ -2,6 +2,9 @@
 
 use Illuminate\Database\Seeder;
 use App\Repositories\User\EloquentUserRepository;
+use Spatie\Permission\Traits\HasRoles;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 use App\User;
 
 class UsersTableSeeder extends Seeder

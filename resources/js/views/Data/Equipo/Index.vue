@@ -6,7 +6,11 @@
                     <router-link to="/equipos/create" title="Equipo nuevo" class="w-50 text-muted">
                         Equipos
                     </router-link>
-                    <input type="search" name="search" placeholder="Search" class="w-50 float-right">
+                    <input
+                        type="search"
+                        name="search"
+                        placeholder="Search..."
+                        class="w-50 float-right">
                 </div>
                 <div class="card">
                     <div class="card-block">

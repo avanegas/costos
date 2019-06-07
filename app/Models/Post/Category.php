@@ -3,25 +3,15 @@
 namespace App\Models\Post;
 
 use Illuminate\Database\Eloquent\Model;
-use Cviebrock\EloquentSluggable\Sluggable;
 use App\Presenters\DatePresenter;
 
 class Category extends Model
 {
-    use DatePresenter, Sluggable;
+    use DatePresenter;
     
     protected $fillable = [
-        'name', 'body'
+        'name', 'slug', 'body'
     ];
-
-    public function sluggable()
-    {
-        return [
-            'slug' => [
-                'source' => 'name'
-            ]
-        ];
-    }
 
     public function posts()
     {
@@ -32,6 +22,7 @@ class Category extends Model
 	{
 		return [
 	    	'name' 	=> '',
+            'slug'  => '',
 	    	'body' 	=> ''
 	  	];
 	}

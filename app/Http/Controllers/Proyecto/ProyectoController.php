@@ -77,8 +77,8 @@ class ProyectoController extends Controller
 
         return response()
             ->json([
-                'saved' => true,
-                'id' => $proyecto->id,
+                'saved'   => true,
+                'id'      => $proyecto->id,
                 'message' => 'You have successfully created project!'
             ]);
     }

@@ -11,7 +11,7 @@
                 <h5 class="col-7"><i class="fa fa-users"></i> Usuarios</h5>
                 <div class="form-group col-4">
                     <input
-                        type="text"
+                        type="search"
                         class="form-control mr-sm-2 mb-2 mb-sm-0"
                         placeholder="Search..."
                         autocomplete="off"

@@ -5,7 +5,7 @@
             	<h5 class="col-7">Materiales</h5>
                 <div class="col-4 form-group">
                     <input
-                    	type="text"
+                    	type="search"
                     	class="form-control mr-sm-2 mb-2 mb-sm-0"
                     	placeholder="Search..."
                     	autocomplete="off"
@@ -15,11 +15,11 @@
 			<div class="card">
 				<div class="card-block">
 			        <lista-search
-                            :data="gridData"
-                            :columns="gridColumns"
-                            :filter-key="searchQuery"
-                            :lista="lista"
-                            :isAutorized="isAutorized">
+                        :data="gridData"
+                        :columns="gridColumns"
+                        :filter-key="searchQuery"
+                        :lista="lista"
+                        :isAutorized="isAutorized">
                     </lista-search>
 				</div>
             </div>

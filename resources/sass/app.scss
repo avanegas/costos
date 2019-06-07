@@ -7,47 +7,60 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-body {
-    font:12px/1.3 Arial,sans-serif;
-   /* background-image: url("images/back.png");*/
-    background: #ebeef3; /*rgb(235, 238, 243);*/
-    color: #616161;
-}
-table {
-    margin: 2em auto;
-    border-collapse: collapse;
-    table-layout: fixed;
-    /*width: 75%;
-    min-width: 750px;*/
-}
-th {
-    background: teal;
-    color: #fff;
-    padding: .5em;
-    border-right: 1px solid rgba(255,255,255,0.5);
-}
-th:last-child {
-    border-right: none;
-}
-th:first-child {
-    border-left: 1px solid teal;
-}
-tr:nth-child(even) {
-    background: #eee;
-}
-td {
-    border: 1px solid #ccc;
-    padding: .3em;
+// Vue-select
+@import '~vue-select/src/scss/vue-select.scss';
+
+/* -------------- 1. PROGRESS BAR ---------------- */
+.progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  width: 0;
+  transition: width 0.2s, opacity 0.4s;
+  opacity: 1;
+  background: #03a9f4;
+  z-index: 99999;
 }
 
-/* --------------1. NAVS ---------------- */
+.arrow {
+  align-items: center;
+  padding-right: 10px;
+  font-size: 14px;
+}
+
+/* -------------- 2. HEADER ---------------- */
+header {
+  margin: 1em auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  h2 {
+    font-weight: 300;
+    font-size: 30px;
+  }
+  a {
+    text-decoration: none;
+    color: #616161;
+  }
+  .stuts {
+    span {
+      font-size: 22px;
+      font-weight: bold;
+      margin-left: 5px;
+    }
+  }
+}
+
+/* -------------- 3. NAVS ---------------- */
 .menu {
-    background: #343a40;
-    margin-bottom: 10px;
+  background: #343a40;
+  margin-bottom: 10px;
 }
 .menu ul {
   display:flex;
-  justify-content:space-between;    
+  justify-content:space-between;
   height: 60px;
 }
 .menu li{
@@ -56,8 +69,7 @@ td {
   display:flex;
   justify-content:center;
   align-items: center;
- /* border-right: 2px solid #fff;*/
-
+  /* border-right: 2px solid #fff;*/
 }
 .menu a {
   position: relative;
@@ -73,7 +85,7 @@ td {
   bottom: 0;
   height:3px;
   width: 80%;
-  background: #02648e;  
+  background: #02648e;
 }
 .menu li:hover .submenu {
   display: block;
@@ -106,438 +118,133 @@ td {
   background: #009cde;
 }
 
-
-.inicio {
-  color: white;
-  font-size: 1.125rem;
-  /*display: inline-block;
-  padding-top: 0.32rem;
-  padding-bottom: 0.32rem;
-  margin-right: 1rem;
-
-  line-height: inherit;
-  white-space: nowrap;*/
+/* -------------- 4. TABLAS ---------------- */
+table {
+  margin: 2em auto;
+  border-collapse: collapse;
+  table-layout: fixed;
+  /*width: 75%;
+  min-width: 750px;*/
+}
+th {
+  background: teal;
+  color: #fff;
+  padding: .5em;
+  border-right: 1px solid rgba(255,255,255,0.5);
+}
+th:last-child {
+  border-right: none;
+}
+th:first-child {
+  border-left: 1px solid teal;
+}
+tr:nth-child(even) {
+  background: #eee;
+}
+td {
+  border: 1px solid #ccc;
+  padding: .3em;
 }
 
-///////añadido///////////////
-
-header {
-    margin: 1em auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    h2 {
-        font-weight: 300;
-	    font-size: 30px;
-    }
-    a {
-        text-decoration: none;
-        color: #616161;
-    }
-    .stuts {
-        span {
-            font-size: 22px;
-            font-weight: bold;
-            margin-left: 5px;
-        }
-    }
-}
-/*
-li {
-	position: relative;
-}
-*/
-li > ul {
-	display: none;
-	position:absolute;
-	background: #333;
-}
-/*
-li:hover {
-	background: rgba(0,0,0,.5);
-    z-index: 99999;
-}
-
-li:hover > ul {
-	display: block;
-}
-*/
-
-/* eliminado por ofertas
-.item a{
-    font-size: 14px;                    //incluido
-    color: rgba(255, 255, 255, 0.5);    //color:#fff;
-    text-decoration: none;
-    display: block;
-    padding: 0; //.5em 1.5em;
-    white-space: nowrap;
-}
-
-a {
-    text-decoration: none;
-    color: #616161;
-}
-*/ 
-
-/*eliminado por ofertas*/
-.progress {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-    width: 0;
-    transition: width 0.2s, opacity 0.4s;
-    opacity: 1;
-    background: #03a9f4;
-    z-index: 99999;
-}
-
-.arrow {
-    align-items: center;
-    padding-right: 10px;
-    font-size: 14px;
-}
-
-// Modal de vuejs 2
-.modal {
-    &__mask {
-        position: fixed;
-        z-index: 9998;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, .5);
-        display: table;
-        transition: opacity .3s ease;
-    }
-    &__wrapper {
-        display: table-cell;
-        vertical-align: middle;
-    }
-    &__container {
-        width: 400px;
-        margin: 0px auto;
-        padding: 10px 20px;
-        background-color: #fff;
-        border-radius: 2px;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
-        transition: all .3s ease;
-        font-family: Helvetica, Arial, sans-serif;
-        max-height: 600px;
-        overflow-y: scroll;
-    }
-    &__header h3 {
-        margin-top: 0;
-        color: #42b983;
-    }
-    &__body {
-        margin: 20px 0;
-    }
-    &__body table{
-        width:100%;
-    }
-    &__default-button {
-        float: right;
-    }
-
-    /*
-     * Los siguientes estilos se aplican automaticamentea a los elementos
-     * del modal transition cuando su visibilidad es activada por Vue.js.
-     *
-     * Pude modificar facilmente el modal transition editando estos estilos.
-     */
-
-    &__enter {
-        opacity: 0;
-    }
-    &__leave-active {
-        opacity: 0;
-    }
-    &__enter &__container,
-    &__leave-active &__container {
-        -webkit-transform: scale(1.1);
-        transform: scale(1.1);
-    }
-    &__cerrar {
-        font-weight: 600;
-        text-align: right;
-    }
-    &__cerrar a {
-        color: red;
-        cursor: default;
-    }
-    &__search {
-        height: 40px;
-        box-shadow: rgba(0, 0, 0, 0.09) 0 1px 0;
-        background: #fff;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0px 15px;
-        margin-top: 10px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-}
-
-// Lista search
-// COPIADO DE :::>>>>>>  https://jsfiddle.net/xkkbfL3L/8519/
-//                       https://vuejs.org/v2/examples/grid-component.html
-/*
-th, td {
-    min-width: 90px;
-    padding: 5px 10px;
-}
-*/
 th.active {
-    color: #fff;
-}
-
-th.active .arrow {
-    opacity: 1;
-}
-
-.arrow {
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 0;
-    margin-left: 4px;
-    padding-right: 0px;
-    opacity: 0.66;
-}
-
-.arrow.asc {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-bottom: 8px solid #fff;
-}
-
-.arrow.dsc {
-    border-left: 8px solid transparent;
-    border-right: 8px solid transparent;
-    border-top: 8px solid #fff;
-}
-
-/////////////// Typeahead //////////////////////
-.typeahead {
-  position: relative;
-  display: block;
-  background: #fff;
-}
-
-.typeahead-open {
-  border-bottom: 0;
-  min-width:240px;
-}
-
-.typeahead-open .form-control {
-  background: #fff;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-  border: 1px solid #f2f2f2;
-}
-
-.typeahead-inner {
-  position: relative;
-}
-
-.typeahead-selected {
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  display: -webkit-box !important;
-  display: -ms-flexbox !important;
-  display: flex !important;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  line-height: 15px;
-}
-
-.typeahead-dropdown {
-  width: 100%;
-  position: absolute;
-  z-index: 45;
-  padding: 5px;
-  background: #fff;
-  border-right: 1px solid #f2f2f2;
-  border-left: 1px solid #f2f2f2;
-  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-          box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-
-.typeahead-input {
-  line-height: 13px;
-  font-size: 13px;
-  background: #fafafa;
-  border: none;
-  border-radius: 1px;
-  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-          box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
-  padding: 4px 8px;
-  width: 100%;
-  display: block;
-}
-
-.typeahead-input:focus {
-  outline-style: dotted;
-  outline-width: 1px;
-  outline-offset: 1px;
-}
-
-.typeahead-input_wrap {
-  position: relative;
-}
-
-.typeahead-list {
-  display: block;
-  margin: 0;
-  padding: 0;
-}
-
-.typeahead-item {
-  display: block;
-  margin-bottom: 1px;
-}
-
-.typeahead-link {
-  cursor: pointer;
-  display: block;
-  padding: 2px;
-  background: #fff;
-}
-
-.typeahead-active {
-  background: #3aa3e3 !important;
   color: #fff;
 }
-
-.error {
-    &-control {
-        color: #e53935;
-    }
-    &-bg {
-        background: #ffcdd2!important;
-    }
+th.active .arrow {
+  opacity: 1;
 }
-
-
-.flash {
-    width: 50%;
-    margin: 0 auto;
-    margin-top: 15px;
-    padding: 15px;
-    border-radius: 2px;
-    &-success {
-        background: #a5d6a7;
-        border: 1px solid #81c784;
-        color: #1b5e20;
-    }
-    &-error {
-        background: #ef9a9a;
-        border: 1px solid #E57373;
-        color: #b71c1c;
-    }
-}
-
-.checkboxes input{
+.arrow {
   display: inline-block;
-  margin-right:10px;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 4px;
+  padding-right: 0px;
+  opacity: 0.66;
+}
+.arrow.asc {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid #fff;
+}
+.arrow.dsc {
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 8px solid #fff;
 }
 
-.checkboxes label{
-  display: inline-block;
-}
 
-// OFERTAS
+/* -------------- 5. OFERTAS ---------------- */
 .is-flex {
   display:flex;
   flex-wrap: wrap;
 }
-
 .action-panel {
-    margin-bottom: 10px;
-    margin-right: 5px;
+  margin-bottom: 10px;
+  margin-right: 5px;
 }
-
 .caption {
   padding: 9px;
   color: #333;
 }
-
 .margin-left-sm {
   margin-left: 10px;
 }
-
 .thumbnail {
-    display: block;
-    padding: 4px;
-    margin-bottom: 20px;
-    line-height: 1.42857143;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    -webkit-transition: border .2s ease-in-out;
-    -o-transition: border .2s ease-in-out;
-    transition: border .2s ease-in-out;
-  }
-
+  display: block;
+  padding: 4px;
+  margin-bottom: 20px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: border .2s ease-in-out;
+  -o-transition: border .2s ease-in-out;
+  transition: border .2s ease-in-out;
+}
 .pull-right {
-    float: right!important;
+  float: right!important;
 }
-
 .h4, h4 {
-    font-size: 18px;
+  font-size: 18px;
 }
-
 .h4, .h5, .h6, h4, h5, h6 {
-    margin-top: 10px;
-    margin-bottom: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
-
 .grow {
-    transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
 }
-
 .thumbnail-image {
-    padding: 15px;
+  padding: 15px;
 }
-
 .thumbnail a>img, .thumbnail>img {
-    margin-right: auto;
-    margin-left: auto;
+  margin-right: auto;
+  margin-left: auto;
 }
-
 .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img {
-    display: block;
-    max-width: 100%;
-    height: auto;
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
 .image {
-    &-upload {
-        height: 257px;
-        background: #fafafa;
-        border: 1px dashed  rgba(0,0,0,.1);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-    &-preview {
-        position: relative;
-    }
-    &-close {
-        position: absolute;
-        right: 0;
-        top: 0;
-    }
+  &-upload {
+    height: 257px;
+    background: #fafafa;
+    border: 1px dashed  rgba(0,0,0,.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-preview {
+    position: relative;
+  }
+  &-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
-
 .image-show {
   background: #fafafa;
   padding-top: 15px;
@@ -551,38 +258,234 @@ th.active .arrow {
   width: 10%;
   padding: 10px 15px 0px 0px;
 }
-
 img {
-    display: block;
-    width: 100%;
+  display: block;
+  width: 100%;
 }
-
 img {
-    vertical-align: middle;
+  vertical-align: middle;
 }
-
 img {
-    border: 0;
+  border: 0;
 }
 .ratings {
-    padding-right: 10px;
-    padding-left: 10px;
-    color: #d17581;
+  padding-right: 10px;
+  padding-left: 10px;
+  color: #d17581;
 }
-
 h4 a {
-    color: #337ab7;
-    text-decoration: none;
+  color: #337ab7;
+  text-decoration: none;
 }
 
 .hvr-grow {display:inline-block;vertical-align:middle;-webkit-transform:perspective(1px) translateZ(0);transform:perspective(1px) translateZ(0);box-shadow:0 0 1px rgba(0,0,0,0);-webkit-transition-duration:.3s;transition-duration:.3s;-webkit-transition-property:transform;transition-property:transform}
 .hvr-grow:active,.hvr-grow:focus,.hvr-grow:hover{-webkit-transform:scale(1.1);transform:scale(1.1)}
-
 .imagen:hover{
-border-radius:50%;
--webkit-border-radius:50%;
-box-shadow: 0px 0px 15px 15px #ec731e;
--webkit-box-shadow: 0px 0px 15px 15px #ec731e;
-transform: rotate(360deg);
--webkit-transform: rotate(360deg);
+  border-radius:50%;
+  -webkit-border-radius:50%;
+  box-shadow: 0px 0px 15px 15px #ec731e;
+  -webkit-box-shadow: 0px 0px 15px 15px #ec731e;
+  transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+}
+
+/* -------------- 6. MODAL DE VUEJS 2 ---------------- */
+.modal {
+  &__mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;
+  }
+  &__wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  &__container {
+    width: 600px;
+    margin: 0px auto;
+    padding: 10px 20px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+    max-height: 800px;
+    overflow-y: scroll;
+  }
+  &__header h3 {
+    margin-top: 0;
+    color: #42b983;
+  }
+  &__body {
+    margin: 20px 0;
+  }
+  &__body table{
+    width:100%;
+  }
+  &__default-button {
+    float: right;
+  }
+
+  /*
+   * Los siguientes estilos se aplican automaticamentea a los elementos
+   * del modal transition cuando su visibilidad es activada por Vue.js.
+   *
+   * Pude modificar facilmente el modal transition editando estos estilos.
+   */
+
+  &__enter {
+    opacity: 0;
+  }
+  &__leave-active {
+    opacity: 0;
+  }
+  &__enter &__container,
+  &__leave-active &__container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  &__cerrar {
+    font-weight: 600;
+    text-align: right;
+  }
+  &__cerrar a{
+    color: red;
+    cursor: default;
+  }
+  &__search {
+    height: 40px;
+    box-shadow: rgba(0, 0, 0, 0.09) 0 1px 0;
+    background: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* -------------- 7. TYPEAHEAD ---------------- */
+.typeahead {
+  position: relative;
+  display: block;
+  background: #fff;
+}
+.typeahead-open {
+  border-bottom: 0;
+  min-width:240px;
+}
+.typeahead-open .form-control {
+  background: #fff;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #f2f2f2;
+}
+.typeahead-inner {
+  position: relative;
+}
+.typeahead-selected {
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  line-height: 15px;
+}
+.typeahead-dropdown {
+  width: 100%;
+  position: absolute;
+  z-index: 45;
+  padding: 5px;
+  background: #fff;
+  border-right: 1px solid #f2f2f2;
+  border-left: 1px solid #f2f2f2;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+.typeahead-input {
+  line-height: 13px;
+  font-size: 13px;
+  background: #fafafa;
+  border: none;
+  border-radius: 1px;
+  -webkit-box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 1px 1px 0 rgba(0, 0, 0, 0.1);
+  padding: 4px 8px;
+  width: 100%;
+  display: block;
+}
+.typeahead-input:focus {
+  outline-style: dotted;
+  outline-width: 1px;
+  outline-offset: 1px;
+}
+.typeahead-input_wrap {
+  position: relative;
+}
+.typeahead-list {
+  display: block;
+  margin: 0;
+  padding: 0;
+}
+.typeahead-item {
+  display: block;
+  margin-bottom: 1px;
+}
+.typeahead-link {
+  cursor: pointer;
+  display: block;
+  padding: 2px;
+  background: #fff;
+}
+.typeahead-active {
+  background: #3aa3e3 !important;
+  color: #fff;
+}
+.error {
+  &-control {
+    color: #e53935;
+  }
+  &-bg {
+    background: #ffcdd2!important;
+  }
+}
+
+
+.flash {
+  width: 50%;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 15px;
+  border-radius: 2px;
+  &-success {
+    background: #a5d6a7;
+    border: 1px solid #81c784;
+    color: #1b5e20;
+  }
+  &-error {
+    background: #ef9a9a;
+    border: 1px solid #E57373;
+    color: #b71c1c;
+  }
+}
+.checkboxes input{
+  display: inline-block;
+  margin-right:10px;
+}
+.checkboxes label{
+  display: inline-block;
 }

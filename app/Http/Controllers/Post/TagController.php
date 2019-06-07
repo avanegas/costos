@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Post;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
 use App\Http\Requests\TagStoreRequest;
 use App\Http\Requests\TagUpdateRequest;
 use App\Models\Post\Tag;
@@ -31,7 +30,7 @@ class TagController extends Controller
         $form = Tag::form();
 
         return response()
-                ->json(['form' => $form]);
+            ->json(['form' => $form]);
     }
 
     public function store(TagStoreRequest $request)
@@ -39,19 +38,19 @@ class TagController extends Controller
         $tag = Tag::create($request->all());
 
         return response()
-                ->json([
-                    'saved' => true,
-                    'id' => $tag->id,
-                    'message' => 'Ha ingresado correctamente la etiqueta de caracterización!'
-                    ]);
+            ->json([
+                'saved' => true,
+                'id' => $tag->id,
+                'message' => 'Ha ingresado correctamente la etiqueta de caracterización especifica!'
+                ]);
     }
 
     public function edit(Request $request, $id)
     {
-            $form = Tag::findOrFail($id);
+        $form = Tag::findOrFail($id);
 
         return response()
-                ->json(['form' => $form]);
+            ->json(['form' => $form]);
     }
 
     public function update(TagUpdateRequest $request, $id)
@@ -72,6 +71,6 @@ class TagController extends Controller
         $tag = Tag::find($id)->delete();
 
         return response()
-                ->json(['deleted' => true]);
+            ->json(['deleted' => true]);
     }
 }

@@ -1,6 +1,6 @@
 <template>
-	<div class="image-preview" v-if="image">
-		<img :src="image">
+	<div class="image-preview" v-if="file">
+		<img :src="file">
 		<button class="btn btn-danger image-close" @click="close">
 			&times;
 		</button>
@@ -16,7 +16,7 @@
 		},
 		data() {
 			return {
-				image: null
+				file: null
 			}
 		},
 		created() {
@@ -30,13 +30,13 @@
 				if(this.preview instanceof File ) {
 					const fileReader = new FileReader()
 					fileReader.onload = (event) => {
-					  this.image = event.target.result
+					  this.file = event.target.result
 					}
 					fileReader.readAsDataURL(this.preview)
 				} else if (typeof this.preview === 'string') {
-					this.image = `/images/${this.preview}`
+					this.file = `/images/${this.preview}`
 				} else {
-					this.image = null
+					this.file = null
 				}
 			},
 			close() {

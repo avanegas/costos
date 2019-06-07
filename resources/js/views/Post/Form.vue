@@ -36,6 +36,10 @@
 								<small class="error-control" v-if="error.name">{{error.errors.name[0]}}</small>
 							</div>
 							<div class="form-group">
+								<label>Slug</label>
+								<input type="text" class="form-control input-sm" name="slug" :value="slug">
+							</div>
+							<div class="form-group">
 								<label>Resumen</label>
 								<input type="text" class="form-control" v-model="form.excerpt">
 								<small class="error-control" v-if="error.excerpt">{{error.errors.excerpt[0]}}</small>
@@ -43,7 +47,7 @@
 							<div class="form-group">
 								<label>Contenido</label>
 								<textarea class="form-control form-description" v-model="form.body"></textarea>
-								<small class="error-control" v-if="error.bodyt">{{error.errors.bodyt[0]}}</small>
+								<small class="error-control" v-if="error.body">{{error.errors.body[0]}}</small>
 							</div>			
 							<div class="form-group">
 								<p>Estado del artículo</p>
@@ -53,9 +57,12 @@
 								<label for="PUBLISHED">PUBLISHED</label>
 							</div>
 							<div class="form-group">
-								<label>Seleccione las etiquétas de categoría específica</label>
-								<v-select multiple label="name" :options="tags" v-model="form.tags">
-								</v-select>
+								<label>Seleccione las etiquétas de categoría específica:</label>
+								<div class="vs__dropdown-toogle">
+									<div class="vs__selected-options">
+										<v-select multiple label="name" :options="tags" v-model="form.tags"></v-select>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
@@ -68,10 +75,9 @@
 	import Vue from 'vue'
 	import Auth from '../../store/auth'
 	import Flash from '../../helpers/flash'
-	import { get, post } from '../../helpers/api'
+	import { get, post, del, byMethod } from '../../helpers/api'
 	import { toMulipartedForm } from '../../helpers/form'
 	import ImageUpload from '../../components/ImageUpload.vue'
-
 	export default {
 		components: {
 			ImageUpload
@@ -80,10 +86,10 @@
 			return {
 				authState: Auth.state,
 				select: false,
-				categories: [],
+				categories:[],
 				tags:[],
 				form: {
-					tags: []
+					tags:[]
 				},
 				error: {
 					errors:{}
@@ -113,7 +119,36 @@
 				this.tags = res.data.tags
 			})
 		},
+		computed: {
+			slug: function() {
+				this.form.slug = this.sanitizeName(this.form.name);
+				return this.form.slug;
+			}
+		},
 		methods: {
+			sanitizeName: function(title) {
+				//"use strict";
+                let slug = "";
+                // Change to LowerCase
+				if( title != undefined ){
+                    let titleLower = title.toLowerCase();
+                    // Letter "e"
+                        slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e');
+                    // Letter "a"
+                    slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a');
+                    // Letter "o"
+                    slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o');
+                    // Letter "u"
+                    slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u');
+                    // Letter "d"
+                    slug = slug.replace(/đ/gi, 'd');
+                    // Trim the last whitespace
+                    slug = slug.replace(/\s*$/g, '');
+                    // Change whitespace to "-"
+                    slug = slug.replace(/\s+/g, '-');
+					}
+				return slug;
+			},
 			save() {
 				this.isProcessing = true
 				this.form.user_id = this.authState.user_id;

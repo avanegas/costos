@@ -6,9 +6,10 @@ import Register from '../views/Auth/Register.vue'
 
 import Blog from '../views/Web/Blog.vue'
 import Post from '../views/Web/Post.vue'
-import Category from '../views/Web/Seleccion.vue'
-import Tag from '../views/Web/Separacion.vue'
+import Category from '../views/Web/Category.vue'
+import Tag from '../views/Web/Tag.vue'
 
+import ProfileForm from '../views/ProfileForm.vue'
 
 import Equipo from '../views/Web/Equipo.vue'
 import Material from '../views/Web/Material.vue'
@@ -87,6 +88,7 @@ const router = new VueRouter({
         { path: '/transporte', component: Transporte},
         { path: '/oferta', component: Oferta},
 
+        { path: '/profile/:id/edit', component: ProfileForm, meta: { mode: 'edit' }},
 
         { path: '/users', component: UserIndex},
         { path: '/users/create', component: UserForm, meta: { mode: 'create' }},

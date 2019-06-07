@@ -6,7 +6,11 @@
 	            	<router-link to="/posts/create"  title="Articulo nuevo" class="w-50 text-muted">
 	                	Apuntes, detalles y teoría de la construcción.
 	            	</router-link>
-	            	<input type="search" name="search" placeholder="Search" class="w-50 float-right">
+	            	<input
+						type="search"
+						name="search"
+						placeholder="Search..."
+						class="w-50 float-right">
 				</div>
 			</div>
 			<div class="card" v-for="post in posts">
