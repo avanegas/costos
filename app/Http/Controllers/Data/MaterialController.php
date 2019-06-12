@@ -16,7 +16,7 @@ class MaterialController extends Controller
      */
     public function index()
     {
-        $materials = Material::with(['grupo_material'])->orderBy('name', 'asc')->get();
+        $materials = Material::with(['grupo_material'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['materials' => $materials]);

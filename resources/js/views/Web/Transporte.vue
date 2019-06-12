@@ -35,7 +35,6 @@
         },
         data() {
             return {
-                scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
                 gridColumns:['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'updated_at'],
@@ -48,15 +47,6 @@
                 .then((res) => {
                     this.gridData = res.data.transportes
                 })
-        },
-        methods: {
-            handleScroll: function (e) {
-                var currentScrollPosition = e.srcElement.scrollTop;
-                if (currentScrollPosition > this.scrollPosition) {
-                    console.log("Scrolling down");
-                }
-                this.scrollPosition = currentScrollPosition;
-            }
         }
     }
 </script>

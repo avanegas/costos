@@ -71,7 +71,7 @@
 				.then((res) => {
 					Vue.set(this.$data, 'form', res.data.form)
 				}),
-				get(`/api/zonas`)
+			get(`/api/zonas`)
 				.then((res) => {
 					this.zonas = res.data.zonas
 				})

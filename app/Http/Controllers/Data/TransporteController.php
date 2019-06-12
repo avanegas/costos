@@ -16,7 +16,7 @@ class TransporteController extends Controller
      */
     public function index()
     {
-        $transportes = Transporte::with(['zona'])->orderBy('name', 'asc')->get();
+        $transportes = Transporte::with(['zona'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['transportes' => $transportes]);

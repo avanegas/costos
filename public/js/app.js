@@ -2358,10 +2358,10 @@ __webpack_require__.r(__webpack_exports__);
           default:
             {
               if (this.isAutorized) {
-                console.log(entry);
+                console.log('agrega', entry);
                 this.$emit("agrega", entry);
               } else {
-                console.log('2', entry);
+                console.log('else-default', entry);
                 this.$router.push("/".concat(this.lista, "/").concat(entry['id']));
               }
             }
@@ -2704,7 +2704,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name'],
@@ -2719,17 +2718,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log(res);
       _this.gridData = res.data.permissions;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -2791,7 +2779,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name', 'permissions'],
@@ -2806,17 +2793,6 @@ __webpack_require__.r(__webpack_exports__);
       console.log(res);
       _this.gridData = res.data.roles;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -3012,7 +2988,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['roles', 'name', 'email', 'updated_at'],
@@ -3027,17 +3002,6 @@ __webpack_require__.r(__webpack_exports__);
       //console.log(res);
       _this.gridData = res.data.users;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -3289,6 +3253,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -3319,13 +3287,45 @@ __webpack_require__.r(__webpack_exports__);
       vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(_this.$data, 'form', res.data.form);
     });
   },
+  computed: {
+    slug: function slug() {
+      this.form.slug = this.sanitizeName(this.form.name);
+      return this.form.slug;
+    }
+  },
   methods: {
+    sanitizeName: function sanitizeName(title) {
+      var slug = "";
+
+      if (title !== undefined) {
+        // Change to lower case
+        var titleLower = title.toLowerCase(); // Letter "e"
+
+        slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e'); // Letter "a"
+
+        slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a'); // Letter "o"
+
+        slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o'); // Letter "u"
+
+        slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u'); // Letter "d"
+
+        slug = slug.replace(/đ/gi, 'd'); // Trim the last whitespace
+
+        slug = slug.replace(/\s*$/g, ''); // Change whitespace to "-"
+
+        slug = slug.replace(/\s+/g, '-');
+      }
+
+      return slug;
+    },
     save: function save() {
       var _this2 = this;
 
       this.isProcessing = true;
       var form = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_3__["toMulipartedForm"])(this.form, this.$route.meta.mode);
       Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["post"])(this.storeURL, form).then(function (res) {
+        console.log(res.data.form);
+
         if (res.data.saved) {
           _helpers_flash__WEBPACK_IMPORTED_MODULE_1__["default"].setSuccess(res.data.message);
 
@@ -3408,7 +3408,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name', 'body', 'updated_at'],
@@ -3422,17 +3421,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/categories").then(function (res) {
       _this.gridData = res.data.categories;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -3978,7 +3966,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'description', 'updated_at'],
@@ -3992,17 +3979,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/grupo_equipos").then(function (res) {
       _this.gridData = res.data.grupo_equipos;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -4188,7 +4164,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'description', 'updated_at'],
@@ -4202,17 +4177,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/grupo_materials").then(function (res) {
       _this.gridData = res.data.grupo_materials;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -4398,7 +4362,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'description', 'updated_at'],
@@ -4412,17 +4375,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/grupo_obreros").then(function (res) {
       _this.gridData = res.data.grupo_obreros;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -5248,7 +5200,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'description', 'updated_at'],
@@ -5262,17 +5213,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/grupo_precios").then(function (res) {
       _this.gridData = res.data.grupo_precios;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -5454,7 +5394,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name', 'status', 'file', 'updated_at'],
@@ -5468,17 +5407,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/ofertas/".concat(this.$route.params.id)).then(function (res) {
       _this.gridData = res.data.ofertas;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -5626,10 +5554,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sanitizeName: function sanitizeName(title) {
-      //"use strict";
-      var slug = ""; // Change to LowerCase
+      var slug = "";
 
       if (title != undefined) {
+        // Change to LowerCase
         var titleLower = title.toLowerCase(); // Letter "e"
 
         slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e'); // Letter "a"
@@ -6414,7 +6342,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['grupo_precio_id', 'name', 'unidad', 'detalle', 'directo'],
@@ -6428,17 +6355,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/precios").then(function (res) {
       _this.gridData = res.data.precios;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -7049,7 +6965,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['user_id', 'name', 'contratante', 'entrega', 'gran_total'],
@@ -7063,17 +6978,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/proyectos").then(function (res) {
       _this.gridData = res.data.proyectos;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -7310,6 +7214,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -7348,23 +7253,27 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     sanitizeName: function sanitizeName(title) {
-      var slug = ""; // Change to lower case
+      var slug = "";
 
-      var titleLower = title.toLowerCase(); // Letter "e"
+      if (title !== undefined) {
+        // Change to lower case
+        var titleLower = title.toLowerCase(); // Letter "e"
 
-      slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e'); // Letter "a"
+        slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e'); // Letter "a"
 
-      slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a'); // Letter "o"
+        slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, 'a'); // Letter "o"
 
-      slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o'); // Letter "u"
+        slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, 'o'); // Letter "u"
 
-      slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u'); // Letter "d"
+        slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, 'u'); // Letter "d"
 
-      slug = slug.replace(/đ/gi, 'd'); // Trim the last whitespace
+        slug = slug.replace(/đ/gi, 'd'); // Trim the last whitespace
 
-      slug = slug.replace(/\s*$/g, ''); // Change whitespace to "-"
+        slug = slug.replace(/\s*$/g, ''); // Change whitespace to "-"
 
-      slug = slug.replace(/\s+/g, '-');
+        slug = slug.replace(/\s+/g, '-');
+      }
+
       return slug;
     },
     save: function save() {
@@ -7455,7 +7364,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name', 'updated_at'],
@@ -7469,17 +7377,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/tags").then(function (res) {
       _this.gridData = res.data.tags;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -7666,7 +7563,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa', 'updated_at'],
@@ -7680,17 +7576,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/equipo").then(function (res) {
       _this.gridData = res.data.equipos;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -7757,17 +7642,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/material").then(function (res) {
       _this.gridData = res.data.materials;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -7820,7 +7694,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'updated_at'],
@@ -7834,17 +7707,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/obrero").then(function (res) {
       _this.gridData = res.data.obreros;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -8122,7 +7984,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'updated_at'],
@@ -8136,17 +7997,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/transporte").then(function (res) {
       _this.gridData = res.data.transportes;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -8323,7 +8173,6 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
-      scrollPosition: 0,
       searchQuery: '',
       gridData: [],
       gridColumns: ['name', 'description', 'updated_at'],
@@ -8337,17 +8186,6 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/zonas").then(function (res) {
       _this.gridData = res.data.zonas;
     });
-  },
-  methods: {
-    handleScroll: function handleScroll(e) {
-      var currentScrollPosition = e.srcElement.scrollTop;
-
-      if (currentScrollPosition > this.scrollPosition) {
-        console.log("Scrolling down");
-      }
-
-      this.scrollPosition = currentScrollPosition;
-    }
   }
 });
 
@@ -45734,6 +45572,22 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Slug")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control input-sm",
+              attrs: { type: "text", name: "slug" },
+              domProps: { value: _vm.slug }
+            }),
+            _vm._v(" "),
+            _vm.error.errors.slug
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.slug[0]))
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
             _c("label", [_vm._v("body")]),
             _vm._v(" "),
             _c("textarea", {
@@ -53040,7 +52894,13 @@ var render = function() {
               staticClass: "form-control input-sm",
               attrs: { type: "text", name: "slug" },
               domProps: { value: _vm.slug }
-            })
+            }),
+            _vm._v(" "),
+            _vm.error.errors.slug
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.slug[0]))
+                ])
+              : _vm._e()
           ])
         ])
       ])

@@ -292,7 +292,6 @@
                 storeURL: `/api/precios`,
                 action: 'Create',
                 arrayItem:{},
-
                 scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
@@ -375,7 +374,6 @@
                     case "equipos":
                     {
                         this.gridColumns = ['grupo_equipo_id','name', 'tarifa']
-                        
                         get(`/api/${this.lista} `)
                         .then((res) => {
                             //console.log(res);
@@ -387,7 +385,6 @@
                     case "obreros":
                     {
                         this.gridColumns = ['grupo_obrero_id','name', 'jornalhora']
-                        
                         get(`/api/${this.lista} `)
                         .then((res) => {
                             //console.log(res);
@@ -399,7 +396,6 @@
                     case "materials":
                     {
                         this.gridColumns = ['grupo_material_id','name', 'precio']
-                        
                         get(`/api/${this.lista} `)
                         .then((res) => {
                             //console.log(res);
@@ -411,7 +407,6 @@
                     case "transportes":
                     {
                         this.gridColumns = ['zona_id','name', 'tarifa']
-                        
                         get(`/api/${this.lista} `)
                         .then((res) => {
                             //console.log(res);
@@ -514,7 +509,6 @@
                         break;
                     }
                 }
-
             }
         }
     }

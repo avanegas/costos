@@ -48,15 +48,6 @@
                 .then((res) => {
                     this.gridData = res.data.materials
                 })
-        },
-        methods: {
-            handleScroll: function (e) {
-                var currentScrollPosition = e.srcElement.scrollTop;
-                if (currentScrollPosition > this.scrollPosition) {
-                    console.log("Scrolling down");
-                }
-                this.scrollPosition = currentScrollPosition;
-            }
         }
     }
 </script>

@@ -16,16 +16,11 @@ class TagUpdateRequest extends FormRequest
         return true;
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array
-     */
     public function rules()
     {
         return [
             'name' => 'required',
-            'slug' => 'required|unique:tags,slug,' . $this->form,
+            'slug' => 'required|unique:tags,slug,' . $this->tag,
         ];
     }
 }

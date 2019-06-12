@@ -44,7 +44,6 @@
         },
         data() {
             return {
-                scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
                 gridColumns:['name'],
@@ -58,15 +57,6 @@
                     console.log(res);
                     this.gridData = res.data.permissions
                 })
-        },
-        methods: {
-            handleScroll: function (e) {
-                var currentScrollPosition = e.srcElement.scrollTop;
-                if (currentScrollPosition > this.scrollPosition) {
-                    console.log("Scrolling down");
-                }
-                this.scrollPosition = currentScrollPosition;
-            }
         }
     }
 </script>

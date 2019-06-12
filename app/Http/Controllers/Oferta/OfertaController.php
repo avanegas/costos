@@ -21,7 +21,7 @@ class OfertaController extends Controller
      */
     public function index($id)
     {
-        $ofertas = Oferta::where('user_id', $id)->orderBy('created_at', 'desc')->get();
+        $ofertas = Oferta::where('user_id', $id)->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['ofertas' => $ofertas]);

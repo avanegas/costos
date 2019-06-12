@@ -16,7 +16,7 @@ class ObreroController extends Controller
      */
     public function index()
     {
-        $obreros = Obrero::with(['grupo_obrero'])->orderBy('name', 'asc')->get();
+        $obreros = Obrero::with(['grupo_obrero'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['obreros' => $obreros]);

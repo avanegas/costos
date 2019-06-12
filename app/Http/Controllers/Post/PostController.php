@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\PostUpdateRequest;
 use App\Http\Requests\CommentStoreRequest;
-
 use Illuminate\Support\Facades\Storage;
 use App\Models\Post\Comment;
 use App\Models\Post\Category;

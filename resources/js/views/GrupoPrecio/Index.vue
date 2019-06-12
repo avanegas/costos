@@ -40,7 +40,6 @@
         data() {
             return {
                 authState: Auth.state,
-                scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
                 gridColumns:['zona_id', 'name', 'description', 'updated_at'],
@@ -53,15 +52,6 @@
                 .then((res) => {
                     this.gridData = res.data.grupo_precios
                 })
-        },
-        methods: {
-            handleScroll: function (e) {
-                var currentScrollPosition = e.srcElement.scrollTop;
-                if (currentScrollPosition > this.scrollPosition) {
-                    console.log("Scrolling down");
-                }
-                this.scrollPosition = currentScrollPosition;
-            }
         }
     }
 </script>

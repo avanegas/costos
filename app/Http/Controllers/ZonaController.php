@@ -15,7 +15,7 @@ class ZonaController extends Controller
     */
     public function index()
     {
-        $zonas = Zona::orderBy('name', 'desc')->get();
+        $zonas = Zona::orderBy('updated_at', 'desc')->get();
 
         return response()
                 ->json(['zonas' => $zonas]);

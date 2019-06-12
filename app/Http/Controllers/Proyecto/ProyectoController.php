@@ -20,7 +20,7 @@ class ProyectoController extends Controller
 
     public function index()
     {
-        $proyectos = Proyecto::with(['user'])->orderBy('name', 'ASC')->get();
+        $proyectos = Proyecto::with(['user'])->orderBy('updated_at', 'desc')->get();
 
         return response()
                 ->json(['proyectos' => $proyectos]);

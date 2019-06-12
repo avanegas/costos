@@ -41,7 +41,6 @@
         data() {
             return {
                 authState: Auth.state,
-                scrollPosition: 0,
                 searchQuery:'',
                 gridData: [],
                 gridColumns:[ 'user_id', 'name', 'contratante', 'entrega', 'gran_total'],
@@ -54,15 +53,6 @@
                 .then((res) => {
                     this.gridData = res.data.proyectos
                 })
-        },
-        methods: {
-            handleScroll: function (e) {
-                var currentScrollPosition = e.srcElement.scrollTop;
-                if (currentScrollPosition > this.scrollPosition) {
-                    console.log("Scrolling down");
-                }
-                this.scrollPosition = currentScrollPosition;
-            }
         }
     }
 </script>

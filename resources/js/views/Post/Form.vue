@@ -127,10 +127,9 @@
 		},
 		methods: {
 			sanitizeName: function(title) {
-				//"use strict";
                 let slug = "";
-                // Change to LowerCase
 				if( title != undefined ){
+					// Change to LowerCase
                     let titleLower = title.toLowerCase();
                     // Letter "e"
                         slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, 'e');
@@ -146,7 +145,7 @@
                     slug = slug.replace(/\s*$/g, '');
                     // Change whitespace to "-"
                     slug = slug.replace(/\s+/g, '-');
-					}
+				}
 				return slug;
 			},
 			save() {

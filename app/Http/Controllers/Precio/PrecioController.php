@@ -45,7 +45,7 @@ class PrecioController extends Controller
      */
     public function index()
     {
-        $precios = Precio::with(['grupo_precio'])->orderBy('name', 'ASC')->get();
+        $precios = Precio::with(['grupo_precio'])->orderBy('updated_at', 'desc')->get();
 
         return response()
                 ->json(['precios' => $precios]);

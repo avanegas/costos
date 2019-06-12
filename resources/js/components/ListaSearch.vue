@@ -232,11 +232,11 @@
                         default:
                         {
                             if(this.isAutorized){
-                                console.log(entry);
+                                console.log('agrega',entry);
                                 this.$emit("agrega", entry);
                             }
                             else{
-                                console.log('2',entry)
+                                console.log('else-default',entry)
                                 this.$router.push(`/${this.lista}/${entry['id']}`);
                             }
                         }
