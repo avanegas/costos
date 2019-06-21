@@ -49,3 +49,8 @@ Route::get('/markAsRead', function(){
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Route::get('prueba', function(){
+//    $post = App\Models\Post\Post::find('87');
+//    dd($post->tags()->sync(['2','4','8']));
+//});

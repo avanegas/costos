@@ -5584,6 +5584,8 @@ __webpack_require__.r(__webpack_exports__);
       this.form.user_id = this.authState.user_id;
       var form = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_4__["toMulipartedForm"])(this.form, this.$route.meta.mode);
       Object(_helpers_api__WEBPACK_IMPORTED_MODULE_3__["post"])(this.storeURL, form).then(function (res) {
+        console.log(res);
+
         if (res.data.saved) {
           _helpers_flash__WEBPACK_IMPORTED_MODULE_2__["default"].setSuccess(res.data.message);
 
