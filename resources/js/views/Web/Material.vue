@@ -11,6 +11,9 @@
                     	autocomplete="off"
                     	v-model="searchQuery">
                 </div>
+                <div v-if="authState.api_token && authState.user_id === 1">
+                    <router-link to="/materials/create" class="btn btn-primary"> Nuevo</router-link>
+                </div>
             </div>
 			<div class="card">
 				<div class="card-block">
@@ -27,6 +30,7 @@
     </div>
 </template>
 <script type="text/javascript">
+    import Auth from '../../store/auth'
     import { get } from '../../helpers/api'
     import ListaSearch from '../../components/ListaSearch.vue'
     export default {
@@ -35,7 +39,7 @@
         },
         data() {
             return {
-                scrollPosition: 0,
+                authState: Auth.state,
                 searchQuery:'',
                 gridData: [],
                 gridColumns:['grupo_material_id', 'name', 'unidad', 'precio', 'updated_at'],

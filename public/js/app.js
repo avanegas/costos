@@ -7452,7 +7452,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return this.posts.filter(function (post) {
-        return post.name.includes(_this2.searchQuery);
+        return "".concat(post.category.name, " ").concat(post.name).toLowerCase().includes(_this2.searchQuery.toLowerCase());
       });
     }
   }
@@ -7469,7 +7469,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
 //
 //
 //
@@ -7504,18 +7505,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      searchQuery: '',
       posts: []
     };
   },
   created: function created() {
     var _this = this;
 
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/category/".concat(this.$route.params.slug)).then(function (res) {
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/category/".concat(this.$route.params.slug)).then(function (res) {
       _this.posts = res.data.posts;
     });
+  },
+  computed: {
+    searchPosts: function searchPosts() {
+      var _this2 = this;
+
+      return this.posts.filter(function (post) {
+        return "".concat(post.category.name, " ").concat(post.name).toLowerCase().includes(_this2.searchQuery.toLowerCase());
+      });
+    }
   }
 });
 
@@ -7601,8 +7614,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
-/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
 //
 //
 //
@@ -7631,15 +7645,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
-      scrollPosition: 0,
+      authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       searchQuery: '',
       gridData: [],
       gridColumns: ['grupo_material_id', 'name', 'unidad', 'precio', 'updated_at'],
@@ -7650,7 +7668,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/material").then(function (res) {
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/material").then(function (res) {
       _this.gridData = res.data.materials;
     });
   }
@@ -7896,7 +7914,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
 //
 //
 //
@@ -7931,18 +7950,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
+      searchQuery: '',
       posts: []
     };
   },
   created: function created() {
     var _this = this;
 
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/tag/".concat(this.$route.params.slug)).then(function (res) {
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/tag/".concat(this.$route.params.slug)).then(function (res) {
       _this.posts = res.data.posts;
     });
+  },
+  computed: {
+    searchPosts: function searchPosts() {
+      var _this2 = this;
+
+      return this.posts.filter(function (post) {
+        return "".concat(post.category.name, " ").concat(post.name).toLowerCase().includes(_this2.searchQuery.toLowerCase());
+      });
+    }
   }
 });
 
@@ -53193,7 +53224,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._l(_vm.posts, function(post) {
+        _vm._l(_vm.searchPosts, function(post) {
           return _c("div", { key: post.id, staticClass: "card mb-3 mt-3" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("p", [
@@ -53397,7 +53428,24 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.authState.api_token && _vm.authState.user_id === 1
+          ? _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/materials/create" }
+                  },
+                  [_vm._v(" Nuevo")]
+                )
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
@@ -53804,7 +53852,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._l(_vm.posts, function(post) {
+        _vm._l(_vm.searchPosts, function(post) {
           return _c("div", { key: post.id, staticClass: "card mb-3 mt-3" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("p", [

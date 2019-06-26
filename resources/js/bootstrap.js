@@ -17,7 +17,7 @@ try {
 
 /**
  * Cargaremos la biblioteca HTTP de axios que nos permite emitir fácilmente
- * solicitudes a nuestro back-end de Laravel. Esta biblioteca maneja automáticamente
+ * solicitudes a nuestro back-end de Laravel. Esta biblioteca maneja authenticate
  * el envío del token CSRF como un encabezado basado en el valor de la cookie
  * token "XSRF".
  */

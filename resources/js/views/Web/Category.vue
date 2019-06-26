@@ -12,7 +12,7 @@
 						v-model="searchQuery">
 				</div>
 			</div>
-			<div class="card mb-3 mt-3" v-for="post in posts" :key="post.id">
+			<div class="card mb-3 mt-3" v-for="post in searchPosts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
 				</div>	
@@ -32,10 +32,13 @@
 	</div>
 </template>
 <script type="text/javascript">
+	import Auth from '../../store/auth'
 	import { get } from '../../helpers/api'
 	export default {
 		data() {
 			return {
+				authState: Auth.state,
+				searchQuery:'',
 				posts: []
 			}
 		},
@@ -44,6 +47,13 @@
 			.then((res) => {
 				this.posts = res.data.posts
 			})
+		},
+		computed: {
+			searchPosts: function(){
+				return this.posts.filter((post) => {
+					return `${post.category.name} ${post.name}`.toLowerCase().includes(this.searchQuery.toLowerCase());
+				});
+			}
 		}
 	}
 </script>

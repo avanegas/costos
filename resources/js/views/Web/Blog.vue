@@ -41,7 +41,7 @@
 			return {
 				authState: Auth.state,
                 searchQuery:'',
-				posts: [],
+				posts: []
 			}
 		},
 		created() {
@@ -52,7 +52,9 @@
 		},
 		computed: {
 			searchPosts: function(){
-				return this.posts.filter((post) => post.name.includes(this.searchQuery));
+				return this.posts.filter((post) => {
+					return `${post.category.name} ${post.name}`.toLowerCase().includes(this.searchQuery.toLowerCase());
+				});
 			}
 		}
 	}
