@@ -65,8 +65,11 @@
             }
         },
         computed: {
-            searchEquipos: function(){
-                return this.equipos.filter((equipo) => equipo.name.includes(this.search));
+            searchEquipos() {
+                return this.equipos.filter( (equipo) => {
+                    return `${equipo.grupo_equipo.name} ${equipo.name} ${equipo.marca} ${equipo.tipo}`
+                    .toLowerCase().includes(this.search.toLowerCase());
+                });
             }
         }
     }

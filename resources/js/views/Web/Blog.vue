@@ -14,7 +14,7 @@
                 </div>
 			</div>
 
-			<div class="card mb-3 mt-3" v-for="post in posts" :key="post.id">
+			<div class="card mb-3 mt-3" v-for="post in searchPosts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
 				</div>	
@@ -49,6 +49,11 @@
 			.then((res) => {
 				this.posts = res.data.posts
 			})
+		},
+		computed: {
+			searchPosts: function(){
+				return this.posts.filter((post) => post.name.includes(this.searchQuery));
+			}
 		}
 	}
 </script>

@@ -1,1 +1,3 @@
-## Inicio de costos con la face de post.
+INFOasistencia: Costos de construcción.
+ 
+1. Fase de Post terrminada.

@@ -3778,7 +3778,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       return this.equipos.filter(function (equipo) {
-        return equipo.name.includes(_this2.search);
+        return "".concat(equipo.grupo_equipo.name, " ").concat(equipo.name, " ").concat(equipo.marca, " ").concat(equipo.tipo).toLowerCase().includes(_this2.search.toLowerCase());
       });
     }
   }
@@ -7446,6 +7446,15 @@ __webpack_require__.r(__webpack_exports__);
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/blog").then(function (res) {
       _this.posts = res.data.posts;
     });
+  },
+  computed: {
+    searchPosts: function searchPosts() {
+      var _this2 = this;
+
+      return this.posts.filter(function (post) {
+        return post.name.includes(_this2.searchQuery);
+      });
+    }
   }
 });
 
@@ -53066,7 +53075,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._l(_vm.posts, function(post) {
+        _vm._l(_vm.searchPosts, function(post) {
           return _c("div", { key: post.id, staticClass: "card mb-3 mt-3" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("p", [
