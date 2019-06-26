@@ -7685,8 +7685,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
-/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
 //
 //
 //
@@ -7715,14 +7716,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
+      authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       searchQuery: '',
       gridData: [],
       gridColumns: ['grupo_obrero_id', 'name', 'jornalhora', 'factor', 'updated_at'],
@@ -7733,7 +7739,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/obrero").then(function (res) {
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/obrero").then(function (res) {
       _this.gridData = res.data.obreros;
     });
   }
@@ -7988,8 +7994,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
-/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
+/* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
 //
 //
 //
@@ -8018,14 +8025,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+    ListaSearch: _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   data: function data() {
     return {
+      authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
       searchQuery: '',
       gridData: [],
       gridColumns: ['zona_id', 'name', 'unidad', 'tipo', 'tarifa', 'updated_at'],
@@ -8036,7 +8048,7 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("/api/transporte").then(function (res) {
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/transporte").then(function (res) {
       _this.gridData = res.data.transportes;
     });
   }
@@ -53522,7 +53534,24 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.authState.api_token && _vm.authState.user_id === 1
+          ? _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/obreros/create" }
+                  },
+                  [_vm._v(" Nuevo")]
+                )
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
@@ -53962,7 +53991,24 @@ var render = function() {
               }
             }
           })
-        ])
+        ]),
+        _vm._v(" "),
+        _vm.authState.api_token && _vm.authState.user_id === 1
+          ? _c(
+              "div",
+              [
+                _c(
+                  "router-link",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { to: "/transportes/create" }
+                  },
+                  [_vm._v(" Nuevo")]
+                )
+              ],
+              1
+            )
+          : _vm._e()
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "card" }, [
@@ -69203,7 +69249,7 @@ try {
 } catch (e) {}
 /**
  * Cargaremos la biblioteca HTTP de axios que nos permite emitir fácilmente
- * solicitudes a nuestro back-end de Laravel. Esta biblioteca maneja automáticamente
+ * solicitudes a nuestro back-end de Laravel. Esta biblioteca maneja authenticate
  * el envío del token CSRF como un encabezado basado en el valor de la cookie
  * token "XSRF".
  */
