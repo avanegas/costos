@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GrupoEquipoStoreRequest;
+use App\Http\Requests\GrupoEquipoUpdateRequest;
 use App\Models\Data\GrupoEquipo;
 use App\Zona;
 
@@ -37,7 +39,7 @@ class GrupoEquipoController extends Controller
                 ]);
     }
 
-    public function store(Request $request)
+    public function store(GrupoEquipoStoreRequest $request)
     {
         $grupo_equipo = GrupoEquipo::create($request->all());
 
@@ -57,7 +59,7 @@ class GrupoEquipoController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(GrupoEquipoUpdateRequest $request, $id)
     {
         $grupo_equipo = GrupoEquipo::find($id);
         $grupo_equipo->fill($request->all())->save();

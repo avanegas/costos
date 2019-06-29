@@ -20,9 +20,10 @@
 					<div class="form-group">
 						<label for="zona_id">Zona</label>
 						<select id="zona_id" name="zona_id" class="form-control" v-model="form.zona_id">
-							<option disabled value="">seleccione</option>
+							<option disabled value="">Seleccione</option>
 							<option v-for="z in zonas" :value="z.id" selected = " form.zona_id == z.id ? true : false ">{{ z.name }}</option>
 						</select>
+                        <small class="error-control" v-if="error.errors.zona_id">{{error.errors.zona_id[0]}}</small>
 					</div>
 					<div class="form-group">
 					    <label>Name</label>
