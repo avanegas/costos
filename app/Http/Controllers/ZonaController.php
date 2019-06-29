@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ZonaStoreRequest;
+use App\Http\Requests\ZonaUpdateRequest;
 use App\Zona;
 
 class ZonaController extends Controller
@@ -29,7 +31,7 @@ class ZonaController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function store(Request $request)
+    public function store(ZonaStoreRequest $request)
     {
         $zona = Zona::create($request->all());
 
@@ -49,7 +51,7 @@ class ZonaController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(ZonaUpdateRequest $request, $id)
     {
         $zona = Zona::find($id);
         $zona->fill($request->all())->save();

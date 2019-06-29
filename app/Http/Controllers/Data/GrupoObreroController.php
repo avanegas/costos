@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GrupoObreroStoreRequest;
+use App\Http\Requests\GrupoObreroUpdateRequest;
 use App\Models\Data\GrupoObrero;
 use App\Zona;
 
@@ -37,7 +39,7 @@ class GrupoObreroController extends Controller
                 ]);
     }
 
-    public function store(Request $request)
+    public function store(GrupoObreroStoreRequest $request)
     {
         $grupo_obrero = GrupoObrero::create($request->all());
 
@@ -57,7 +59,7 @@ class GrupoObreroController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(GrupoObreroUpdateRequest $request, $id)
     {
         $grupo_obrero = GrupoObrero::find($id);
         $grupo_obrero->fill($request->all())->save();

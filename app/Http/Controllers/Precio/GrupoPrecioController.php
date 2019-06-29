@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Precio;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GrupoPrecioStoreRequest;
+use App\Http\Requests\GrupoPrecioUpdateRequest;
 use App\Models\Precio\GrupoPrecio;
 use App\Zona;
 
@@ -37,7 +39,7 @@ class GrupoPrecioController extends Controller
                 ]);
     }
 
-    public function store(Request $request)
+    public function store(GrupoPrecioStoreRequest $request)
     {
         $grupo_precio = GrupoPrecio::create($request->all());
 
@@ -57,7 +59,7 @@ class GrupoPrecioController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(GrupoPrecioUpdateRequest $request, $id)
     {
         $grupo_precio = GrupoPrecio::find($id);
         $grupo_precio->fill($request->all())->save();

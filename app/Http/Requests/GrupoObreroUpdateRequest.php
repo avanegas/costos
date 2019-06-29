@@ -13,7 +13,7 @@ class GrupoObreroUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,9 @@ class GrupoObreroUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'zona_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
         ];
     }
 }

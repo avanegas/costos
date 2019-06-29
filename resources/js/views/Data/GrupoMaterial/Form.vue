@@ -23,6 +23,7 @@
 							<option disabled value="">seleccione</option>
 							<option v-for="z in zonas" :value="z.id" selected = " form.zona_id == z.id ? true : false ">{{ z.name }}</option>
 						</select>
+                        <small class="error-control" v-if="error.errors.zona_id">{{error.errors.zona_id[0]}}</small>
 					</div>
 					<div class="form-group">
 					    <label>Name</label>

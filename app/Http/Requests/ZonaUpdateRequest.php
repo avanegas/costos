@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class GrupoObreroStoreRequest extends FormRequest
+class ZonaUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,7 +24,7 @@ class GrupoObreroStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'zona_id' => 'required',
+            'user_id' => 'required',
             'name' => 'required',
             'description' => 'required',
         ];

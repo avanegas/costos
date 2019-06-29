@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GrupoMaterialStoreRequest;
+use App\Http\Requests\GrupoMaterialUpdateRequest;
 use App\Models\Data\GrupoMaterial;
 use App\Zona;
 
@@ -37,7 +39,7 @@ class GrupoMaterialController extends Controller
                 ]);
     }
 
-    public function store(Request $request)
+    public function store(GrupoMaterialStoreRequest $request)
     {
         $grupo_material = GrupoMaterial::create($request->all());
 
@@ -57,7 +59,7 @@ class GrupoMaterialController extends Controller
                 ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(GrupoMaterialUpdateRequest $request, $id)
     {
         $grupo_material = GrupoMaterial::find($id);
         $grupo_material->fill($request->all())->save();

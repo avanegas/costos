@@ -4041,6 +4041,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -4198,6 +4199,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_flash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/flash */ "./resources/js/helpers/flash.js");
 /* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/api */ "./resources/js/helpers/api.js");
 /* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../helpers/form */ "./resources/js/helpers/form.js");
+//
 //
 //
 //
@@ -8073,7 +8075,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_flash__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/flash */ "./resources/js/helpers/flash.js");
 /* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
 /* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../helpers/form */ "./resources/js/helpers/form.js");
-//
 //
 //
 //
@@ -46809,7 +46810,13 @@ var render = function() {
                 })
               ],
               2
-            )
+            ),
+            _vm._v(" "),
+            _vm.error.errors.zona_id
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.zona_id[0]))
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -47108,7 +47115,13 @@ var render = function() {
                 })
               ],
               2
-            )
+            ),
+            _vm._v(" "),
+            _vm.error.errors.zona_id
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.zona_id[0]))
+                ])
+              : _vm._e()
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
@@ -54172,7 +54185,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { name: "descriptio", rows: "10" },
+              attrs: { name: "description", rows: "10" },
               domProps: { value: _vm.form.description },
               on: {
                 input: function($event) {

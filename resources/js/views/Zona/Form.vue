@@ -16,7 +16,6 @@
 
 			<div class="card">
 				<div class="card card-body">
-
 					<div class="form-group">
 					    <label>Name</label>
 					    <input type="text" class="form-control" v-model="form.name">
@@ -24,7 +23,7 @@
 					</div>
 					<div class="form-group">
 					    <label>Descripcion</label>
-					    <textarea name="descriptio" class="form-control" rows="10" v-model="form.description"></textarea>
+					    <textarea name="description" class="form-control" rows="10" v-model="form.description"></textarea>
 					    <small class="error-control" v-if="error.errors.description">{{error.errors.description[0]}}</small>
 					</div>
 				</div>
