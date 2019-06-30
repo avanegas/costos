@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ObreroStoreRequest;
+use App\Http\Requests\ObreroUpdateRequest;
 use App\Models\Data\GrupoObrero;
 use App\Models\Data\Obrero;
 
 class ObreroController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+    public function __construct()
+    {
+    $this->middleware('auth:api')
+    ->except(['index', 'show']);
+    }
      */
     public function index()
     {
@@ -22,69 +26,62 @@ class ObreroController extends Controller
             ->json(['obreros' => $obreros]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = Obrero::form();
+
+        return response()
+            ->json(['form' => $form]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(ObreroStoreRequest $request)
     {
-        //
+        $obrero = new Obrero($request->only('grupo_obrero_id', 'name', 'jornalhora', 'factor'));
+        $obrero->save();
+
+        return response()
+            ->json([
+                'saved'     => true,
+                'id'        => $obrero->id,
+                'message'   => 'Ha ingresado correctamente el obrero!'
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $obrero = Obrero::with(['grupo_obrero'])
+            ->findOrFail($id);
+
+        return response()
+            ->json(['obrero' => $obrero]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = Obrero::with(['grupo_obrero'])
+            ->findOrFail($id);
+
+        return response()
+            ->json(['form' => $form]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(ObreroUpdateRequest $request, $id)
     {
-        //
+        $obrero = Obrero::findOrFail($id)->update($request->all());
+
+        return response()
+            ->json([
+                'saved'     => true,
+                'form'      => $obrero,
+                'message'   => 'Ha actualizado correctamente el obrero!'
+            ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $obrero = Obrero::findOrFail($id)->delete();
+
+        return response()
+            ->json(['deleted' => true]);
     }
 }

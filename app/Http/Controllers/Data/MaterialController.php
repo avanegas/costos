@@ -73,7 +73,7 @@ class MaterialController extends Controller
             ->json([
                 'saved'     => true,
                 'form'      => $material,
-                'message'   => 'Ha actualizado correctamente un material!'
+                'message'   => 'Ha actualizado correctamente el material!'
             ]);
     }
 

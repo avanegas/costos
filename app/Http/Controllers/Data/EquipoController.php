@@ -73,7 +73,7 @@ class EquipoController extends Controller
             ->json([
                 'saved'     => true,
                 'form'      => $equipo,
-                'message'   => 'Ha actualizado correctamente un equipo!'
+                'message'   => 'Ha actualizado correctamente el equipo!'
                 ]);
     }
 

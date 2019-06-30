@@ -19,7 +19,7 @@
 					<div class="form-group">
 						<label>Grupo de equipo</label>
 						<select :id="form.grupo_equipo_id" :name="form.grupo_equipo_id" class="form-control" v-model="form.grupo_equipo_id">
-							<option disabled value="">seleccione</option>
+							<option disabled value="">Seleccione</option>
 							<option v-for="ge in grupo_equipos" :key = "ge.id" :value = "ge.id">{{ ge.name }}</option>
 						</select>
 						<small class="error-control" v-if="error.errors.grupo_equipo_id">{{error.errors.grupo_equipo_id[0]}}</small>
@@ -63,7 +63,6 @@
 		data() {
 			return {
 				grupo_equipos:[],
-
 				form: {},
 				error: {
 					errors:{}

@@ -219,6 +219,16 @@
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
                         }
+                        case "obreros":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "transportes":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "grupo_precios":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);

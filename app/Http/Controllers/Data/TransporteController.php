@@ -4,15 +4,19 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Zona;
+use App\Http\Requests\TransporteStoreRequest;
+use App\Http\Requests\TransporteUpdateRequest;
 use App\Models\Data\Transporte;
+use App\Zona;
 
 class TransporteController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+    public function __construct()
+    {
+    $this->middleware('auth:api')
+    ->except(['index', 'show']);
+    }
      */
     public function index()
     {
@@ -22,69 +26,62 @@ class TransporteController extends Controller
             ->json(['transportes' => $transportes]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $form = Transporte::form();
+
+        return response()
+            ->json(['form' => $form]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(TransporteStoreRequest $request)
     {
-        //
+        $transporte = new Transporte($request->only('zona_id', 'name', 'unidad', 'tipo', 'tarifa'));
+        $transporte->save();
+
+        return response()
+            ->json([
+                'saved'     => true,
+                'id'        => $transporte->id,
+                'message'   => 'Ha ingresado correctamente el transporte!'
+            ]);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        //
+        $transporte = Transporte::with(['zona'])
+            ->findOrFail($id);
+
+        return response()
+            ->json(['transporte' => $transporte]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        //
+        $form = Transporte::with(['zona'])
+            ->findOrFail($id);
+
+        return response()
+            ->json(['form' => $form]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(TransporteUpdateRequest $request, $id)
     {
-        //
+        $transporte = Transporte::findOrFail($id)->update($request->all());
+
+        return response()
+            ->json([
+                'saved'     => true,
+                'form'      => $transporte,
+                'message'   => 'Ha actualizado correctamente el transporte!'
+            ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $transporte = Transporte::findOrFail($id)->delete();
+
+        return response()
+            ->json(['deleted' => true]);
     }
 }
