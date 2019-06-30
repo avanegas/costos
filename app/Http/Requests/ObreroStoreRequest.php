@@ -13,7 +13,7 @@ class ObreroStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class ObreroStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'grupo_obrero_id'   => 'required',
+            'name'              => 'required',
+            'jornalhora'        => 'required|numeric',
+            'factor'            => 'required|numeric',
         ];
     }
 }

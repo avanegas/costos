@@ -13,7 +13,7 @@ class MaterialUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class MaterialUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'grupo_material_id' => 'required',
+            'name'              => 'required',
+            'unidad'            => 'required',
+            'precio'            => 'required|numeric',
         ];
     }
 }

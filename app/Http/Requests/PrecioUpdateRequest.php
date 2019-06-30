@@ -13,7 +13,7 @@ class PrecioUpdateRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class PrecioUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user_id'           => 'required',
+            'grupo_precio_id'   => 'required',
+            'name'              => 'required',
+            'unidad'            => 'required',
+            'detalle'           => 'required',
+            'directo'           => 'required|numeric',
+            'indirecto'         => 'required|numeric',
         ];
     }
 }

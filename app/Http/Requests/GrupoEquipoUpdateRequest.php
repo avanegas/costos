@@ -24,9 +24,9 @@ class GrupoEquipoUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'zona_id' => 'required',
-            'name' => 'required',
-            'description' => 'required',
+            'zona_id'       => 'required',
+            'name'          => 'required',
+            'description'   => 'required',
         ];
     }
 }

@@ -2331,6 +2331,12 @@ __webpack_require__.r(__webpack_exports__);
               break;
             }
 
+          case "materials":
+            {
+              this.$router.push("/".concat(this.lista, "/").concat(entry['id'], "/edit"));
+              break;
+            }
+
           case "grupo_obreros":
             {
               this.$router.push("/".concat(this.lista, "/").concat(entry['id'], "/edit"));
@@ -4439,6 +4445,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -4452,7 +4463,9 @@ __webpack_require__.r(__webpack_exports__);
     return {
       grupo_materials: [],
       form: {},
-      error: {},
+      error: {
+        errors: {}
+      },
       isProcessing: false,
       initializeURL: "/api/materials/create",
       storeURL: "/api/materials",
@@ -4478,12 +4491,13 @@ __webpack_require__.r(__webpack_exports__);
     save: function save() {
       var _this2 = this;
 
+      this.isProcessing = true;
       var form = Object(_helpers_form__WEBPACK_IMPORTED_MODULE_3__["toMulipartedForm"])(this.form, this.$route.meta.mode);
       Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["post"])(this.storeURL, form).then(function (res) {
         if (res.data.saved) {
           _helpers_flash__WEBPACK_IMPORTED_MODULE_1__["default"].setSuccess(res.data.message);
 
-          _this2.$router.push("/materials");
+          _this2.$router.push("/material");
         }
 
         _this2.isProcessing = false;
@@ -47308,216 +47322,226 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "recipe__show" }, [
-    _c("div", { staticClass: "recipe__header" }, [
-      _c("h5", [_vm._v(_vm._s(_vm.action) + " Material")]),
-      _vm._v(" "),
-      _c(
-        "div",
-        [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn__primary",
-              attrs: { disabled: _vm.isProcessing },
-              on: { click: _vm.save }
-            },
-            [_vm._v("Save")]
-          ),
-          _vm._v(" "),
-          _vm.action == "Update"
-            ? [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn__danger",
-                    attrs: { disabled: _vm.isProcessing },
-                    on: {
-                      click: function($event) {
-                        $event.preventDefault()
-                        return _vm.remove(_vm.form)
+  return _c("div", { staticClass: "row" }, [
+    _c("div", { staticClass: "col-md" }, [
+      _c("div", { staticClass: "form-group row" }, [
+        _c("div", { staticClass: "form-group col-10" }, [
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Material")])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary btn-sm",
+                attrs: { type: "button", disabled: _vm.isProcessing },
+                on: { click: _vm.save }
+              },
+              [_vm._v("Save")]
+            ),
+            _vm._v(" "),
+            _vm.action == "Update"
+              ? [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger btn-sm",
+                      attrs: { type: "button", disabled: _vm.isProcessing },
+                      on: {
+                        click: function($event) {
+                          $event.preventDefault()
+                          return _vm.remove(_vm.form)
+                        }
                       }
-                    }
-                  },
-                  [_vm._v("Eliminar")]
-                )
-              ]
-            : _vm._e(),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn",
-              attrs: { disabled: _vm.isProcessing },
-              on: {
-                click: function($event) {
-                  return _vm.$router.back()
+                    },
+                    [_vm._v("Eliminar")]
+                  )
+                ]
+              : _vm._e(),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-secondary btn-sm",
+                attrs: { type: "button", disabled: _vm.isProcessing },
+                on: {
+                  click: function($event) {
+                    return _vm.$router.back()
+                  }
                 }
-              }
-            },
-            [_vm._v("Cancel")]
-          )
-        ],
-        2
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "recipe__details" }, [
-      _c("div", { staticClass: "recipe__box" }, [
-        _c("div", { staticClass: "form__group" }, [
-          _c("label", [_vm._v("Grupo de material")]),
+              },
+              [_vm._v("Cancel")]
+            )
+          ],
+          2
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card" }, [
+        _c("div", { staticClass: "card card-body" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Grupo de material")]),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.grupo_material_id,
+                    expression: "form.grupo_material_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: {
+                  id: _vm.form.grupo_material_id,
+                  name: _vm.form.grupo_material_id
+                },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "grupo_material_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              [
+                _c("option", { attrs: { disabled: "", value: "" } }, [
+                  _vm._v("seleccione")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.grupo_materials, function(gm) {
+                  return _c(
+                    "option",
+                    {
+                      attrs: {
+                        selected:
+                          " form.grupo_material_id == gm.id ? true : false "
+                      },
+                      domProps: { value: gm.id }
+                    },
+                    [_vm._v(_vm._s(gm.name))]
+                  )
+                })
+              ],
+              2
+            ),
+            _vm._v(" "),
+            _vm.error.errors.grupo_material_id
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.grupo_material_id[0]))
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c(
-            "select",
-            {
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Name")]),
+            _vm._v(" "),
+            _c("input", {
               directives: [
                 {
                   name: "model",
                   rawName: "v-model",
-                  value: _vm.form.grupo_material_id,
-                  expression: "form.grupo_material_id"
+                  value: _vm.form.name,
+                  expression: "form.name"
                 }
               ],
-              staticClass: "form__control",
-              attrs: {
-                id: _vm.form.grupo_material_id,
-                name: _vm.form.grupo_material_id
-              },
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.form.name },
               on: {
-                change: function($event) {
-                  var $$selectedVal = Array.prototype.filter
-                    .call($event.target.options, function(o) {
-                      return o.selected
-                    })
-                    .map(function(o) {
-                      var val = "_value" in o ? o._value : o.value
-                      return val
-                    })
-                  _vm.$set(
-                    _vm.form,
-                    "grupo_material_id",
-                    $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                  )
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "name", $event.target.value)
                 }
               }
-            },
-            [
-              _c("option", { attrs: { disabled: "", value: "" } }, [
-                _vm._v("seleccione")
-              ]),
-              _vm._v(" "),
-              _vm._l(_vm.grupo_materials, function(gm) {
-                return _c(
-                  "option",
-                  {
-                    attrs: {
-                      selected:
-                        " form.grupo_material_id == gm.id ? true : false "
-                    },
-                    domProps: { value: gm.id }
-                  },
-                  [_vm._v(_vm._s(gm.name))]
-                )
-              })
-            ],
-            2
-          )
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form__group" }, [
-          _c("label", [_vm._v("Name")]),
+            }),
+            _vm._v(" "),
+            _vm.error.errors.name
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.name[0]))
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.name,
-                expression: "form.name"
-              }
-            ],
-            staticClass: "form__control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Unidad")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.unidad,
+                  expression: "form.unidad"
                 }
-                _vm.$set(_vm.form, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _vm.error.name
-            ? _c("small", { staticClass: "error__control" }, [
-                _vm._v(_vm._s(_vm.error.name[0]))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form__group" }, [
-          _c("label", [_vm._v("Unidad")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.unidad,
-                expression: "form.unidad"
-              }
-            ],
-            staticClass: "form__control",
-            attrs: { type: "text" },
-            domProps: { value: _vm.form.unidad },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text" },
+              domProps: { value: _vm.form.unidad },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "unidad", $event.target.value)
                 }
-                _vm.$set(_vm.form, "unidad", $event.target.value)
               }
-            }
-          }),
+            }),
+            _vm._v(" "),
+            _vm.error.errors.unidad
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.unidad[0]))
+                ])
+              : _vm._e()
+          ]),
           _vm._v(" "),
-          _vm.error.unidad
-            ? _c("small", { staticClass: "error__control" }, [
-                _vm._v(_vm._s(_vm.error.unidad[0]))
-              ])
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "form__group" }, [
-          _c("label", [_vm._v("Precio")]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.precio,
-                expression: "form.precio"
-              }
-            ],
-            staticClass: "form__control",
-            attrs: { type: "number", step: "any" },
-            domProps: { value: _vm.form.precio },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
+          _c("div", { staticClass: "form-group" }, [
+            _c("label", [_vm._v("Precio")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.precio,
+                  expression: "form.precio"
                 }
-                _vm.$set(_vm.form, "precio", $event.target.value)
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", step: "any" },
+              domProps: { value: _vm.form.precio },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "precio", $event.target.value)
+                }
               }
-            }
-          }),
-          _vm._v(" "),
-          _vm.error.precio
-            ? _c("small", { staticClass: "error__control" }, [
-                _vm._v(_vm._s(_vm.error.precio[0]))
-              ])
-            : _vm._e()
+            }),
+            _vm._v(" "),
+            _vm.error.errors.precio
+              ? _c("small", { staticClass: "error-control" }, [
+                  _vm._v(_vm._s(_vm.error.errors.precio[0]))
+                ])
+              : _vm._e()
+          ])
         ])
       ])
     ])

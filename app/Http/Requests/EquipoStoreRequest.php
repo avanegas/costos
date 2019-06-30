@@ -13,7 +13,7 @@ class EquipoStoreRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class EquipoStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'grupo_equipo_id'   => 'required',
+            'name'              => 'required',
+            'marca'             => 'nullable',
+            'tipo'              => 'nullable',
+            'tarifa'            => 'required|numeric',
         ];
     }
 }

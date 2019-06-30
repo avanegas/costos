@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Data;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use App\Http\Requests\EquipoStoreRequest;
+use App\Http\Requests\EquipoUpdateRequest;
 use App\Models\Data\GrupoEquipo;
 use App\Models\Data\Equipo;
 
@@ -17,7 +18,6 @@ class EquipoController extends Controller
             ->except(['index', 'show']);
     }
 */
-
     public function index()
     {
         $equipos = Equipo::with(['grupo_equipo'])->orderBy('name', 'asc')->get();
@@ -34,25 +34,16 @@ class EquipoController extends Controller
             ->json(['form' => $form]);
     }
 
-    public function store(Request $request)
+    public function store(EquipoStoreRequest $request)
     {
-        $request->validate([
-            'grupo_equipo_id'   => 'required',
-            'name'              => 'required|max:60',
-            'marca'             => 'nullable|max:60',
-            'tipo'              => 'nullable|max:60',
-            'tarifa'            => 'required|numeric'
-            ]);
-
         $equipo = new Equipo($request->only('grupo_equipo_id', 'name', 'marca', 'tipo', 'tarifa'));
-
         $equipo->save();
 
         return response()
             ->json([
                 'saved'     => true,
                 'id'        => $equipo->id,
-                'message'   => 'Ha ingresado correctamente un equipo!'
+                'message'   => 'Ha ingresado correctamente el equipo!'
                 ]);
     }
 
@@ -65,7 +56,7 @@ class EquipoController extends Controller
             ->json(['equipo' => $equipo]);
     }
 
-    public function edit(Request $request, $id)
+    public function edit($id)
     {
         $form = Equipo::with(['grupo_equipo'])
             ->findOrFail($id);
@@ -74,16 +65,8 @@ class EquipoController extends Controller
             ->json(['form' => $form]);
     }
 
-    public function update(Request $request, $id)
+    public function update(EquipoUpdateRequest $request, $id)
     {
-        $request->validate([
-            'grupo_equipo_id'   => 'required',
-            'name'              => 'required|max:60',
-            'marca'             => 'nullable|max:60',
-            'tipo'              => 'nullable|max:60',
-            'tarifa'            => 'required|numeric'
-        ]);
-
         $equipo = Equipo::findOrFail($id)->update($request->all());
 
         return response()
@@ -94,9 +77,9 @@ class EquipoController extends Controller
                 ]);
     }
 
-    public function destroy(Request $request, $id)
+    public function destroy($id)
     {
-        $equipo=Equipo::findOrFail($id)->delete();
+        $equipo = Equipo::findOrFail($id)->delete();
 
         return response()
             ->json(['deleted' => true]);

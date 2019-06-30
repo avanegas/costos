@@ -24,7 +24,11 @@ class TransporteStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'zona_id'   => 'required',
+            'name'      => 'required',
+            'unidad'    => 'required',
+            'tipo'      => 'required',
+            'tarifa'    => 'required|numeric',
         ];
     }
 }

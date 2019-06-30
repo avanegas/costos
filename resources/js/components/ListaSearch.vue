@@ -209,6 +209,11 @@
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
                         }
+                        case "materials":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "grupo_obreros":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);

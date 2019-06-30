@@ -1,42 +1,47 @@
 <template>
-	<div class="recipe__show">
-		<div class="recipe__header">
-			<h5>{{action}} Material</h5>
-			<div>
-				<button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
-				<template v-if="action == 'Update'">
-					<button class="btn btn__danger" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
-				</template>
-				<button class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+	<div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="form-group col-10">
+			        <h5>{{action}} Material</h5>
+			    </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing">Save</button>
+                    <template v-if="action == 'Update'">
+                        <button type="button" class="btn btn-danger btn-sm" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+                    </template>
+                    <button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+                </div>
 			</div>
-		</div>
 
-		<div class="recipe__details">
-			<div class="recipe__box">
-				<div class="form__group">
-					<label>Grupo de material</label>
-					<select :id="form.grupo_material_id" :name="form.grupo_material_id" class="form__control" v-model="form.grupo_material_id">
-						<option disabled value="">seleccione</option>
-						<option v-for="gm in grupo_materials" :value="gm.id" selected = " form.grupo_material_id == gm.id ? true : false ">{{ gm.name }}</option>
-					</select>
-				</div>
-				<div class="form__group">
-				    <label>Name</label>
-				    <input type="text" class="form__control" v-model="form.name">
-				    <small class="error__control" v-if="error.name">{{error.name[0]}}</small>
-				</div>
-				<div class="form__group">
-				    <label>Unidad</label>
-				    <input type="text" class="form__control" v-model="form.unidad">
-				    <small class="error__control" v-if="error.unidad">{{error.unidad[0]}}</small>
-				</div>
-				<div class="form__group">
-				    <label>Precio</label>
-				    <input type="number" step="any" class="form__control" v-model="form.precio">
-				    <small class="error__control" v-if="error.precio">{{error.precio[0]}}</small>
-				</div>
-			</div>
-		</div>
+            <div class="card">
+                <div class="card card-body">
+                    <div class="form-group">
+                        <label>Grupo de material</label>
+                        <select :id="form.grupo_material_id" :name="form.grupo_material_id" class="form-control" v-model="form.grupo_material_id">
+                            <option disabled value="">seleccione</option>
+                            <option v-for="gm in grupo_materials" :value="gm.id" selected = " form.grupo_material_id == gm.id ? true : false ">{{ gm.name }}</option>
+                        </select>
+                        <small class="error-control" v-if="error.errors.grupo_material_id">{{error.errors.grupo_material_id[0]}}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" class="form-control" v-model="form.name">
+                        <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Unidad</label>
+                        <input type="text" class="form-control" v-model="form.unidad">
+                        <small class="error-control" v-if="error.errors.unidad">{{error.errors.unidad[0]}}</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Precio</label>
+                        <input type="number" step="any" class="form-control" v-model="form.precio">
+                        <small class="error-control" v-if="error.errors.precio">{{error.errors.precio[0]}}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </template>
 <script type="text/javascript">
@@ -55,7 +60,9 @@
 				grupo_materials:[],
 
 				form: {},
-				error: {},
+				error: {
+				    errors:{}
+                },
 				isProcessing: false,
 				initializeURL: `/api/materials/create`,
 				storeURL: `/api/materials`,
@@ -79,12 +86,13 @@
 		},
 		methods: {
 			save() {
+                this.isProcessing = true
 				const form = toMulipartedForm(this.form, this.$route.meta.mode)
 				post(this.storeURL, form)
 				    .then((res) => {
 				        if(res.data.saved) {
 				            Flash.setSuccess(res.data.message)
-				            this.$router.push(`/materials`)
+				            this.$router.push(`/material`)
 				        }
 				        this.isProcessing = false
 				    })
