@@ -26,14 +26,15 @@
 							<div class="form-group">
 								<label for="category_id">Categoría</label>
 								<select id="category_id" name="category_id" class="form-control" v-model="form.category_id">
-									<option disabled value="">seleccione</option>
+									<option disabled value="">Seleccione</option>
 									<option v-for="c in categories" :value="c.id" selected = " form.category_id == c.id ? true : false ">{{ c.name }}</option>
 								</select>
+                                <small class="error-control" v-if="error.errors.category_id">{{error.errors.category_id[0]}}</small>
 							</div>
 							<div class="form-group">
 								<label>Titulo</label>
 								<input type="text" class="form-control" v-model="form.name">
-								<small class="error-control" v-if="error.name">{{error.errors.name[0]}}</small>
+								<small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
 							</div>
 							<div class="form-group">
 								<label>Slug</label>
@@ -42,12 +43,12 @@
 							<div class="form-group">
 								<label>Resumen</label>
 								<input type="text" class="form-control" v-model="form.excerpt">
-								<small class="error-control" v-if="error.excerpt">{{error.errors.excerpt[0]}}</small>
+								<small class="error-control" v-if="error.errors.excerpt">{{error.errors.excerpt[0]}}</small>
 							</div>
 							<div class="form-group">
 								<label>Contenido</label>
 								<textarea class="form-control form-description" v-model="form.body"></textarea>
-								<small class="error-control" v-if="error.body">{{error.errors.body[0]}}</small>
+								<small class="error-control" v-if="error.errors.body">{{error.errors.body[0]}}</small>
 							</div>			
 							<div class="form-group">
 								<p>Estado del artículo</p>
@@ -62,6 +63,7 @@
 									<div class="vs__selected-options">
 										<v-select multiple label="name" :options="tags" v-model="form.tags"></v-select>
 									</div>
+                                    <small class="error-control" v-if="error.errors.tags">{{error.errors.tags[0]}}</small>
 								</div>
 							</div>
 						</div>
@@ -169,7 +171,10 @@
 				})
 			},
 			remove() {
-				alert('borrar');
+                del(`/api/posts/${this.$route.params.id}`).then((res) => {
+                    Flash.setSuccess('Ha eliminado correctamente el Post!')
+                    this.$router.back()
+                });
 			}
 		}
 	}

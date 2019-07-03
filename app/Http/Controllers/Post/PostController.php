@@ -137,13 +137,19 @@ class PostController extends Controller
             ]);
     }
 
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
         $post = Post::find($id);
-        $this->authorize('pass', $post);
+        //$this->authorize('pass', $post);
+
+        // remove image
+        File::delete(base_path('/public/images/'.$post->image));
 
         $post->delete();
 
-        return back()->with('info', 'Eliminado correctamente');
+        return response()
+            ->json([
+                'deleted' => true
+            ]);
     }
 }

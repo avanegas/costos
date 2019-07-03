@@ -5547,6 +5547,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 
 
@@ -5648,7 +5650,13 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     remove: function remove() {
-      alert('borrar');
+      var _this3 = this;
+
+      Object(_helpers_api__WEBPACK_IMPORTED_MODULE_3__["del"])("/api/posts/".concat(this.$route.params.id)).then(function (res) {
+        _helpers_flash__WEBPACK_IMPORTED_MODULE_2__["default"].setSuccess('Ha eliminado correctamente el Post!');
+
+        _this3.$router.back();
+      });
     }
   }
 });
@@ -49321,7 +49329,7 @@ var render = function() {
                   },
                   [
                     _c("option", { attrs: { disabled: "", value: "" } }, [
-                      _vm._v("seleccione")
+                      _vm._v("Seleccione")
                     ]),
                     _vm._v(" "),
                     _vm._l(_vm.categories, function(c) {
@@ -49339,7 +49347,13 @@ var render = function() {
                     })
                   ],
                   2
-                )
+                ),
+                _vm._v(" "),
+                _vm.error.errors.category_id
+                  ? _c("small", { staticClass: "error-control" }, [
+                      _vm._v(_vm._s(_vm.error.errors.category_id[0]))
+                    ])
+                  : _vm._e()
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
@@ -49367,7 +49381,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm.error.name
+                _vm.error.errors.name
                   ? _c("small", { staticClass: "error-control" }, [
                       _vm._v(_vm._s(_vm.error.errors.name[0]))
                     ])
@@ -49409,7 +49423,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm.error.excerpt
+                _vm.error.errors.excerpt
                   ? _c("small", { staticClass: "error-control" }, [
                       _vm._v(_vm._s(_vm.error.errors.excerpt[0]))
                     ])
@@ -49440,7 +49454,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _vm.error.body
+                _vm.error.errors.body
                   ? _c("small", { staticClass: "error-control" }, [
                       _vm._v(_vm._s(_vm.error.errors.body[0]))
                     ])
@@ -49519,7 +49533,13 @@ var render = function() {
                       })
                     ],
                     1
-                  )
+                  ),
+                  _vm._v(" "),
+                  _vm.error.errors.tags
+                    ? _c("small", { staticClass: "error-control" }, [
+                        _vm._v(_vm._s(_vm.error.errors.tags[0]))
+                      ])
+                    : _vm._e()
                 ])
               ])
             ])
