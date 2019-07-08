@@ -19,6 +19,12 @@
                 <a id="write" class="btn btn-default btn-sm" role="button">
                     <i class="far fa-comment"></i> Responder
                 </a>
+                <a id="edit" class="btn btn-default btn-sm" role="button">
+                    <i class="fas fa-edit"></i> Editar
+                </a>
+                <a id="trash" class="btn btn-default btn-sm" role="button">
+                    <i class="fas fa-trash"></i> Eliminar
+                </a>
             </div>
         </div>
     </div>
@@ -30,9 +36,6 @@
             return {
                 comments:{}
             }
-        },
-        mounted() {
-            console.log('Component mounted.')
         }
     }
 </script>

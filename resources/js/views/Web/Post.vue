@@ -29,7 +29,7 @@
 						@new="addComment">
 					</comment-add>
 					<comment 
-						v-for="comment in post.comments" 
+						v-for="comment in post.comments"
 						:key="comment.id" 
 						:comment="comment">
 					</comment>

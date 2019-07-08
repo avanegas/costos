@@ -1925,6 +1925,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -3079,11 +3084,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
 
 
 
@@ -3095,7 +3095,9 @@ __webpack_require__.r(__webpack_exports__);
         password: '',
         remember: false
       },
-      error: {},
+      error: {
+        errors: {}
+      },
       isProcessing: false
     };
   },
@@ -3182,6 +3184,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3193,7 +3198,9 @@ __webpack_require__.r(__webpack_exports__);
         password: '',
         password_confirmation: ''
       },
-      error: {},
+      error: {
+        errors: {}
+      },
       isProcessing: false
     };
   },
@@ -3478,15 +3485,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['comment'],
   data: function data() {
     return {
       comments: {}
     };
-  },
-  mounted: function mounted() {
-    console.log('Component mounted.');
   }
 });
 
@@ -43613,6 +43623,24 @@ var render = function() {
                     "router-link",
                     { staticClass: "nav-link", attrs: { to: "/transporte" } },
                     [_vm._v("Transportes")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "#" } },
+                    [_vm._v("Generales")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "#" } },
+                    [_vm._v("Indirectos")]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "router-link",
+                    { staticClass: "nav-link", attrs: { to: "#" } },
+                    [_vm._v("Indices")]
                   )
                 ],
                 1
@@ -43653,6 +43681,19 @@ var render = function() {
                   "router-link",
                   { staticClass: "nav-link", attrs: { to: "/oferta" } },
                   [_vm._v("Ofertas")]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item" },
+              [
+                _c(
+                  "router-link",
+                  { staticClass: "nav-link", attrs: { to: "#" } },
+                  [_vm._v("Servicios")]
                 )
               ],
               1
@@ -43756,6 +43797,12 @@ var render = function() {
                           attrs: { to: "/ofertas/" + _vm.authState.user_id }
                         },
                         [_vm._v("Ofertas")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "router-link",
+                        { staticClass: "nav-link", attrs: { to: "#" } },
+                        [_vm._v("Servicios")]
                       )
                     ],
                     1
@@ -43770,7 +43817,7 @@ var render = function() {
                     _c(
                       "router-link",
                       { staticClass: "nav-link", attrs: { to: "/login" } },
-                      [_vm._v("LOGIN")]
+                      [_vm._v("INICIAR")]
                     )
                   ],
                   1
@@ -43785,7 +43832,7 @@ var render = function() {
                     _c(
                       "router-link",
                       { staticClass: "nav-link", attrs: { to: "/register" } },
-                      [_vm._v("REGISTER")]
+                      [_vm._v("REGISTRO")]
                     )
                   ],
                   1
@@ -43837,7 +43884,7 @@ var render = function() {
                                 }
                               }
                             },
-                            [_vm._v("LOGOUT")]
+                            [_vm._v("SALIR")]
                           )
                         : _vm._e()
                     ],
@@ -45133,7 +45180,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card card-default mt-5" }, [
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -45182,9 +45229,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.error.email
+                  _vm.error.errors.email
                     ? _c("small", { staticClass: "error-control" }, [
-                        _vm._v(_vm._s(_vm.error.email[0]))
+                        _vm._v(_vm._s(_vm.error.errors.email[0]))
                       ])
                     : _vm._e()
                 ])
@@ -45223,9 +45270,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.error.password
+                  _vm.error.errors.password
                     ? _c("small", { staticClass: "error-control" }, [
-                        _vm._v(_vm._s(_vm.error.password[0]))
+                        _vm._v(_vm._s(_vm.error.errors.password[0]))
                       ])
                     : _vm._e()
                 ])
@@ -45279,7 +45326,7 @@ var render = function() {
                           }
                         }
                       }),
-                      _vm._v(" Remember Me\n                            ")
+                      _vm._v(" Remember Me\n                                ")
                     ])
                   ])
                 ])
@@ -45293,21 +45340,13 @@ var render = function() {
                       staticClass: "btn btn-primary",
                       attrs: { disabled: _vm.isProcessing }
                     },
-                    [
-                      _vm._v(
-                        "\n                                Login\n                            "
-                      )
-                    ]
+                    [_vm._v(" Iniciar")]
                   ),
                   _vm._v(" "),
                   _c(
                     "a",
                     { staticClass: "btn btn-link", attrs: { href: "#" } },
-                    [
-                      _vm._v(
-                        "\n                                Forgot Your Password?\n                            "
-                      )
-                    ]
+                    [_vm._v(" Olvido su contraseña?")]
                   )
                 ])
               ])
@@ -45324,7 +45363,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "card-header" }, [
-      _vm._v("LOGIN: Soy "),
+      _vm._v("INGRESO PERMITIDO: Soy "),
       _c("b", [_vm._v("decente")]),
       _vm._v(", mi "),
       _c("i", [_c("small", [_vm._v("esencia")])]),
@@ -45356,7 +45395,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row justify-content-center" }, [
     _c("div", { staticClass: "col-md-8" }, [
-      _c("div", { staticClass: "card card-default" }, [
+      _c("div", { staticClass: "card card-default mt-5" }, [
         _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "card-body" }, [
@@ -45405,9 +45444,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.error.name
+                  _vm.error.errors.name
                     ? _c("small", { staticClass: "error-control" }, [
-                        _vm._v(_vm._s(_vm.error.name[0]))
+                        _vm._v(_vm._s(_vm.error.errors.name[0]))
                       ])
                     : _vm._e()
                 ])
@@ -45420,7 +45459,7 @@ var render = function() {
                     staticClass: "col-sm-4 col-form-label text-md-right",
                     attrs: { for: "email" }
                   },
-                  [_vm._v("E-Mail Address")]
+                  [_vm._v("E-Mail")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -45446,9 +45485,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.error.email
+                  _vm.error.errors.email
                     ? _c("small", { staticClass: "error-control" }, [
-                        _vm._v(_vm._s(_vm.error.email[0]))
+                        _vm._v(_vm._s(_vm.error.errors.email[0]))
                       ])
                     : _vm._e()
                 ])
@@ -45461,7 +45500,7 @@ var render = function() {
                     staticClass: "col-md-4 col-form-label text-md-right",
                     attrs: { for: "password" }
                   },
-                  [_vm._v("Password")]
+                  [_vm._v("Contraseña")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -45487,9 +45526,9 @@ var render = function() {
                     }
                   }),
                   _vm._v(" "),
-                  _vm.error.password
+                  _vm.error.errors.password
                     ? _c("small", { staticClass: "error-control" }, [
-                        _vm._v(_vm._s(_vm.error.password[0]))
+                        _vm._v(_vm._s(_vm.error.errors.password[0]))
                       ])
                     : _vm._e()
                 ])
@@ -45502,7 +45541,7 @@ var render = function() {
                     staticClass: "col-md-4 col-form-label text-md-right",
                     attrs: { for: "password" }
                   },
-                  [_vm._v("Confirm Password")]
+                  [_vm._v("Confirmar Contraseña")]
                 ),
                 _vm._v(" "),
                 _c("div", { staticClass: "col-md-6" }, [
@@ -45530,19 +45569,29 @@ var render = function() {
                         )
                       }
                     }
-                  })
+                  }),
+                  _vm._v(" "),
+                  _vm.error.errors.password_confirmation
+                    ? _c("small", { staticClass: "error-control" }, [
+                        _vm._v(
+                          _vm._s(_vm.error.errors.password_confirmation[0])
+                        )
+                      ])
+                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "form-group row" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "btn btn-primary",
-                    attrs: { disabled: _vm.isProcessing }
-                  },
-                  [_vm._v("Register")]
-                )
+              _c("div", { staticClass: "form-group row mb-0" }, [
+                _c("div", { staticClass: "col-md-8 offset-md-4" }, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-primary",
+                      attrs: { disabled: _vm.isProcessing }
+                    },
+                    [_vm._v("Registrarse")]
+                  )
+                ])
               ])
             ]
           )
@@ -45912,6 +45961,30 @@ var staticRenderFns = [
         [
           _c("i", { staticClass: "far fa-comment" }),
           _vm._v(" Responder\n            ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-default btn-sm",
+          attrs: { id: "edit", role: "button" }
+        },
+        [
+          _c("i", { staticClass: "fas fa-edit" }),
+          _vm._v(" Editar\n            ")
+        ]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-default btn-sm",
+          attrs: { id: "trash", role: "button" }
+        },
+        [
+          _c("i", { staticClass: "fas fa-trash" }),
+          _vm._v(" Eliminar\n            ")
         ]
       )
     ])
@@ -48687,7 +48760,7 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Descripcion")]),
+            _c("label", [_vm._v("Descripción")]),
             _vm._v(" "),
             _c("textarea", {
               directives: [
@@ -48699,7 +48772,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { name: "descriptio", rows: "10" },
+              attrs: { name: "description", rows: "10" },
               domProps: { value: _vm.form.description },
               on: {
                 input: function($event) {
@@ -49872,7 +49945,7 @@ var render = function() {
                         },
                         [
                           _c("option", { attrs: { disabled: "", value: "" } }, [
-                            _vm._v("seleccione")
+                            _vm._v("Seleccione")
                           ]),
                           _vm._v(" "),
                           _vm._l(_vm.grupo_precios, function(gp) {

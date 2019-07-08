@@ -20,7 +20,7 @@
                                 <th>GRUPO:</th>
                                 <td colspan="4">
                                     <select name="" id="" class="form-control" v-model="form.grupo_precio_id">
-                                        <option disabled value="">seleccione</option>
+                                        <option disabled value="">Seleccione</option>
                                         <option v-for="gp in grupo_precios" :value="gp.id" :selected="form.grupo_precio_id == gp.id ? true : false">{{ gp.name }}</option>
                                     </select>
                                 </td>

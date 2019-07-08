@@ -31,8 +31,8 @@
 					    <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
 					</div>
 					<div class="form-group">
-					    <label>Descripcion</label>
-					    <textarea name="descriptio" class="form-control" rows="10" v-model="form.description"></textarea>
+					    <label>Descripción</label>
+					    <textarea name="description" class="form-control" rows="10" v-model="form.description"></textarea>
 					    <small class="error-control" v-if="error.errors.description">{{error.errors.description[0]}}</small>
 					</div>
 				</div>

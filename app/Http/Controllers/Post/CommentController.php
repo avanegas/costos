@@ -42,10 +42,8 @@ class CommentController extends Controller
      */
     public function store(CommentStoreRequest $request)
     {
- 
         //$post = Post::findOrFail($request->post_id);
-        
-       
+
         $comment = Comment::create([
             'body'    => $request->body,
             'user_id' => $request->user_id,

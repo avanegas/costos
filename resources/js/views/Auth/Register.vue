@@ -1,7 +1,7 @@
 <template>      
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card card-default">
+            <div class="card card-default mt-5">
                 <div class="card-header">Deseo <b>REGISTRARME</b>, soy <i><small>decente</small></i> <b>:)</b></div>
                 <div class="card-body">
                     <form class="form" @submit.prevent="register">
@@ -9,31 +9,34 @@
                             <label for="name" class="col-sm-4 col-form-label text-md-right">Nombre</label>
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" v-model="form.name">
-                                <small class="error-control" v-if="error.name">{{error.name[0]}}</small>
+                                <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail Address</label>
+                            <label for="email" class="col-sm-4 col-form-label text-md-right">E-Mail</label>
                             <div class="col-md-6">    
                                 <input id="email" type="email" class="form-control" v-model="form.email">
-                                <small class="error-control" v-if="error.email">{{error.email[0]}}</small>
+                                <small class="error-control" v-if="error.errors.email">{{error.errors.email[0]}}</small>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Contraseña</label>
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" v-model="form.password">
-                                <small class="error-control" v-if="error.password">{{error.password[0]}}</small>
+                                <small class="error-control" v-if="error.errors.password">{{error.errors.password[0]}}</small>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Confirmar Contraseña</label>
                             <div class="col-md-6">
                                 <input type="password" class="form-control" v-model="form.password_confirmation">
+                                <small class="error-control" v-if="error.errors.password_confirmation">{{error.errors.password_confirmation[0]}}</small>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <button :disabled="isProcessing" class="btn btn-primary">Register</button>
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                <button :disabled="isProcessing" class="btn btn-primary">Registrarse</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -53,7 +56,9 @@
                     password: '',
                     password_confirmation: ''
                 },
-                error: {},
+                error: {
+                    errors:{}
+                },
                 isProcessing: false
             }
         },
