@@ -37,11 +37,11 @@ class ProyectosTableSeeder extends Seeder
             }
 
             $subTotal  = $rubros->sum('total');
-            $descuento = $faker->numberBetween(1, 20);
-            $total     = $subTotal - $descuento;
+            $descuento = $subTotal*0.12;
+            $total     = $subTotal + $descuento;
 
             $proyecto  = Proyecto::create([
-                'user_id'       => $i,
+                'user_id'       => mt_rand(1, 10),
                 'name'          => $faker->sentence($nbWords = 6, $variableNbWords = true),
                 'contratante'   => $faker->catchPhrase,
                 'ubicacion'     => $faker->sentence($nbWords = 4, $variableNbWords = true),

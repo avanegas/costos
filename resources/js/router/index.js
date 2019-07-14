@@ -9,13 +9,20 @@ import Post from '../views/Web/Post.vue'
 import Category from '../views/Web/Category.vue'
 import Tag from '../views/Web/Tag.vue'
 
-import ProfileForm from '../views/ProfileForm.vue'
+import ProfileForm from '../views/Profile/Form.vue'
+import GeneralForm from '../views/General/Form.vue'
+import IndirectoForm from '../views/Indirecto/Form.vue'
+import IndiceForm from '../views/Indice/Form.vue'
 
+import General from '../views/Web/General.vue'
 import Equipo from '../views/Web/Equipo.vue'
 import Material from '../views/Web/Material.vue'
 import Obrero from '../views/Web/Obrero.vue'
 import Transporte from '../views/Web/Transporte.vue'
+import Indirecto from '../views/Web/Indirecto.vue'
+import Indice from '../views/Web/Indice.vue'
 import Oferta from '../views/Web/Oferta.vue'
+import Servicio from '../views/Web/Servicio.vue'
 
 import UserIndex from '../views/Admin/User/Index.vue'
 import UserForm from '../views/Admin/User/Form.vue'
@@ -64,7 +71,11 @@ import ProyectoForm from '../views/Proyecto/Form.vue'
 
 
 import OfertaIndex from '../views/Oferta/Index.vue'
+import OfertaShow from '../views/Oferta/Show.vue'
 import OfertaForm from '../views/Oferta/Form.vue'
+
+import ServicioIndex from '../views/Servicio/Index.vue'
+import ServicioForm from '../views/Servicio/Form.vue'
 
 import ZonaIndex from '../views/Zona/Index.vue'
 import ZonaForm from '../views/Zona/Form.vue'
@@ -82,13 +93,27 @@ const router = new VueRouter({
         { path: '/category/:slug', component: Category},
         { path: '/tag/:slug', component: Tag},
 
+        { path: '/general', component: General},
         { path: '/equipo', component: Equipo},
         { path: '/material', component: Material},
         { path: '/obrero', component: Obrero},
         { path: '/transporte', component: Transporte},
+        { path: '/indirecto', component: Indirecto},
+        { path: '/indice', component: Indice},
         { path: '/oferta', component: Oferta},
+        { path: '/servicio', component: Servicio},
 
-        { path: '/profile/:id/edit', component: ProfileForm, meta: { mode: 'edit' }},
+        { path: '/profiles/create', component: ProfileForm, meta: { mode: 'create' }},
+        { path: '/profiles/:id/edit', component: ProfileForm, meta: { mode: 'edit' }},
+
+        { path: '/generals/create', component: GeneralForm, meta: { mode: 'create' }},
+        { path: '/generals/:id/edit', component: GeneralForm, meta: { mode: 'edit' }},
+
+        { path: '/indirectos/create', component: IndirectoForm, meta: { mode: 'create' }},
+        { path: '/indirectos/:id/edit', component: IndirectoForm, meta: { mode: 'edit' }},
+
+        { path: '/indices/create', component: IndiceForm, meta: { mode: 'create' }},
+        { path: '/indices/:id/edit', component: IndiceForm, meta: { mode: 'edit' }},
 
         { path: '/users', component: UserIndex},
         { path: '/users/create', component: UserForm, meta: { mode: 'create' }},
@@ -158,6 +183,11 @@ const router = new VueRouter({
         { path: '/ofertas', component: OfertaIndex},
         { path: '/ofertas/create', component: OfertaForm, meta: { mode: 'create' }},
         { path: '/ofertas/:id/edit', component: OfertaForm, meta: { mode: 'edit' }},
+        { path: '/ofertas/:id', component: OfertaShow },
+
+        { path: '/servicios', component:ServicioIndex},
+        { path: '/servicios/create', component: ServicioForm, meta: { mode: 'create' }},
+        { path: '/servicios/:id/edit', component: ServicioForm, meta: { mode: 'edit' }},
 
         { path: '/zonas', component: ZonaIndex},
         { path: '/zonas/create', component: ZonaForm, meta: { mode: 'create' }},

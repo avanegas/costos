@@ -26,7 +26,7 @@ class PostController extends Controller
     {
         $this->middleware('auth');
     }
-    */     
+    */
     public function index()
     {
         $posts = Post::with(['user','category'])->orderBy('created_at', 'desc')->get();
@@ -91,7 +91,6 @@ class PostController extends Controller
     public function edit(Request $request, $id)
     {
         $form = Post::where('id', $id)->with(['comments', 'comments.user', 'user', 'category', 'tags'])->first();
-
         //$this->authorize('pass', $post);
 
         $categories = Category::orderBy('name', 'ASC')->get();  //pluck('name', 'id');

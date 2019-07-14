@@ -1,93 +1,113 @@
 <template>
-	<div class="recipe__show">
-		<div class="recipe__header">
-			<h5>{{action}} Nota</h5>
-			<div>
-				<button class="btn btn__primary" @click="save" :disabled="isProcessing">Save</button>
-				<button class="btn" @click="$router.back()" :disabled="isProcessing">Cancel</button>
-			</div>
-		</div>
-		<br>
-		<div class="image__show">
-			<div class="recipe__box">
-				<image-upload v-model="form.image"></image-upload>
-				<small class="error__control" v-if="error.image">{{error.image[0]}}</small>
-			</div>
-		</div>
-		<div class="recipe__details">
-			<div class="recipe__box">
-				<div class="form__group">
-					<label for="category_id">Categoría</label>
-					<select id="category_id" name="category_id" class="form__control" v-model="form.category_id">
-						<option disabled value="">seleccione</option>
-						<option v-for="c in categories" :value="c.id" selected = " form.category_id == c.id ? true : false ">{{ c.name }}</option>
-					</select>
-				</div>
-				<div class="form__group">
-					<label>Titulo</label>
-					<input type="text" class="form__control" v-model="form.name">
-					<small class="error__control" v-if="error.name">{{error.name[0]}}</small>
-				</div>
-				<div class="form__group">
-					<label>Contenido</label>
-					<textarea class="form__control form__description" v-model="form.content"></textarea>
-					<small class="error__control" v-if="error.content">{{error.content[0]}}</small>
-				</div>
-				<div class="form__group">
-					<label>Asociaciones</label>
-					<input type="text" class="form__control" v-model="form.tags">
-					<small class="error__control" v-if="error.tags">{{error.tags[0]}}</small>
-				</div>
-			</div>
-		</div>
+	<div class="row">
+        <div class="col-md">
+            <div class="form-group row">
+                <div class="form-group col-10">
+                    <h5>{{action}} Oferta</h5>
+                </div>
+                <div>
+                    <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing">Save</button>
+                    <template v-if="action == 'Update'">
+                        <button type="button" class="btn btn-danger btn-sm" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+                    </template>
+                    <button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card card-body">
+                    <div class="image-show">
+                        <div class="card-body">
+                            <image-upload v-model="form.file"></image-upload>
+                            <small class="error-control" v-if="error.file">{{error.errors.file[0]}}</small>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label>Oferta</label>
+                                <input type="text" class="form-control" v-model="form.name">
+                                <small class="error-control" v-if="error.errors.name">{{error.errors.name[0]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Unidad</label>
+                                <input type="text" class="form-control" v-model="form.unidad">
+                                <small class="error-control" v-if="error.errors.unidad">{{error.errors.unidad[0]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Precio</label>
+                                <input type="text" class="form-control" v-model="form.precio">
+                                <small class="error-control" v-if="error.errors.precio">{{error.errors.precio[0]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Stock</label>
+                                <input type="text" class="form-control" v-model="form.stock">
+                                <small class="error-control" v-if="error.errors.stock">{{error.errors.stock[0]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <label>Descripción</label>
+                                <textarea class="form-control form-description" v-model="form.descripcion"></textarea>
+                                <small class="error-control" v-if="error.errors.descripcion">{{error.errors.descripcion[0]}}</small>
+                            </div>
+                            <div class="form-group">
+                                <p>Estado de la oferta</p>
+                                <input type="radio" id="DRAFT" value="DRAFT" v-model="form.status">
+                                <label for="DRAFT">DRAFT</label>
+                                <input type="radio" id="PUBLISHED" value="PUBLISHED" v-model="form.status">
+                                <label for="PUBLISHED">PUBLISHED</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</div>
 </template>
 <script type="text/javascript">
 	import Vue from 'vue'
+    import Auth from '../../store/auth'
 	import Flash from '../../helpers/flash'
-	import { get, post } from '../../helpers/api'
+	import { get, post, del } from '../../helpers/api'
 	import { toMulipartedForm } from '../../helpers/form'
 	import ImageUpload from '../../components/ImageUpload.vue'
-
 	export default {
 		components: {
 			ImageUpload
 		},
 		data() {
 			return {
-				categories:[],
-
+                authState: Auth.state,
 				form: {},
-				error: {},
+				error: {
+                    errors:{}
+                },
 				isProcessing: false,
-				initializeURL: `/api/posts/create`,
-				storeURL: `/api/posts`,
+				initializeURL: `/api/ofertas/create`,
+				storeURL: `/api/ofertas`,
 				action: 'Create'
 			}
 		},
 		created() {
 			if(this.$route.meta.mode === 'edit') {
-				this.initializeURL = `/api/posts/${this.$route.params.id}/edit`
-				this.storeURL = `/api/posts/${this.$route.params.id}?_method=PUT`
+				this.initializeURL = `/api/ofertas/${this.$route.params.id}/edit`
+				this.storeURL = `/api/ofertas/${this.$route.params.id}?_method=PUT`
 				this.action = 'Update'
 			}
 			get(this.initializeURL)
 			.then((res) => {
 				Vue.set(this.$data, 'form', res.data.form)
-			}),
-			get(`/api/categories`)
-			.then((res) => {
-				this.categories = res.data.categories
 			})
 		},
 		methods: {
 			save() {
+                this.isProcessing = true;
+                this.form.user_id = this.authState.user_id;
 				const form = toMulipartedForm(this.form, this.$route.meta.mode)
 				post(this.storeURL, form)
 				.then((res) => {
 					if(res.data.saved) {
 						Flash.setSuccess(res.data.message)
-						this.$router.push(`/posts/${res.data.id}`)
+						this.$router.push(`/ofertas/${res.data.id}`)
 					}
 					this.isProcessing = false
 				})
@@ -99,7 +119,10 @@
 				})
 			},
 			remove() {
-				alert('borrar');
+                del(`/api/ofertas/${this.$route.params.id}`).then((res) => {
+                    Flash.setSuccess('Ha eliminado correctamente la Oferta!')
+                    this.$router.back()
+                });
 			}
 		}
 	}

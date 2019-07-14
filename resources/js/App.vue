@@ -14,15 +14,15 @@
                         <router-link class="nav-link" to="/material">Materiales</router-link>
                         <router-link class="nav-link" to="/obrero">Obreros</router-link>
                         <router-link class="nav-link" to="/transporte">Transportes</router-link>
-                        <router-link class="nav-link" to="#">Generales</router-link>
-                        <router-link class="nav-link" to="#">Indirectos</router-link>
-                        <router-link class="nav-link" to="#">Indices</router-link>
+                        <router-link class="nav-link" to="/general">Generales</router-link>
+                        <router-link class="nav-link" to="/indirecto">Indirectos</router-link>
+                        <router-link class="nav-link" to="/indice">Indices</router-link>
                     </nav>
                 </li>
                 <li  class="nav-item"><router-link class="nav-link" to="/precios">Precios</router-link></li>
                 <li  class="nav-item"><router-link class="nav-link" to="/proyectos">Proyectos</router-link></li>
                 <li  class="nav-item"><router-link class="nav-link" to="/oferta">Ofertas</router-link></li>
-                <li  class="nav-item"><router-link class="nav-link" to="#">Servicios</router-link></li>
+                <li  class="nav-item"><router-link class="nav-link" to="/servicio">Servicios</router-link></li>
             </ul>
             <ul class="navbar-nav justify-content-right">
                 <li class="nav-item" v-if="auth">
@@ -42,7 +42,7 @@
                     <nav class="submenu">
                         <router-link class="nav-link" :to="`/posts/${authState.user_id}`" >Artículos</router-link>
                         <router-link class="nav-link" :to="`/ofertas/${authState.user_id}`" >Ofertas</router-link>
-                        <router-link class="nav-link" to="#" >Servicios</router-link>
+                        <router-link class="nav-link" to="/servicios" >Servicios</router-link>
                     </nav>
                 <li class="nav-item" v-if="guest"><router-link class="nav-link" to="/login">INICIAR</router-link></li>
                 <li class="nav-item" v-if="guest"><router-link class="nav-link" to="/register">REGISTRO</router-link></li>
@@ -50,7 +50,7 @@
                     <a class="nav-link" href="#">{{ authState.user_id }}</a>
                     <nav class="submenu">
                         <router-link class="nav-link" to="/users" v-if="auth" >Administrar</router-link>
-                        <router-link class="nav-link" to="/profile" v-if="auth" >Perfil</router-link>
+                        <router-link class="nav-link" to="/profiles" v-if="auth" >Perfil</router-link>
                         <a class="nav-link" href="#" @click.stop="logout" v-if="auth">SALIR</a>
                     </nav>
                 </li>

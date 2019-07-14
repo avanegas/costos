@@ -87,7 +87,6 @@
 		data() {
 			return {
 				authState: Auth.state,
-				select: false,
 				categories:[],
 				tags:[],
 				form: {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use App\User;
 use Hash;
 
@@ -17,9 +18,9 @@ class AuthController extends Controller
     public function register(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|between:6,25|confirmed'
+            'name'      => 'required|max:255',
+            'email'     => 'required|email|unique:users',
+            'password'  => 'required|between:6,25|confirmed'
         ]);
 
         $user = new User($request->all());
@@ -44,7 +45,7 @@ class AuthController extends Controller
 
         if($user && Hash::check($request->password, $user->password)) {
             // generate new api token
-            $user->api_token = str_random(60);
+            $user->api_token = Str::random(60);
             $user->save();
 
             return response()
@@ -57,7 +58,7 @@ class AuthController extends Controller
 
         return response()
             ->json([
-                'email' => ['No esta registrado este email con este password!']
+                'authenticated' => false,
             ], 422);
     }
 

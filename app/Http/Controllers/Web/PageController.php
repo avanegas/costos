@@ -29,7 +29,15 @@ use App\User;
 
 class PageController extends Controller
 {
-    
+    public function general()
+    {
+        $general = General::with(['zona', 'user', 'moneda'])->orderBy('name', 'desc')->get();
+
+        return response()
+            ->json(['general' => $general
+            ]);
+    }
+
     public function blog()
     {
     	$posts = Post::where('status', 'PUBLISHED')->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->get();
@@ -106,13 +114,39 @@ class PageController extends Controller
         ]);
     }
 
+    public function indirecto()
+    {
+        $indirecto = Indirecto::orderBy('id', 'desc')->get();
+
+        return response()
+            ->json(['indirecto' => $indirecto
+            ]);
+    }
+
+    public function indice()
+    {
+        $indice = Indice::orderBy('name', 'desc')->get();
+
+        return response()
+            ->json(['indice' => $indice
+            ]);
+    }
+
     public function oferta()
     {
-        $ofertas = Oferta::with(['user'])->orderBy('updated_at', 'desc')->get();
+        $ofertas = Oferta::where('status', 'PUBLISHED')->with(['user'])->orderBy('updated_at', 'desc')->get();
 
         return response()
             ->json(['ofertas' => $ofertas
         ]);
     }
 
+    public function servicio()
+    {
+        $servicios = Servicio::with(['user'])->orderBy('name', 'desc')->get();
+
+        return response()
+            ->json(['servicios' => $servicios
+            ]);
+    }
 }

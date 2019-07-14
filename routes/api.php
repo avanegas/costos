@@ -7,17 +7,22 @@ Route::post('login', 			'AuthController@login');
 Route::post('logout',			'AuthController@logout');
 Route::post('register',			'AuthController@register');
 
-Route::get('profile',			'ProfileController@edit');
-Route::post('profile',			'ProfileController@update');
+Route::resource('profiles',	'ProfileController');
+Route::resource('generals',	'GeneralController');
+Route::resource('indirectos',	'IndirectoController');
+Route::resource('indices',	'IndiceController');
 
 Route::get('/post/{slug}', 		'Web\PageController@post')->name('post');
 Route::get('/category/{slug}', 	'Web\PageController@category')->name('category');
 Route::get('/tag/{slug}', 		'Web\PageController@tag')->name('tag');
 
+Route::get('/general',     		'Web\PageController@general')->name('general');
 Route::get('/equipo',      		'Web\PageController@equipo')->name('equipo');
 Route::get('/material',      	'Web\PageController@material')->name('material');
 Route::get('/obrero',      		'Web\PageController@obrero')->name('obrero');
 Route::get('/transporte',      	'Web\PageController@transporte')->name('transporte');
+Route::get('/indirecto',      		'Web\PageController@indirecto')->name('indirecto');
+Route::get('/indice',      		'Web\PageController@indice')->name('indice');
 Route::get('/oferta',      		'Web\PageController@oferta')->name('oferta');
 
 //admin

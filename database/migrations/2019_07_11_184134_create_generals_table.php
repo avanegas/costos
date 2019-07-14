@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOfertasTable extends Migration
+class CreateGeneralsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateOfertasTable extends Migration
      */
     public function up()
     {
-        Schema::create('ofertas', function (Blueprint $table) {
+        Schema::create('generals', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned()->index();
-            $table->string('name');
-            $table->string('unidad');
-            $table->mediumText('descripcion')->nullable();
-            $table->decimal('stock',9,2);
-            $table->decimal('precio',9,2);
-            $table->string('file')->default('test.png');
-            $table->enum('status', ['PUBLISHED', 'DRAFT'])->default('DRAFT');
+            $table->integer('zona_id');
+            $table->integer('country_id');
+            $table->integer('precision');
+            $table->integer('iva1');
+            $table->integer('iva2');
 
             //relation
             $table->foreign('user_id')->references('id')->on('users')
@@ -40,6 +38,6 @@ class CreateOfertasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ofertas');
+        Schema::dropIfExists('generals');
     }
 }

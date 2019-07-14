@@ -60,6 +60,9 @@
                         <template v-else-if= "lista === 'posts'">
                             {{ filteredData[i].name }}
                         </template>
+                        <template v-else-if= "lista === 'ofertas'">
+                            {{ filteredData[i].name }}
+                        </template>
                         <template v-else-if= "lista === 'categories'">
                             {{ filteredData[i].name }}
                         </template>
@@ -90,6 +93,11 @@
 
                     <template v-else-if = "index === 2">
                         <template v-if= "lista === 'posts'">
+                            <span >
+                                <img :src="`../images/${filteredData[i].file}`" width="75px" class="img-thumbnail">
+                            </span>
+                        </template>
+                        <template v-else-if= "lista === 'ofertas'">
                             <span >
                                 <img :src="`../images/${filteredData[i].file}`" width="75px" class="img-thumbnail">
                             </span>
@@ -180,6 +188,11 @@
                 
                     switch (this.lista) {
                         case "posts":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "ofertas":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;

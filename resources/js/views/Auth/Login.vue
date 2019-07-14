@@ -75,6 +75,7 @@
                     .catch((err) => {
                         if(err.response.status === 422) {
                             this.error = err.response.data
+                            Flash.setSuccess('Imposible iniciar sesión.')
                         }
                         this.isProcessing = false
                     })

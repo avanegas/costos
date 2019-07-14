@@ -5,6 +5,7 @@ use App\Repositories\User\EloquentUserRepository;
 use Spatie\Permission\Traits\HasRoles;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
+use Illuminate\Support\Str;
 use App\User;
 
 class UsersTableSeeder extends Seeder
@@ -22,8 +23,8 @@ class UsersTableSeeder extends Seeder
         $user = User::create([
         	'name'      => 'Angel Vanegas',
         	'email'     => 'avanepe@hotmail.com',
-        	'password'  => '$2y$10$4ZrcNsb3yeQ9DnYalzqLhOFV996gUQjUKrRW8nnutgN5/M.e4rsCC',   //alvape14
-            'api_token' => str_random(60)
+        	'password'  => 'alvape14',
+            'api_token' => Str::random(60)
         ]);
 
         factory(User::class, 9)->create();
