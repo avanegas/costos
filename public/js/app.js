@@ -2014,7 +2014,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     preview: {
       type: [String, File],
-      default: null
+      "default": null
     }
   },
   data: function data() {
@@ -2081,7 +2081,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     value: {
       type: [String, File],
-      default: null
+      "default": null
     }
   },
   methods: {
@@ -2580,13 +2580,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     initialize: {
-      default: null
+      "default": null
     },
     url: {
       required: true
     },
     tabindex: {
-      default: 0
+      "default": 0
     }
   },
   data: function data() {
@@ -2947,7 +2947,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -3131,7 +3131,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this.error = err.response.data;
           _helpers_flash__WEBPACK_IMPORTED_MODULE_0__["default"].setSuccess('Imposible iniciar sesión.');
@@ -3233,7 +3233,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this.error = err.response.data;
         }
@@ -3373,7 +3373,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -3581,7 +3581,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log('voy a emitir');
 
         _this.$emit('new', form);
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this.error = err.response.data;
         }
@@ -3718,7 +3718,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -3935,7 +3935,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -4134,7 +4134,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -4333,7 +4333,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -4538,7 +4538,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -4757,7 +4757,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -4981,7 +4981,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -5196,7 +5196,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -5421,7 +5421,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -5767,7 +5767,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -6304,7 +6304,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -7029,7 +7029,7 @@ function initialize(to) {
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -7444,7 +7444,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -8383,7 +8383,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         _this2.isProcessing = false;
-      }).catch(function (err) {
+      })["catch"](function (err) {
         if (err.response.status === 422) {
           _this2.error = err.response.data;
         }
@@ -23552,7 +23552,7 @@ return jQuery;
   var undefined;
 
   /** Used as the semantic version number. */
-  var VERSION = '4.17.14';
+  var VERSION = '4.17.15';
 
   /** Used as the size to enable large array optimizations. */
   var LARGE_ARRAY_SIZE = 200;
