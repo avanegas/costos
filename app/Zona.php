@@ -26,6 +26,11 @@ class Zona extends Model
       return $this->belongsTo(User::class);
   }
 
+    public function general()
+    {
+        return $this->belongsTo(General::class);
+    }
+
   public function grupo_equipos()
   {
       return $this->hasMany(GrupoEquipo::class);

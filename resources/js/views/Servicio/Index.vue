@@ -1,5 +1,5 @@
 <template>
     <div>
-        Indice
+        Indice de servicios
     </div>
 </template>

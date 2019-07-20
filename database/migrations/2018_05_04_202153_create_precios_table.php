@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePreciosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('precios', function (Blueprint $table) {
@@ -22,15 +17,20 @@ class CreatePreciosTable extends Migration
             $table->mediumText('detalle');
             $table->decimal('directo');
             $table->decimal('indirecto');
+
+            //relation
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('grupo_precio_id')->references('id')->on('grupo_precios')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('precios');

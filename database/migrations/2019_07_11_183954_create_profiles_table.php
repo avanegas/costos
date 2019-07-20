@@ -15,26 +15,24 @@ class CreateProfilesTable extends Migration
     {
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id')->unsigned()->index();
-            //$table->integer('theme_id')->unsigned()->default(1);
-            $table->string('location')->nullable();
+            $table->integer('user_id')->unsigned();
+            $table->enum('tipo', ['ARQUITECTO', 'INGENIERO','ESPECIALISTA','OBREROS','PROFESIONAL','PROVEEDOR','ND'])->default('ND');
             $table->text('bio')->nullable();
+            $table->string('phone')->nullable();
             $table->string('twitter_username')->nullable();
             $table->string('github_username')->nullable();
+            $table->string('location')->nullable();
             $table->string('avatar')->nullable();
             $table->boolean('avatar_status')->default(0);
+            $table->enum('status', ['PUBLIC', 'PRIVATE'])->default('PRIVATE');
+            $table->boolean('activated')->default(0);
 
             //relation
             //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('cascade');
 
-            //$table->foreign('theme_id')->references('id')->on('themes');
-            //$table->foreign('theme_id')->references('id')->on('themes')
-            //    ->onDelete('cascade')
-            //    ->onUpdate('cascade');
-            //$table->timestamps();
+            $table->timestamps();
         });
     }
 

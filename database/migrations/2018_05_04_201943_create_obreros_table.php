@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateObrerosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('obreros', function (Blueprint $table) {
@@ -19,15 +14,16 @@ class CreateObrerosTable extends Migration
             $table->string('name')->unique();
             $table->string('jornalhora');
             $table->string('factor');
+
+            //relation
+            $table->foreign('grupo_obrero_id')->references('id')->on('grupo_obreros')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('obreros');

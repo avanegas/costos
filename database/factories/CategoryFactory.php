@@ -1,14 +1,18 @@
 <?php
 
-use Faker\Generator as Faker;
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-$factory->define(App\Models\Post\Category::class, function (Faker $faker) {
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use App\Models\Post\Category;
+
+$factory->define(Category::class, function (Faker $faker) {
 	
-	$title = $faker->sentence(6, true);
+	$title = $faker->sentence(2, true);
 
     return [
         'name' => $title,
-        'slug' => str_slug($title),
+        'slug' => Str::slug($title),
         'body' => $faker->text(40),
     ];
 });

@@ -7,17 +7,11 @@ use App\Models\Proyecto\ProyectoRubro;
 
 class ProyectosTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
         $faker = Factory::create();
-
-        Proyecto::truncate();
-        ProyectoRubro::truncate();
+        //Proyecto::truncate();
+        //ProyectoRubro::truncate();
 
         foreach(range(1, 20) as $i) {
             $rubros = collect();
@@ -28,7 +22,7 @@ class ProyectosTableSeeder extends Seeder
                     'proyecto_id' => $i,
                     'precio_id'   => mt_rand(100, 999),
                     'orden'       => $j,
-                    'rubro'       => $faker-> sentence($nbWords = 4, $variableNbWords = true),
+                    'rubro'       => $faker-> sentence($nbWords = 2, $variableNbWords = true),
                     'unidad'      => $faker-> word(),
                     'cantidad'    => $cantidad,
                     'precio'      =>  $precio,
@@ -42,9 +36,9 @@ class ProyectosTableSeeder extends Seeder
 
             $proyecto  = Proyecto::create([
                 'user_id'       => mt_rand(1, 10),
-                'name'          => $faker->sentence($nbWords = 6, $variableNbWords = true),
+                'name'          => $faker->sentence($nbWords = 2, $variableNbWords = true),
                 'contratante'   => $faker->catchPhrase,
-                'ubicacion'     => $faker->sentence($nbWords = 4, $variableNbWords = true),
+                'ubicacion'     => $faker->sentence($nbWords = 2, $variableNbWords = true),
                 'oferente'      => $faker->name(),
                 'entrega'       => $faker->date(),
                 'referencial'   => $faker->numberBetween(1000, 200000),
@@ -53,7 +47,7 @@ class ProyectosTableSeeder extends Seeder
                 'distancia'     => $faker->numberBetween(1, 100),
                 'sub_total'     => $subTotal,
                 'gran_total'    => $total,
-                'formato'       => $faker->numberBetween(1, 4),
+                'formato'       => 5,
                 'precision'     => $faker->numberBetween(2, 4),
                 'representante' => $faker->name()
             ]);

@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateTransportesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('transportes', function (Blueprint $table) {
@@ -20,15 +15,16 @@ class CreateTransportesTable extends Migration
             $table->string('unidad');
             $table->string('tipo');
             $table->string('tarifa');
+
+            //relation
+            $table->foreign('zona_id')->references('id')->on('zonas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('transportes');

@@ -1,16 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Oferta\Oferta;
 
 class OfertasTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        factory(App\Models\Oferta\Oferta::class, 20)->create();
+        factory(Oferta::class, 20)->create();
     }
 }

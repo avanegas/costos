@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateProyectosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('proyectos', function (Blueprint $table) {
@@ -30,15 +25,16 @@ class CreateProyectosTable extends Migration
             $table->integer('formato')->unsigned();
             $table->integer('precision')->unsigned();
             $table->string('representante');
+
+            //relation
+            $table->foreign('user_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('proyectos');

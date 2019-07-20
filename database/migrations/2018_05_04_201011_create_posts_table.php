@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePostsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('posts', function (Blueprint $table) {
@@ -19,7 +14,7 @@ class CreatePostsTable extends Migration
             $table->integer('category_id')->unsigned();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->mediumText('excerpt')->nullable();
+            $table->mediumText('excerpt');
             $table->text('body');
             $table->string('file')->default('test.png');
             $table->enum('status', ['PUBLISHED', 'DRAFT'])->default('DRAFT');
@@ -37,11 +32,6 @@ class CreatePostsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('posts');

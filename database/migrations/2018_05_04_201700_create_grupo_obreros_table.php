@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateGrupoObrerosTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('grupo_obreros', function (Blueprint $table) {
@@ -18,15 +13,16 @@ class CreateGrupoObrerosTable extends Migration
             $table->integer('zona_id')->unsigned();
             $table->string('name')->unique();
             $table->mediumText('description');
+
+            //relation
+            $table->foreign('zona_id')->references('id')->on('zonas')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('grupo_obreros');

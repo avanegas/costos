@@ -1,8 +1,11 @@
 <?php
 
-use Faker\Generator as Faker;
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-$factory->define(App\Models\Proyecto\Proyecto::class, function (Faker $faker) {
+use Faker\Generator as Faker;
+use App\Models\Proyecto\Proyecto;
+
+$factory->define(Proyecto::class, function (Faker $faker) {
     return [
         //
     ];

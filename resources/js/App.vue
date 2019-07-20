@@ -50,7 +50,7 @@
                     <a class="nav-link" href="#">{{ authState.user_id }}</a>
                     <nav class="submenu">
                         <router-link class="nav-link" to="/users" v-if="auth" >Administrar</router-link>
-                        <router-link class="nav-link" to="/profiles" v-if="auth" >Perfil</router-link>
+                        <router-link class="nav-link" :to="`/profiles/${authState.user_id}/edit`" v-if="auth" >Perfil</router-link>
                         <a class="nav-link" href="#" @click.stop="logout" v-if="auth">SALIR</a>
                     </nav>
                 </li>

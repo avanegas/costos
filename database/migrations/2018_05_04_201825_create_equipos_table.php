@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateEquiposTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('equipos', function (Blueprint $table) {
@@ -20,15 +15,16 @@ class CreateEquiposTable extends Migration
             $table->string('marca')->nullable();
             $table->string('tipo')->nullable();
             $table->string('tarifa');
+
+            //relation
+            $table->foreign('grupo_equipo_id')->references('id')->on('grupo_equipos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('equipos');

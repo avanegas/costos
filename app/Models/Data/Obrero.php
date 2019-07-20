@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Presenters\DatePresenter;
 use App\Models\Data\GrupoObrero;
 
-use App\Zona;
-use App\User;
-
-
 class Obrero extends Model
 {
 	use DatePresenter;

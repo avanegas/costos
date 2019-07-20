@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePrecioEquiposTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('precio_equipos', function (Blueprint $table) {
@@ -22,14 +17,18 @@ class CreatePrecioEquiposTable extends Migration
             $table->decimal('cantidad');
             $table->decimal('rendimiento');
             $table->decimal('total');
+
+            //relation
+            $table->foreign('precio_id')->references('id')->on('precios')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('equipo_id')->references('id')->on('equipos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('precio_equipos');

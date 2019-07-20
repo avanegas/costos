@@ -1,8 +1,11 @@
 <?php
 
-use Faker\Generator as Faker;
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-$factory->define(App\Models\Oferta\Oferta::class, function (Faker $faker) {
+use Faker\Generator as Faker;
+use App\Models\Oferta\Oferta;
+
+$factory->define(Oferta::class, function (Faker $faker) {
     return [
             'user_id'		=> rand(1, 10),
             'name'			=> $faker->sentence(4, true),

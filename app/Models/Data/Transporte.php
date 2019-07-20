@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 use App\Presenters\DatePresenter;
 
 use App\Zona;
-use App\User;
-
 
 class Transporte extends Model
 {

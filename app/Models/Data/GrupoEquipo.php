@@ -7,8 +7,6 @@ use App\Presenters\DatePresenter;
 use App\Models\Data\Equipo;
 
 use App\Zona;
-use App\User;
-
 
 class GrupoEquipo extends Model
 {

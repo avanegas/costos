@@ -1,16 +1,12 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Post\Category;
 
 class CategoriesTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
     public function run()
     {
-        factory(App\Models\Post\Category::class, 10)->create();
+        factory(Category::class, 10)->create();
     }
 }

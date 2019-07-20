@@ -7,7 +7,6 @@ use App\Presenters\DatePresenter;
 use App\Models\Data\Obrero;
 
 use App\Zona;
-use App\User;
 
 class GrupoObrero extends Model
 {
