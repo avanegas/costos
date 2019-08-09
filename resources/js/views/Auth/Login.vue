@@ -61,7 +61,7 @@
         methods: {
             login() {
                 this.isProcessing = true
-                this.error = {}
+                this.error.errors = {}
                 post('api/login', this.form)
                     .then((res) => {
                         if(res.data.authenticated) {

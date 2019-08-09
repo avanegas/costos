@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md">
-            <div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
                 <div class="form-group col-10">
                     <h5>{{action}} Precio</h5>
                 </div>
@@ -9,7 +9,7 @@
                     <button type="button" class="btn btn-primary btn-sm" @click="save" :disabled="isProcessing"> Save</button>
                     <button type="button" class="btn btn-secondary btn-sm" @click="$router.back()" :disabled="isProcessing"> Cancel</button>
                 </div>
-            </div> 
+            </div>
 
             <div class="card" >
                 <div class="card-block">
@@ -254,13 +254,13 @@
                                     << 1.2.3.4..>>
                                 </slot>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
             </transition>
             <!-- Fin de Modal -->
-        </div>    
+        </div>
     </div>
 </template>
 <script type="text/javascript">
@@ -378,7 +378,7 @@
                         .then((res) => {
                             //console.log(res);
                             this.gridData = res.data.equipos
-                        })        
+                        })
                         break;
                     }
 
@@ -434,7 +434,7 @@
 
                     case "equipos":
                     {
-                        console.log(arrayItem.id, this.indice, this.lista, this.form.equipos.length);                        
+                        console.log(arrayItem.id, this.indice, this.lista, this.form.equipos.length);
                         if( (5-this.form.equipos.length) > 0){
                             if(this.indice !== 0){
                                 //this.equipo.precio_id = this.form.precio_id;
@@ -454,7 +454,7 @@
                                 tarifa:arrayItem.tarifa,
                                 rendimiento:0,
                                 total:0
-                                });                                
+                                });
                             }
                         }
                         this.arrayItem={};

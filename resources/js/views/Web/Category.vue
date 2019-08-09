@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col-md">
-			<div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
 				<h5 class="col-7"> Apuntes, detalles y teoría de la construcción.</h5>
 				<div class="col-4 form-group">
 					<input
@@ -15,7 +15,7 @@
 			<div class="card mb-3 mt-3" v-for="post in searchPosts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
-				</div>	
+				</div>
 				<div class="card-body">
 					<img :src="`../images/${post.file}`" v-if="post.file" class="card-img-top">
 					<p class="card-title">CATEGORIA: {{post.category.name}}</p>

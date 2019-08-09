@@ -9,7 +9,6 @@ use Hash;
 
 class AuthController extends Controller
 {
-    /**/
 	public function __construct()
 	{
 	    $this->middleware('auth:api')->only('logout');
@@ -17,14 +16,14 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'name'      => 'required|max:255',
             'email'     => 'required|email|unique:users',
             'password'  => 'required|between:6,25|confirmed'
         ]);
 
         $user = new User($request->all());
-        $user->password = bcrypt($request->password);
+       // $user->password = bcrypt($request->password);
         $user->save();
 
         return response()
@@ -35,9 +34,9 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $this->validate($request, [
+        $request->validate([
             'email' => 'required|email',
-            'password' => 'required|between:6,25'
+            'password' => 'required|between:6,25',
         ]);
 
         $user = User::where('email', $request->email)

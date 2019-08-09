@@ -9,7 +9,10 @@ import Post from '../views/Web/Post.vue'
 import Category from '../views/Web/Category.vue'
 import Tag from '../views/Web/Tag.vue'
 
+import ProfileIndex from '../views/Profile/Index.vue'
+import ProfileShow from '../views/Profile/Show.vue'
 import ProfileForm from '../views/Profile/Form.vue'
+
 import GeneralForm from '../views/General/Form.vue'
 import IndirectoForm from '../views/Indirecto/Form.vue'
 import IndiceForm from '../views/Indice/Form.vue'
@@ -103,8 +106,10 @@ const router = new VueRouter({
         { path: '/oferta', component: Oferta},
         { path: '/servicio', component: Servicio},
 
+        { path: '/profiles', component: ProfileIndex},
         { path: '/profiles/create', component: ProfileForm, meta: { mode: 'create' }},
         { path: '/profiles/:id/edit', component: ProfileForm, meta: { mode: 'edit' }},
+        { path: '/profiles/:id', component: ProfileShow },
 
         { path: '/generals/create', component: GeneralForm, meta: { mode: 'create' }},
         { path: '/generals/:id/edit', component: GeneralForm, meta: { mode: 'edit' }},
@@ -165,7 +170,7 @@ const router = new VueRouter({
         { path: '/transportes/create', component: TransporteForm, meta: { mode: 'create' }},
         { path: '/transportes/:id/edit', component: TransporteForm, meta: { mode: 'edit' }},
 
- 
+
         { path: '/grupo_precios', component: GrupoPrecioIndex},
         { path: '/grupo_precios/create', component: GrupoPrecioForm, meta: { mode: 'create' }},
         { path: '/grupo_precios/:id/edit', component: GrupoPrecioForm, meta: { mode: 'edit' }},

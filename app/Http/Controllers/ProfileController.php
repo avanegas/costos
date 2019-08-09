@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Profile;
+use App\User;
 
 class ProfileController extends Controller
 {
@@ -23,7 +25,13 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        //
+        $form = Profile::form();
+
+        return response()
+            ->json([
+                'form' => $form
+            ]);
+
     }
 
     /**
@@ -45,7 +53,11 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = Profile::where('id', $id)->with([ 'user'])->first();
+
+        return response()
+            ->json(['profile' => $profile
+            ]);
     }
 
     /**
@@ -54,9 +66,15 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Request $request, $id)
     {
-        //
+        $form = Profile::where('id', $id)->with(['user'])->first();
+        //$this->authorize('pass', $post);
+
+        return response()
+            ->json([
+                'form'          => $form
+            ]);
     }
 
     /**

@@ -4,7 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Validation\Rule;
+use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
@@ -16,16 +17,16 @@ use Auth;
 class UserController extends Controller
 {
     /*
-    public function __construct() 
+    public function __construct()
     {
         $this->middleware(['auth', 'isAdmin']);   //middleware
     }
     */
 
-    public function index(Request $request)
+    public function index()
     {
-        $users = User::with('roles')
-                ->orderBy('id', 'ASC')->get();
+        $users = User::with('roles')->orderBy('created_at', 'DESC')->get();
+
         return response()
             ->json(['users' => $users]);
     }
@@ -33,17 +34,17 @@ class UserController extends Controller
     public function create()
     {
         $form = User::form();
+        $roles = Role::pluck('name', 'id');
+
         return response()
-            ->json(['form' => $form]);
+            ->json([
+                'form' => $form,
+                'roles' => $roles
+                ]);
     }
 
-    public function store(Request $request)
+    public function store(UserStoreRequest $request)
     {
-        $this->validate($request, [
-            'name'=>'required|max:120',
-            'email'=>'required|email|unique:users',
-            'password'=>'required|min:6|confirmed'
-        ]);
         $user = User::create($request->only('email', 'name', 'password'));
 
         $roles = $request['roles[]']; //Retrieving the roles field
@@ -51,7 +52,7 @@ class UserController extends Controller
         //Checking if a role was selected
         if (isset($roles)) {
             foreach ($roles as $role) {
-                $role_r = Role::where('id', '=', $role)->firstOrFail();            
+                $role_r = Role::where('id', '=', $role)->firstOrFail();
                 $user->assignRole($role_r); //Assigning role to user
             }
         }
@@ -76,7 +77,7 @@ class UserController extends Controller
     {
         $form = User::where('id', $id)->with(['roles'])->first();
         //$form = User::findOrFail($id);
-        $roles = Role::get();
+        $roles = Role::pluck('name', 'id');
 
         return response()
             ->json([
@@ -90,27 +91,27 @@ class UserController extends Controller
         //return view('admin.users.edit', compact('user', 'roles')); //pass user and roles data to view
     }
 
-    public function update(Request $request, $id)
+    public function update(UserUpdateRequest $request, $id)
     {
-        $user = User::findOrFail($id);
+        $user = User::find($id);
 
-        $rules = [
-            'name'=>'required',
-            'email'=>'required|email|unique:users,email,'.$id
-        ];
+//        $rules = [
+//            'name'=>'required',
+//            'email'=>'required|email|unique:users,email,'.$id
+//        ];
+//
+//        if ($request->filled('password'))
+//        {
+//            $rules['password'] = ['confirmed', 'min:6'];
+//        }
+//
+//        $input = $request->only(['name', 'email', 'password']);
+//        $roles = $request->only(['role_id', 'model_type', 'model_id']);     //['roles'];
+//        $user->fill($input)->save();
 
-        if ($request->filled('password'))
-        {
-            $rules['password'] = ['confirmed', 'min:6'];
+        if (isset($roles)) {
+            $user->roles()->sync($roles);
         }
-
-        $input = $request->only(['name', 'email', 'password']);
-        $roles = $request->only(['role_id', 'model_type', 'model_id']);     //['roles'];
-        $user->fill($input)->save();
-
-        if (isset($roles)) {        
-            $user->roles()->sync($roles);          
-        }        
         else {
             $user->roles()->detach();
         }
@@ -121,7 +122,7 @@ class UserController extends Controller
             ->json([
                 'saved'   => true,
                 'id'      => $user->id,
-                'message' => 'Ha actualizado correctamente un usuario!'
+                'message' => 'Usuario actualizado con éxito!'
             ]);
 
         //return redirect()->route('users.index')
@@ -130,11 +131,13 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id); 
+        $user = User::findOrFail($id);
         $user->delete();
 
         return response()
-            ->json(['deleted' => true]);
+            ->json([
+                'deleted' => true
+            ]);
 
         //return back()->with('info', 'Eliminado correctamente');
     }

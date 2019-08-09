@@ -1,7 +1,7 @@
 <template>
     <div class="row">
-        <div class="col-md" >                
-            <div class="form-group row">
+        <div class="col-md" >
+            <div class="form-group row mb-3 mt-3">
                 <h5 class="col-7">Etiquetas de categorización específica</h5>
                 <div class="col-4 form-group">
                     <input

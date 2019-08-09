@@ -40,7 +40,7 @@ class PreciosTableSeeder extends Seeder
                     'total'      => 6.42
                 ]);
             }
-            foreach(range(1, mt_rand(3, 5)) as $k) {
+            foreach(range(1, mt_rand(3, 7)) as $k) {
                 PrecioMaterial::create([
                     'precio_id'  => $i,
                     'material_id'=> mt_rand(1, 10),
@@ -51,7 +51,7 @@ class PreciosTableSeeder extends Seeder
                     'total'      => 5.24
                 ]);
             }
-            foreach(range(1, mt_rand(3, 5)) as $l) {
+            foreach(range(1, mt_rand(3, 7)) as $l) {
                 PrecioObrero::create([
                     'precio_id'  => $i,
                     'obrero_id'  => mt_rand(1, 10),
@@ -62,7 +62,7 @@ class PreciosTableSeeder extends Seeder
                     'total'      => 6.42
                 ]);
             }
-            foreach(range(1, mt_rand(3, 5)) as $m) {
+            foreach(range(1, mt_rand(1, 4)) as $m) {
                 PrecioTransporte::create([
                     'precio_id'     => $i,
                     'transporte_id' =>mt_rand(1, 10),

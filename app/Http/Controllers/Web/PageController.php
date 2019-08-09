@@ -40,17 +40,18 @@ class PageController extends Controller
 
     public function blog()
     {
-    	$posts = Post::where('status', 'PUBLISHED')->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->get();
-        
-    	return response()
-            ->json(['posts' => $posts
-        ]);
+    	//$posts = Post::where('status', 'PUBLISHED')->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->get();
+
+    	//return response()
+        //    ->json(['posts' => $posts
+        //]);
+        Return Post::where('status', 'PUBLISHED')->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->paginate();
     }
 
     public function category($slug)
     {
         $category = Category::where('slug', $slug)->pluck('id')->first();
-        
+
         $posts = Post::where('status', 'PUBLISHED')->where('category_id', $category)->with(['user', 'category', 'comments'])->orderBy('updated_at', 'desc')->get();
 
         return response()

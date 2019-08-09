@@ -1,5 +1,7 @@
 require('./bootstrap');
+
 import Vue from 'vue'
+
 
 import vSelect from 'vue-select'
 import App from './App.vue'
@@ -10,6 +12,7 @@ router.beforeEach((to, from, next) => {
     bar.start()
     next()
 })
+
 
 Vue.component('v-select', vSelect);
 Vue.filter('formatMoney', (value) => {

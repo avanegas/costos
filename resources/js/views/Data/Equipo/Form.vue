@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md">
-			<div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
 				<div class="form-group col-10">
 					<h5>{{action}} Equipo</h5>
 				</div>
@@ -55,7 +55,7 @@
 	import { get, post, del } from '../../../helpers/api'
 	import { toMulipartedForm } from '../../../helpers/form'
 	import ImageUpload from '../../../components/ImageUpload.vue'
-		
+
 	export default {
 		components: {
 			ImageUpload

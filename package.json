@@ -21,6 +21,7 @@
         "sass": "^1.22.4",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.10",
+        "vue-infinite-loading": "^2.4.4",
         "vue-router": "^3.0.7",
         "vue-template-compiler": "^2.6.10"
     },

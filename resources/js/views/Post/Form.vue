@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col-md">
-			<div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
 				<div class="form-group col-10">
 					<h5>{{action}} Artículo</h5>
 				</div>
@@ -49,7 +49,7 @@
 								<label>Contenido</label>
 								<textarea class="form-control form-description" v-model="form.body"></textarea>
 								<small class="error-control" v-if="error.errors.body">{{error.errors.body[0]}}</small>
-							</div>			
+							</div>
 							<div class="form-group">
 								<p>Estado del artículo</p>
 								<input type="radio" id="DRAFT" value="DRAFT" v-model="form.status">
@@ -69,8 +69,8 @@
 						</div>
 					</div>
 				</div>
-			</div>		
-		</div>		
+			</div>
+		</div>
 	</div>
 </template>
 <script type="text/javascript">

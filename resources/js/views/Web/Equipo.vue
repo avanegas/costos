@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md" >
-            <div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
                 <h5 class="col-7">Equipos</h5>
                 <div class="col-4 form-group">
                     <input
@@ -26,7 +26,7 @@
                     </lista-search>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 </template>
 <script type="text/javascript">

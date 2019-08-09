@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md">
-			<div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
 				<div class="form-group col-10">
 					<h5>{{action}} Categoria</h5>
 				</div>
@@ -40,7 +40,7 @@
 	import Flash from '../../helpers/flash'
 	import { get, post, del } from '../../helpers/api'
 	import { toMulipartedForm } from '../../helpers/form'
-		
+
 	export default {
 		data() {
 			return {

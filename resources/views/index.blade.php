@@ -14,9 +14,9 @@
 </head>
 
 <body>
-
-	<div id="root"></div>
-
+	<div id="root">
+        <app></app>
+    </div>
     <script type="text/javascript" src="{{ mix('js/app.js') }}"></script>
     <script type="text/javascript">
     	let user = document.head.querySelector('meta[name="user"]');

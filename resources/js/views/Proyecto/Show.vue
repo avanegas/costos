@@ -1,7 +1,7 @@
 <template>
 	<div class="row">
 		<div class="col-md">
-			<div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
 				<div class="form-group col-10">
 					<p><strong>AUTOR: </strong>{{proyecto.user.name}}</p>
 				</div>
@@ -68,7 +68,7 @@
 							<p>{{proyecto.descuento}}</p>
 						</div>
 					</div>
-					
+
 					<h5 class="text-center">TABLA DE DESCRIPCION DE RUBROS, UNIDADES, CANTIDADES Y PRECIOS</h5>
 					<table class="table table-bordered table-striped table-sm">
 						<thead>

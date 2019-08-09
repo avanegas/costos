@@ -1,15 +1,16 @@
 <template>
     <div class="row">
         <div class="col-md">
-            <h5><i class="fa fa-address-book" aria-hidden="true"></i> Servicios
-                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Arquitectos</router-link>
-                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Especialistas</router-link>
-                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Ingenieros</router-link>
-                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Maestros/Obreros</router-link>
-                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Profesionales</router-link>
-                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Proveedores</router-link>
 
+            <h5><i class="fa fa-address-book" aria-hidden="true"></i> Servicios
+                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Proveedores</router-link>
+                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Profesionales</router-link>
+                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Maestros/Obreros</router-link>
+                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Ingenieros</router-link>
+                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Especialistas</router-link>
+                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Arquitectos</router-link>
             </h5>
+
             <hr>
             <div class="form-group row">
                 <h5 class="col-7"><i class="fa fa-users"></i> Usuarios</h5>

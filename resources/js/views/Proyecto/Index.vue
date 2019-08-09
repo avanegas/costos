@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md" >
-            <div class="form-group row">
+            <div class="form-group row mb-3 mt-3">
                 <h5 class="col-7">Proyectos</h5>
                 <div class="col-4 form-group">
                     <input
@@ -13,7 +13,7 @@
                 </div>
                 <div v-if="authState.api_token && authState.user_id === 1">
                     <router-link to="/proyectos/create" class="btn btn-primary"> Nuevo</router-link>
-                </div>                
+                </div>
             </div>
 
             <div class="card">
