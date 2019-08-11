@@ -12,7 +12,7 @@
                         v-model="searchQuery">
                 </div>
 			</div>
-			<div class="card mb-3 mt-3" v-for="post in list" :key="post.id">
+			<div class="card mb-3 mt-3" v-for="post in searchPosts" :key="post.id">
 				<div class="card-header">
 					<p>Tema creado por, {{post.user.name}}, el día<em> {{post.created_at}}.</em></p>
 				</div>
@@ -28,21 +28,17 @@
 					<p class="float-right">comentarios: {{post.comments.length}}</p>
 				</div>
 			</div>
-            <infinite-loading @infinite="infiniteHandler">
-                <div slot="no-more">Fin de archivos</div>
-                <div slot="no-result">No hay archivos</div>
-            </infinite-loading>
+<!--            <infinite-loading @infinite="infiniteHandler">-->
+<!--                <div slot="no-more">Fin de archivos</div>-->
+<!--                <div slot="no-result">No hay archivos</div>-->
+<!--            </infinite-loading>-->
 		</div>
 	</div>
 </template>
 <script type="text/javascript">
 	import Auth from '../../store/auth'
-    import infiniteLoading from "vue-infinite-loading";
-	import { get } from '../../helpers/api'
+    import { get } from '../../helpers/api'
 	export default {
-        components: {
-            infiniteLoading
-        },
 		data() {
 			return {
 				authState: Auth.state,
@@ -52,12 +48,12 @@
                 page: 0
 			}
 		},
-		//created() {
-		//	get(`/api/blog`)
-		//	.then((res) => {
-		//		this.posts = res.data.posts
-		//	})
-		//},
+		created() {
+			get(`/api/blog`)
+			.then((res) => {
+				this.posts = res.data.posts
+			})
+		},
 		computed: {
 			searchPosts: function(){
 				return this.posts.filter((post) => {
@@ -72,7 +68,6 @@
                 axios.get(url)
                     .then(response => {
                         let posts = response.data.data
-
                         if(posts.length) {
                             this.list = this.list.concat(posts)
                             $state.loaded()

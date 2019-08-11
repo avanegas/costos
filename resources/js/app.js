@@ -13,7 +13,7 @@ router.beforeEach((to, from, next) => {
     next()
 })
 
-
+Vue.component('infinite-loading', require('vue-infinite-loading').default);
 Vue.component('v-select', vSelect);
 Vue.filter('formatMoney', (value) => {
     return Number(value)

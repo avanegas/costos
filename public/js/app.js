@@ -7875,9 +7875,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_auth__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../store/auth */ "./resources/js/store/auth.js");
-/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js");
-/* harmony import */ var vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
+/* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
 //
 //
 //
@@ -7915,13 +7913,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  components: {
-    infiniteLoading: vue_infinite_loading__WEBPACK_IMPORTED_MODULE_1___default.a
-  },
   data: function data() {
     return {
       authState: _store_auth__WEBPACK_IMPORTED_MODULE_0__["default"].state,
@@ -7931,24 +7925,25 @@ __webpack_require__.r(__webpack_exports__);
       page: 0
     };
   },
-  //created() {
-  //	get(`/api/blog`)
-  //	.then((res) => {
-  //		this.posts = res.data.posts
-  //	})
-  //},
+  created: function created() {
+    var _this = this;
+
+    Object(_helpers_api__WEBPACK_IMPORTED_MODULE_1__["get"])("/api/blog").then(function (res) {
+      _this.posts = res.data.posts;
+    });
+  },
   computed: {
     searchPosts: function searchPosts() {
-      var _this = this;
+      var _this2 = this;
 
       return this.posts.filter(function (post) {
-        return "".concat(post.category.name, " ").concat(post.name).toLowerCase().includes(_this.searchQuery.toLowerCase());
+        return "".concat(post.category.name, " ").concat(post.name).toLowerCase().includes(_this2.searchQuery.toLowerCase());
       });
     }
   },
   methods: {
     infiniteHandler: function infiniteHandler($state) {
-      var _this2 = this;
+      var _this3 = this;
 
       this.page++;
       var url = 'https://costos.app/api/blog?page=' + this.page;
@@ -7956,7 +7951,7 @@ __webpack_require__.r(__webpack_exports__);
         var posts = response.data.data;
 
         if (posts.length) {
-          _this2.list = _this2.list.concat(posts);
+          _this3.list = _this3.list.concat(posts);
           $state.loaded();
         } else {
           $state.complete();
@@ -55686,7 +55681,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._l(_vm.list, function(post) {
+        _vm._l(_vm.searchPosts, function(post) {
           return _c("div", { key: post.id, staticClass: "card mb-3 mt-3" }, [
             _c("div", { staticClass: "card-header" }, [
               _c("p", [
@@ -55737,17 +55732,7 @@ var render = function() {
               ])
             ])
           ])
-        }),
-        _vm._v(" "),
-        _c("infinite-loading", { on: { infinite: _vm.infiniteHandler } }, [
-          _c("div", { attrs: { slot: "no-more" }, slot: "no-more" }, [
-            _vm._v("Fin de archivos")
-          ]),
-          _vm._v(" "),
-          _c("div", { attrs: { slot: "no-result" }, slot: "no-result" }, [
-            _vm._v("No hay archivos")
-          ])
-        ])
+        })
       ],
       2
     )
@@ -72032,6 +72017,7 @@ _router__WEBPACK_IMPORTED_MODULE_3__["default"].beforeEach(function (to, from, n
   _components_progress__WEBPACK_IMPORTED_MODULE_4__["default"].start();
   next();
 });
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('infinite-loading', __webpack_require__(/*! vue-infinite-loading */ "./node_modules/vue-infinite-loading/dist/vue-infinite-loading.js")["default"]);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_1___default.a);
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.filter('formatMoney', function (value) {
   return Number(value).toFixed(2).replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,");
