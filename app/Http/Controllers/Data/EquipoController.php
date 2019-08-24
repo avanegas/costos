@@ -74,14 +74,17 @@ class EquipoController extends Controller
                 'saved'     => true,
                 'form'      => $equipo,
                 'message'   => 'Ha actualizado correctamente el equipo!'
-                ]);
+            ]);
     }
 
     public function destroy($id)
     {
-        $equipo = Equipo::findOrFail($id)->delete();
+        $equipo = Equipo::findOrFail($id);
+        $equipo->delete();
 
         return response()
-            ->json(['deleted' => true]);
+            ->json([
+                'deleted' => true
+            ]);
     }
 }

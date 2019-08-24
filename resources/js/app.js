@@ -2,7 +2,6 @@ require('./bootstrap');
 
 import Vue from 'vue'
 
-
 import vSelect from 'vue-select'
 import App from './App.vue'
 import router from './router'

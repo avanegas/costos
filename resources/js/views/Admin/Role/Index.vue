@@ -54,7 +54,7 @@
         created() {
             get(`../api/roles`)
                 .then((res) => {
-                    console.log(res);
+                //    console.log(res);
                     this.gridData = res.data.roles
                 })
         }

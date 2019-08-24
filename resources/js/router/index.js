@@ -29,8 +29,12 @@ import Servicio from '../views/Web/Servicio.vue'
 
 import UserIndex from '../views/Admin/User/Index.vue'
 import UserForm from '../views/Admin/User/Form.vue'
+
 import RoleIndex from '../views/Admin/Role/Index.vue'
+import RoleForm from '../views/Admin/Role/Form.vue'
+
 import PermissionIndex from '../views/Admin/Permission/Index.vue'
+import PermissionForm from '../views/Admin/Permission/Form.vue'
 
 
 import CategoryIndex from '../views/Category/Index.vue'
@@ -125,8 +129,12 @@ const router = new VueRouter({
         { path: '/users/:id/edit', component: UserForm, meta: { mode: 'edit' }},
 
         { path: '/roles', component: RoleIndex},
-        { path: '/permissions', component: PermissionIndex},
+        { path: '/roles/create', component: RoleForm, meta: { mode: 'create' }},
+        { path: '/roles/:id/edit', component: RoleForm, meta: { mode: 'edit' }},
 
+        { path: '/permissions', component: PermissionIndex},
+        { path: '/permissions/create', component: PermissionForm, meta: { mode: 'create' }},
+        { path: '/permissions/:id/edit', component: PermissionForm, meta: { mode: 'edit' }},
 
         { path: '/categories', component: CategoryIndex},
         { path: '/categories/create', component: CategoryForm, meta: { mode: 'create' }},

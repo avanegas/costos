@@ -10,6 +10,7 @@ use App\Http\Requests\UserUpdateRequest;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+use Illuminate\Support\Arr;
 use App\User;
 use Session;
 use Auth;
@@ -47,22 +48,21 @@ class UserController extends Controller
     {
         $user = User::create($request->only('email', 'name', 'password'));
 
-        $roles = $request['roles[]']; //Retrieving the roles field
+        $roles = $request['roles']; //Retrieving the roles field
 
         //Checking if a role was selected
         if (isset($roles)) {
             foreach ($roles as $role) {
                 $role_r = Role::where('id', '=', $role)->firstOrFail();
-                $user->assignRole($role_r); //Assigning role to user
+                $user->assignRole($role_r);     //Assigning role to user
             }
         }
         return response()
             ->json([
-                'saved' => true,
-                'id' => $user->id,
-                'message' => 'Ha ingresado correctamente un usuario!'
+                'saved'     => true,
+                'id'        => $user->id,
+                'message'   => 'Ha ingresado correctamente un usuario!'
                 ]);
-        //return redirect()->route('users.index')->with('info', 'Usuario creado con éxito');
     }
 
     public function show($id)
@@ -73,10 +73,10 @@ class UserController extends Controller
         //return view('admin.users.show', compact('user'));
     }
 
-    public function edit(Request $request, $id)
+    public function edit( $id)
     {
-        $form = User::where('id', $id)->with(['roles'])->first();
-        //$form = User::findOrFail($id);
+        $form = User::with(['roles'])->findOrFail($id);
+
         $roles = Role::pluck('name', 'id');
 
         return response()
@@ -84,30 +84,23 @@ class UserController extends Controller
                 'form' => $form,
                 'roles' => $roles
                 ]);
-
-        //$user = User::findOrFail($id);
-        //$roles = Role::get(); //Get all roles
-
-        //return view('admin.users.edit', compact('user', 'roles')); //pass user and roles data to view
     }
 
-    public function update(UserUpdateRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        $this->validate($request, [
+            'name'  =>'required',
+            'email' =>'required|email|unique:users,email,'.$id,
+            'roles' => 'required|array'
 
-//        $rules = [
-//            'name'=>'required',
-//            'email'=>'required|email|unique:users,email,'.$id
-//        ];
-//
-//        if ($request->filled('password'))
-//        {
-//            $rules['password'] = ['confirmed', 'min:6'];
-//        }
-//
-//        $input = $request->only(['name', 'email', 'password']);
-//        $roles = $request->only(['role_id', 'model_type', 'model_id']);     //['roles'];
-//        $user->fill($input)->save();
+        ]);
+
+        $user = User::findOrfail($id);
+
+        $input = $request->only(['name', 'email', 'password']);
+        $roles = Arr::pluck($request->get('roles'),'id');
+        //$roles = $request['roles'];
+        $user->fill($input)->save();
 
         if (isset($roles)) {
             $user->roles()->sync($roles);
@@ -124,9 +117,6 @@ class UserController extends Controller
                 'id'      => $user->id,
                 'message' => 'Usuario actualizado con éxito!'
             ]);
-
-        //return redirect()->route('users.index')
-        //    ->with('info', 'Usuario actualizado con éxito');
     }
 
     public function destroy($id)
@@ -138,7 +128,5 @@ class UserController extends Controller
             ->json([
                 'deleted' => true
             ]);
-
-        //return back()->with('info', 'Eliminado correctamente');
     }
 }

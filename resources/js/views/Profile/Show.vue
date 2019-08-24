@@ -21,9 +21,9 @@
                         <dt> Biografía</dt>
                         <dd>{{profile.bio}}</dd>
                         <dt> Twitter Username</dt>
-                        <dd><a href="https://twitter.com/@_avanegas" class="twitter-link" target="_blank">@_avanegas</a></dd>
+                        <dd><a href="`https://twitter.com/${profile.twitter_username}`" class="twitter-link" target="_blank">{{profile.twitter_username}}</a></dd>
                         <dt> Github Username</dt>
-                        <dd><a href="https://github.com/avanegas" class="github-link" target="_blank">avanegas</a></dd>
+                        <dd><a href="https://github.com/${profile.github_username}" class="github-link" target="_blank">{{profile.github_username}}</a></dd>
                     </dl>
                     <router-link :to="`/profiles/${authState.user_id}/edit`" title="Editar Perfil" class="btn btn-small btn-info btn-block">
                         <i class="fa fa-fw fa-cog" aria-hidden="true"></i>Editar Perfil

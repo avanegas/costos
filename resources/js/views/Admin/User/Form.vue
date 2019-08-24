@@ -89,7 +89,7 @@
 				    .then((res) => {
 				        if(res.data.saved) {
 				            Flash.setSuccess(res.data.message)
-				            this.$router.push(`/users/${res.data.id}`)
+				            //this.$router.push(`/users/${res.data.id}`)
 							this.$router.back()
 				        }
 				        this.isProcessing = false

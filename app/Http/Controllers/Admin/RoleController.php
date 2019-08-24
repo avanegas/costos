@@ -10,15 +10,25 @@ use Spatie\Permission\Models\Permission;
 
 use Session;
 use Auth;
+use App\User;
+use DB;
 
 class RoleController extends Controller {
-    /*    
-    public function __construct() 
+    /*
+    public function __construct()
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
+
+    function __construct()
+    {
+        $this->middleware('permission:role-list|role-create|role-edit|role-delete', ['only' => ['index','store']]);
+        $this->middleware('permission:role-create', ['only' => ['create','store']]);
+        $this->middleware('permission:role-edit', ['only' => ['edit','update']]);
+        $this->middleware('permission:role-delete', ['only' => ['destroy']]);
+         }
 */
-    public function index() 
+public function index()
     {
         $roles = Role::with('permissions')->orderBy('name', 'ASC')->get();
 
@@ -26,13 +36,19 @@ class RoleController extends Controller {
             ->json(['roles' => $roles]);
     }
 
-    public function create() 
+    public function create()
     {
-        $permissions = Permission::get();
-        return view('admin.roles.create',compact('permissions'));
+        $form = Role::form();
+        $permissions = Permission::pluck('name', 'id');
+
+        return response()
+        ->json([
+            'form' => $form,
+            'permissions' => $permissions
+        ]);
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name'=>'required|unique:roles|max:10',
@@ -47,39 +63,46 @@ class RoleController extends Controller {
         $permissions = $request['permissions'];
 
         $role->save();
-        
+
         foreach ($permissions as $permission) {
-            $p = Permission::where('id', '=', $permission)->firstOrFail(); 
-            $role = Role::where('name', '=', $name)->first(); 
+            $p = Permission::where('id', '=', $permission)->firstOrFail();
+            $role = Role::where('name', '=', $name)->first();
             $role->givePermissionTo($p);
         }
 
-        return redirect()->route('roles.index')
-            ->with('info', 'Role'. $role->name.' added!'); 
+        return response()
+            ->json([
+                'saved'   => true,
+                'id'      => $role->id,
+                'message' => 'Ha ingresado correctamente un rol!'
+                ]);
     }
 
-    public function show($id) 
+    public function show($id)
     {
         return redirect('roles');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
-        $role = Role::findOrFail($id);
-        $permissions = Permission::all();
+        $form = Role::with(['permission'])->findOrFail($id);
+        $permissions = Permission::get();
 
-        return view('admin.roles.edit', compact('role', 'permissions'));
+        return response()
+            ->json([
+                'form' => $form,
+                'permissions' => $permissions
+            ]);
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
-
-        $role = Role::findOrFail($id);
-        
         $this->validate($request, [
             'name'=>'required|max:10|unique:roles,name,'.$id,
             'permissions' =>'required',
         ]);
+
+        $role = Role::findOrFail($id);
 
         $input = $request->except(['permissions']);
         $permissions = $request['permissions'];
@@ -96,8 +119,12 @@ class RoleController extends Controller {
             $role->givePermissionTo($p);
         }
 
-        return redirect()->route('roles.index')
-            ->with('info', 'Role'. $role->name.' updated!');
+        return response()
+            ->json([
+                'saved'   => true,
+                'id'      => $role->id,
+                'message' => 'Rol actualizado con éxito!'
+            ]);
     }
 
     public function destroy($id)
@@ -105,7 +132,9 @@ class RoleController extends Controller {
         $role = Role::findOrFail($id);
         $role->delete();
 
-        return redirect()->route('roles.index')
-            ->with('info', 'Role deleted!');
+        return response()
+            ->json([
+                'deleted' => true
+            ]);
     }
 }

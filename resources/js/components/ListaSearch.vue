@@ -20,7 +20,7 @@
                         </template>
                         <template v-else-if= "lista === 'grupo_equipos'">
                             {{ filteredData[i].zona.name }}
-                        </template>                        
+                        </template>
                         <template v-else-if= "lista === 'grupo_materials'">
                             {{ filteredData[i].zona.name }}
                         </template>
@@ -49,7 +49,7 @@
                         <template v-else-if= "lista === 'users'">
                             <span v-for="role in filteredData[i].roles">
                                 {{ role.name }},
-                            </span>                            
+                            </span>
                         </template>
                         <template v-else-if= "lista === 'roles'">
                             {{ filteredData[i].name }}
@@ -166,7 +166,7 @@
         },
         filters: {
             capitalize: function (str) {
-                
+
                 if (str.substring(0,4)==="user") { str="autor"}
                 if (str.substring(0,4)==="zona") { str="zona"}
                 if (str.substring(0,4)==="grup") { str="grupo"}
@@ -185,7 +185,7 @@
             agrega(entry) {
 
                 if ( this.authState.api_token && this.authState.user_id === 1 ) {
-                
+
                     switch (this.lista) {
                         case "posts":
                         {
@@ -252,11 +252,21 @@
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
                         }
+                        case "roles":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
+                        case "permissions":
+                        {
+                            this.$router.push(`/${this.lista}/${entry['id']}/edit`);
+                            break;
+                        }
                         case "zonas":
                         {
                             this.$router.push(`/${this.lista}/${entry['id']}/edit`);
                             break;
-                        }                       
+                        }
                         default:
                         {
                             if(this.isAutorized){

@@ -7,11 +7,33 @@
                         <div class="row">
 
                             <div class="col-12 col-sm-4 col-md-3">
-                                <div class="nav felx-colum nav-pills profile-sidebar text-white rounded-left-sm-up">
-                                    <a href="#" class="nav-link active">Profile Settings</a>
-                                    <a href="" class="nav-link">Account Settings</a>
-                                    <a href="" class="nav-link">Account Administration</a>
-                                </div>
+
+                                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                                    <span>Administración</span>
+                                    <a class="d-flex align-items-center text-muted" href="#">
+                                        <span data-feather="plus-circle"></span>
+                                    </a>
+                                </h6>
+                                <ul class="nav flex-column mb-2">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#">
+                                            <span data-feather="file-text"></span>
+                                            Profile Settings
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">
+                                            <span data-feather="file-text"></span>
+                                            Acount Settings
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#">
+                                            <span data-feather="file-text"></span>
+                                            Account Administration
+                                        </a>
+                                    </li>
+                                </ul>
                             </div>
 
                             <div class="col-12 col-sm-8 col-md-9">
