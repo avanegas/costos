@@ -2750,26 +2750,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2777,16 +2757,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      roles: [],
-      form: {
-        roles: []
-      },
+      form: {},
       error: {
         errors: {}
       },
       isProcessing: false,
-      initializeURL: "/api/users/create",
-      storeURL: "/api/users",
+      initializeURL: "/api/permissions/create",
+      storeURL: "/api/permissions",
       action: 'Create'
     };
   },
@@ -2794,15 +2771,13 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     if (this.$route.meta.mode === 'edit') {
-      this.initializeURL = "/api/users/".concat(this.$route.params.id, "/edit");
-      this.storeURL = "/api/users/".concat(this.$route.params.id, "?_method=PUT");
+      this.initializeURL = "/api/permissions/".concat(this.$route.params.id, "/edit");
+      this.storeURL = "/api/permissions/".concat(this.$route.params.id, "?_method=PUT");
       this.action = 'Update';
     }
 
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["get"])(this.initializeURL).then(function (res) {
       vue__WEBPACK_IMPORTED_MODULE_0___default.a.set(_this.$data, 'form', res.data.form);
-    }), Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["get"])("/api/roles").then(function (res) {
-      _this.roles = res.data.roles;
     });
   },
   methods: {
@@ -2830,8 +2805,8 @@ __webpack_require__.r(__webpack_exports__);
     remove: function remove() {
       var _this3 = this;
 
-      Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["del"])("/api/users/".concat(this.$route.params.id)).then(function (res) {
-        _helpers_flash__WEBPACK_IMPORTED_MODULE_1__["default"].setSuccess('Ha eliminado correctamente el user!');
+      Object(_helpers_api__WEBPACK_IMPORTED_MODULE_2__["del"])("/api/permissions/".concat(this.$route.params.id)).then(function (res) {
+        _helpers_flash__WEBPACK_IMPORTED_MODULE_1__["default"].setSuccess('Ha eliminado correctamente el permiso!');
 
         _this3.$router.back();
       });
@@ -2908,7 +2883,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this = this;
 
     Object(_helpers_api__WEBPACK_IMPORTED_MODULE_0__["get"])("../api/permissions").then(function (res) {
-      console.log(res);
+      //console.log(res);
       _this.gridData = res.data.permissions;
     });
   }
@@ -46080,9 +46055,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
         _c("div", { staticClass: "form-group col-9" }, [
-          _c("h5", [_vm._v(_vm._s(_vm.action) + " User")])
+          _c("h5", [_vm._v(_vm._s(_vm.action) + " Permission")])
         ]),
         _vm._v(" "),
         _c(
@@ -46165,126 +46140,6 @@ var render = function() {
             _vm.error.errors.name
               ? _c("small", { staticClass: "error-control" }, [
                   _vm._v(_vm._s(_vm.error.errors.name[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Email")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.email,
-                  expression: "form.email"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "email" },
-              domProps: { value: _vm.form.email },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "email", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.error.errors.email
-              ? _c("small", { staticClass: "error-control" }, [
-                  _vm._v(_vm._s(_vm.error.errors.email[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "form-group" },
-            [
-              _c("label", [_vm._v("Asignar roles")]),
-              _vm._v(" "),
-              _c("v-select", {
-                attrs: { multiple: "", label: "name", options: _vm.roles },
-                model: {
-                  value: _vm.form.roles,
-                  callback: function($$v) {
-                    _vm.$set(_vm.form, "roles", $$v)
-                  },
-                  expression: "form.roles"
-                }
-              })
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.password,
-                  expression: "form.password"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password" },
-              domProps: { value: _vm.form.password },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "password", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.error.errors.password
-              ? _c("small", { staticClass: "error-control" }, [
-                  _vm._v(_vm._s(_vm.error.errors.password[0]))
-                ])
-              : _vm._e()
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "form-group" }, [
-            _c("label", [_vm._v("Confirme Password")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.form.password_confirmation,
-                  expression: "form.password_confirmation"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "password", step: "any" },
-              domProps: { value: _vm.form.password_confirmation },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(
-                    _vm.form,
-                    "password_confirmation",
-                    $event.target.value
-                  )
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.error.errors.password_confirmation
-              ? _c("small", { staticClass: "error-control" }, [
-                  _vm._v(_vm._s(_vm.error.errors.password_confirmation[0]))
                 ])
               : _vm._e()
           ])
@@ -46456,7 +46311,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
         _c("div", { staticClass: "form-group col-9" }, [
           _c("h5", [_vm._v(_vm._s(_vm.action) + " Role")])
         ]),
@@ -46736,7 +46591,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
         _c("div", { staticClass: "form-group col-9" }, [
           _c("h5", [_vm._v(_vm._s(_vm.action) + " User")])
         ]),

@@ -6,7 +6,7 @@
                 <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
                 <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
             </h5>
-            <hr>	            
+            <hr>
             <div class="form-group row">
                 <h5 class="col-7"><i class="fa fa-users"></i> Permisos</h5>
                 <div class="form-group col-4">
@@ -54,7 +54,7 @@
         created() {
             get(`../api/permissions`)
                 .then((res) => {
-                    console.log(res);
+                    //console.log(res);
                     this.gridData = res.data.permissions
                 })
         }

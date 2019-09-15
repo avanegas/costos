@@ -12,27 +12,28 @@ use Session;
 use Auth;
 
 class PermissionController extends Controller {
-    /*    
-    public function __construct() 
+    /*
+    public function __construct()
     {
         $this->middleware(['auth', 'isAdmin']);     //middleware
     }
 */
-    public function index() 
+    public function index()
     {
         $permissions = Permission::orderBy('name', 'ASC')->get();
 
         return response()
             ->json(['permissions' => $permissions]);
     }
-    
-    public function create() 
+
+    public function create()
     {
         $roles = Role::get();
-        return view('admin.permissions.create',compact('roles'));
+
+        //return view('admin.permissions.create',compact('roles'));
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         $this->validate($request, [
             'name'=>'required|max:40',
@@ -58,21 +59,25 @@ class PermissionController extends Controller {
             ->with('info', 'Permission'. $permission->name.' added!');
     }
 
-    public function show($id) 
+    public function show($id)
     {
         return redirect('permissions');
     }
 
-    public function edit($id) 
+    public function edit($id)
     {
-        $permission = Permission::findOrFail($id);
-        return view('admin.permissions.edit', compact('permission'));
+        $form= Permission::findOrFail($id);
+
+        return response()
+            ->json([
+                'form' => $form
+            ]);
     }
 
-    public function update(Request $request, $id) 
+    public function update(Request $request, $id)
     {
         $permission = Permission::findOrFail($id);
-        
+
         $this->validate($request, [
             'name'=>'required|max:40',
         ]);
@@ -80,11 +85,15 @@ class PermissionController extends Controller {
         $input = $request->all();
         $permission->fill($input)->save();
 
-        return redirect()->route('permissions.index')
-            ->with('info', 'Permission'. $permission->name.' updated!');
+        return response()
+            ->json([
+                'saved'   => true,
+                'id'      => $permission->id,
+                'message' => 'Permiso actualizado con éxito!'
+            ]);
     }
 
-    public function destroy($id) 
+    public function destroy($id)
     {
         $permission = Permission::findOrFail($id);
 

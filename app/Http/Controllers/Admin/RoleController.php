@@ -8,10 +8,10 @@ use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 
+use Illuminate\Support\Arr;
+use App\User;
 use Session;
 use Auth;
-use App\User;
-use DB;
 
 class RoleController extends Controller {
     /*

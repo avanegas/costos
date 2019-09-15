@@ -16,7 +16,7 @@ class CreateProfilesTable extends Migration
         Schema::create('profiles', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
-            $table->enum('tipo', ['ARQUITECTO', 'INGENIERO','ESPECIALISTA','OBREROS','PROFESIONAL','PROVEEDOR','ND'])->default('ND');
+            $table->enum('tipo', ['ARQUITECTO', 'INGENIERO','ESPECIALISTA','OBRERO','PROFESIONAL','PROVEEDOR','ND'])->default('ND');
             $table->text('bio')->nullable();
             $table->string('phone')->nullable();
             $table->string('twitter_username')->nullable();
@@ -28,9 +28,9 @@ class CreateProfilesTable extends Migration
             $table->boolean('activated')->default(0);
 
             //relation
-            //$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')
-                ->onDelete('cascade');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->timestamps();
         });

@@ -1,7 +1,7 @@
 <template>
     <div class="row">
         <div class="col-md">
-			<div class="form-group row">
+			<div class="form-group row mb-3 mt-3">
 				<div class="form-group col-9">
 					<h5>{{action}} User</h5>
 				</div>
