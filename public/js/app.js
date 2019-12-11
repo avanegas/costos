@@ -57097,8 +57097,13 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h5", { staticClass: "col-7" }, [
-      _c("i", { staticClass: "fa fa-users" }),
-      _vm._v(" Usuarios")
+      _c("i", { staticClass: "fas fa-home" }),
+      _vm._v(" Arquitectura "),
+      _c("small", { staticStyle: { color: "rgb(51,115,255)" } }, [
+        _vm._v(
+          " . .  .  .  Estudio, Diseño, Construcción, Fiscalización, otros."
+        )
+      ])
     ])
   }
 ]

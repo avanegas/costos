@@ -13,7 +13,7 @@
 
             <hr>
             <div class="form-group row">
-                <h5 class="col-7"><i class="fa fa-users"></i> Usuarios</h5>
+                <h5 class="col-7"><i class="fas fa-home"></i> Arquitectura <small style="color:rgb(51,115,255);">&nbsp.&nbsp.&nbsp&nbsp.&nbsp&nbsp.&nbsp&nbspEstudio, Diseño, Construcción, Fiscalización, otros.</small></h5>
                 <div class="form-group col-4">
                     <input
                         type="search"
