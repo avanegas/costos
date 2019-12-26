@@ -1,13 +1,17 @@
 <?php
 
-use Faker\Generator as Faker;
+/* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-$factory->define(App\Models\Post\Tag::class, function (Faker $faker) {
+use Illuminate\Support\Str;
+use Faker\Generator as Faker;
+use App\Models\Post\Tag;
+
+$factory->define(Tag::class, function (Faker $faker) {
 
 	$title = $faker->unique()->word(1);
-	
+
     return [
         'name' => $title,
-        'slug' => str_slug($title),
+        'slug' => Str::slug($title),
     ];
 });

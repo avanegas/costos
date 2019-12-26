@@ -11756,6 +11756,24 @@ a.text-dark:focus {
   opacity: 1;
 }
 
+.info {
+  color: #4b4fe2;
+  margin-right: 16px;
+}
+
+.skill-bar {
+  background-color: #bdc9ea;
+  border-radius: 16px;
+}
+
+.progress-bar {
+  padding: 0.1em 16px;
+  border-radius: 16px;
+  text-align: center;
+  color: #fff;
+  background-color: #4b4fe2;
+}
+
 /* -------------- 1. PROGRESS BAR ---------------- */
 
 .progress {

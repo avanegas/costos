@@ -3,27 +3,41 @@
         <div class="col-md">
             <div class="card mb-3 mt-3">
                 <div class="card-header">
-                    {{profile.user.name}}&#039;s Perfil
+                    <h5>{{profile.user.name}}&#039;s<span style="color:rgb(51,115,255);">&nbspPerfil</span></h5>
                 </div>
                 <div class="card-body">
                     <img :src="`/images/${profile.avatar}`" v-if="profile.avatar" class="user-avatar">
                     <dl class="user-info">
-                        <dt> Name</dt>
-                        <dd>{{profile.user.name}}</dd>
-                        <dt> Actividad</dt>
-                        <dd>{{profile.tipo}}</dd>
-                        <dt> Location</dt>
-                        <dd>{{profile.location}}</dd>
-                        <dt> E-mail Address</dt>
-                        <dd>{{profile.user.email}}</dd>
-                        <dt> Phone</dt>
-                        <dd>{{profile.phone}}</dd>
-                        <dt> Biografía</dt>
+                        <div class="title">
+                            <h5>{{profile.user.name}}</h5>
+                        </div>
                         <dd>{{profile.bio}}</dd>
-                        <dt> Twitter Username</dt>
-                        <dd><a href="`https://twitter.com/${profile.twitter_username}`" class="twitter-link" target="_blank">{{profile.twitter_username}}</a></dd>
-                        <dt> Github Username</dt>
-                        <dd><a href="https://github.com/${profile.github_username}" class="github-link" target="_blank">{{profile.github_username}}</a></dd>
+                        <hr>
+
+                        <p><i class="fa fa-briefcase info"></i>{{profile.tipo}}</p>
+                        <p><i class="fa fa-home info"></i>{{profile.location}}</p>
+                        <p><i class="fa fa-envelope info"></i>{{profile.user.email}}</p>
+                        <p><i class="fa fa-phone info"></i>{{profile.phone}}</p>
+
+                        <p><i class="fa fa-asterisk info"></i>Habilidades</p>
+
+                        <p>Software</p>
+                        <div class="skill-bar">
+                            <div class="progress-bar" style="width:80%">80%</div>
+                        </div>
+
+                        <p>Programación</p>
+                        <div class="skill-bar">
+                            <div class="progress-bar" style="width:80%">80%</div>
+                        </div>
+
+                        <p>Construcción</p>
+                        <div class="skill-bar">
+                            <div class="progress-bar" style="width:80%">80%</div>
+                        </div>
+
+                        <p><i class="fab fa-twitter info"></i><a href="`https://twitter.com/${profile.}`" class="twitter-link" target="_blank">{{profile.twitter_username}}</a></p>
+                        <p><i class="fab fa-github info"></i><a href="https://github.com/${profile.github_username}" class="github-link" target="_blank">{{profile.github_username}}</a></p>
                     </dl>
                     <router-link :to="`/profiles/${authState.user_id}/edit`" title="Editar Perfil" class="btn btn-small btn-info btn-block">
                         <i class="fa fa-fw fa-cog" aria-hidden="true"></i>Editar Perfil
