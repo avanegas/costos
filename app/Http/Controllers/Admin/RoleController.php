@@ -12,6 +12,7 @@ use Illuminate\Support\Arr;
 use App\User;
 use Session;
 use Auth;
+use DB;
 
 class RoleController extends Controller {
     /*
@@ -38,30 +39,32 @@ public function index()
 
     public function create()
     {
-        $form = Role::form();
+        $form = [
+            'name'        => '',
+            'permissions' => ''
+            ];
         $permissions = Permission::pluck('name', 'id');
 
         return response()
         ->json([
-            'form' => $form,
-            'permissions' => $permissions
+            'form'          => $form,
+            'permissions'   => $permissions,
         ]);
     }
 
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'=>'required|unique:roles|max:10',
-            'permissions' =>'required',
+            'name'          =>'required|unique:roles,name',
+            'permissions'   =>'required',
             ]
         );
 
         $name = $request['name'];
+
         $role = new Role();
         $role->name = $name;
-
         $permissions = $request['permissions'];
-
         $role->save();
 
         foreach ($permissions as $permission) {
@@ -85,7 +88,7 @@ public function index()
 
     public function edit($id)
     {
-        $form = Role::with(['permission'])->findOrFail($id);
+        $form = Role::with(['permissions'])->findOrFail($id);
         $permissions = Permission::get();
 
         return response()
@@ -98,15 +101,14 @@ public function index()
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name'=>'required|max:10|unique:roles,name,'.$id,
-            'permissions' =>'required',
+            'name'          =>'required|unique:roles,name,'.$id,
+            'permissions'   =>'required',
         ]);
 
-        $role = Role::findOrFail($id);
-
+        $role = Role::findById($id);    //findOrFail($id);
         $input = $request->except(['permissions']);
         $permissions = $request['permissions'];
-        $role->fill($input)->save();
+        $role->create($input);  //fill($input)->save();
 
         $p_all = Permission::all();
 
@@ -115,7 +117,7 @@ public function index()
         }
 
         foreach ($permissions as $permission) {
-            $p = Permission::where('id', '=', $permission)->firstOrFail();
+            $p = Permission::where('id', '=', $permission->id)->firstOrFail();
             $role->givePermissionTo($p);
         }
 

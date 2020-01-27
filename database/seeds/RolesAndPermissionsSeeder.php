@@ -19,15 +19,18 @@ class RolesAndPermissionsSeeder extends Seeder
         Permission::create(['name' => 'Publish Post']);
         Permission::create(['name' => 'Unpublish Post']);
         Permission::create(['name' => 'Comment Post']);
-        
+
         // create roles and assign existing permissions
         $role = Role::create(['name' => 'admin']);
         $role->givePermissionTo(['Administer roles & permissions', 'Create Post', 'Edit Post', 'Delete Post',  'Publish Post', 'Unpublish Post', 'Comment Post']);
 
+        $role = Role::create(['name' => 'writer']);
+        $role->givePermissionTo('Create Post');
+
         $role = Role::create(['name' => 'user']);
         $role->givePermissionTo('Comment Post');
 
-        $role = Role::create(['name' => 'writer']);
-        $role->givePermissionTo('Create Post');
+        $role = Role::create(['name' => 'guest']);
+        //$role->givePermissionTo('Comment Post');
     }
 }

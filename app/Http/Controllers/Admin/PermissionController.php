@@ -30,6 +30,10 @@ class PermissionController extends Controller {
     {
         $roles = Role::get();
 
+        return response()
+            ->json([
+                'roles' => $roles
+            ]);
         //return view('admin.permissions.create',compact('roles'));
     }
 

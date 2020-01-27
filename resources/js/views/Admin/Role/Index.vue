@@ -1,24 +1,24 @@
 <template>
 	<div class="row">
-		<div class="col-md">
-            <h5><i class="fa fa-lock-open"></i> Administración
-                <router-link to="/users" class="btn btn-secondary btn-sm float-right">Usuarios</router-link>
-                <router-link to="/roles" class="btn btn-secondary btn-sm float-right">Roles</router-link>
-                <router-link to="/permissions" class="btn btn-secondary btn-sm float-right">Permisos</router-link>
-            </h5>
-            <hr>
-            <div class="form-group row">
-                <h5 class="col-7"><i class="fa fa-users"></i> Roles</h5>
-                <div class="form-group col-4">
+        <div class="col-md">
+            <div class="row m-0 mt-3">
+                <h5 class="col-6"><i class="fa fa-lock-open"></i> Administración</h5>
+                <div class="form-group col-6 mt-2 mb-0 p-0">
+                    <router-link to="/users" class="btn btn-secondary btn-sm mr-1 float-right"> Usuarios</router-link>
+                    <router-link to="/roles" class="btn btn-secondary btn-sm mr-1 float-right"> Roles</router-link>
+                    <router-link to="/permissions" class="btn btn-secondary btn-sm mr-1 float-right"> Permisos</router-link>
+                </div>
+            </div>
+            <div class="form-group row m-0 mt-2 mb-2">
+                <h5 class="col-6"><i class="fa fa-users"></i> Roles</h5>
+                <div class="col-6 p-0">
+                    <router-link to="/roles/create" class="btn btn-primary mr-1 float-right"> Nuevo</router-link>
                     <input
                         type="search"
-                        class="form-control mr-sm-2 mb-2 mb-sm-0"
+                        class="form-control col-8 mr-sm-2 mb-sm-0 mr-1 float-right"
                         placeholder="Search..."
                         autocomplete="off"
                         v-model="searchQuery">
-                </div>
-                 <div>
-                    <router-link to="/roles/create" class="btn btn-primary"> Nuevo</router-link>
                 </div>
             </div>
             <div class="card">

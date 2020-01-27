@@ -2726,8 +2726,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 
 
@@ -2883,8 +2881,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_flash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/flash */ "./resources/js/helpers/flash.js");
 /* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/api */ "./resources/js/helpers/api.js");
 /* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/form */ "./resources/js/helpers/form.js");
-//
-//
 //
 //
 //
@@ -3075,8 +3071,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_flash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../helpers/flash */ "./resources/js/helpers/flash.js");
 /* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../helpers/api */ "./resources/js/helpers/api.js");
 /* harmony import */ var _helpers_form__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../helpers/form */ "./resources/js/helpers/form.js");
-//
-//
 //
 //
 //
@@ -8619,6 +8613,8 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _helpers_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers/api */ "./resources/js/helpers/api.js");
 /* harmony import */ var _components_ListaSearch_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../components/ListaSearch.vue */ "./resources/js/components/ListaSearch.vue");
+//
+//
 //
 //
 //
@@ -46168,17 +46164,18 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h5", [_vm._v(_vm._s(_vm.action) + " Permission")])
+        _c("h5", { staticClass: "col-6" }, [
+          _vm._v(_vm._s(_vm.action) + " Permission")
         ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "col-6 mt-2 mb-0" },
           [
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -46190,7 +46187,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger mr-1 float-right",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -46207,7 +46204,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -46284,85 +46281,86 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c(
-        "h5",
-        [
-          _c("i", { staticClass: "fa fa-lock-open" }),
-          _vm._v(" Administración\n                "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Usuarios")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/roles" }
-            },
-            [_vm._v("Roles")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/permissions" }
-            },
-            [_vm._v("Permisos")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "row m-0 mt-3" }, [
         _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group col-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchQuery,
-                expression: "searchQuery"
-              }
-            ],
-            staticClass: "form-control mr-sm-2 mb-2 mb-sm-0",
-            attrs: {
-              type: "search",
-              placeholder: "Search...",
-              autocomplete: "off"
-            },
-            domProps: { value: _vm.searchQuery },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.searchQuery = $event.target.value
-              }
-            }
-          })
-        ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "form-group col-6 mt-2 mb-0 p-0" },
           [
             _c(
               "router-link",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/users" }
+              },
+              [_vm._v(" Usuarios")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/roles" }
+              },
+              [_vm._v(" Roles")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/permissions" }
+              },
+              [_vm._v(" Permisos")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row m-0 mt-2 mb-2" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-6 p-0" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { to: "/permissions/create" }
               },
               [_vm._v(" Nuevo")]
-            )
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
+              ],
+              staticClass:
+                "form-control col-8 mr-sm-2 mb-sm-0 mr-1 float-right",
+              attrs: {
+                type: "search",
+                placeholder: "Search...",
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchQuery = $event.target.value
+                }
+              }
+            })
           ],
           1
         )
@@ -46394,7 +46392,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h5", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-6" }, [
+      _c("i", { staticClass: "fa fa-lock-open" }),
+      _vm._v(" Administración")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "col-6" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Permisos")
     ])
@@ -46424,17 +46431,18 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h5", [_vm._v(_vm._s(_vm.action) + " Role")])
+        _c("h5", { staticClass: "col-6" }, [
+          _vm._v(_vm._s(_vm.action) + " Role")
         ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "col-6 mt-2 mb-0" },
           [
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -46446,7 +46454,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger mr-1 float-right",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -46463,7 +46471,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -46564,85 +46572,86 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c(
-        "h5",
-        [
-          _c("i", { staticClass: "fa fa-lock-open" }),
-          _vm._v(" Administración\n                "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Usuarios")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/roles" }
-            },
-            [_vm._v("Roles")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/permissions" }
-            },
-            [_vm._v("Permisos")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "row m-0 mt-3" }, [
         _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group col-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchQuery,
-                expression: "searchQuery"
-              }
-            ],
-            staticClass: "form-control mr-sm-2 mb-2 mb-sm-0",
-            attrs: {
-              type: "search",
-              placeholder: "Search...",
-              autocomplete: "off"
-            },
-            domProps: { value: _vm.searchQuery },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.searchQuery = $event.target.value
-              }
-            }
-          })
-        ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "form-group col-6 mt-2 mb-0 p-0" },
           [
             _c(
               "router-link",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/users" }
+              },
+              [_vm._v(" Usuarios")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/roles" }
+              },
+              [_vm._v(" Roles")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/permissions" }
+              },
+              [_vm._v(" Permisos")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row m-0 mt-2 mb-2" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-6 p-0" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { to: "/roles/create" }
               },
               [_vm._v(" Nuevo")]
-            )
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
+              ],
+              staticClass:
+                "form-control col-8 mr-sm-2 mb-sm-0 mr-1 float-right",
+              attrs: {
+                type: "search",
+                placeholder: "Search...",
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchQuery = $event.target.value
+                }
+              }
+            })
           ],
           1
         )
@@ -46674,7 +46683,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h5", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-6" }, [
+      _c("i", { staticClass: "fa fa-lock-open" }),
+      _vm._v(" Administración")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "col-6" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Roles")
     ])
@@ -46704,17 +46722,18 @@ var render = function() {
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
       _c("div", { staticClass: "form-group row mb-3 mt-3" }, [
-        _c("div", { staticClass: "form-group col-9" }, [
-          _c("h5", [_vm._v(_vm._s(_vm.action) + " User")])
+        _c("h5", { staticClass: "col-6" }, [
+          _vm._v(_vm._s(_vm.action) + " User")
         ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "col-6 mt-2 mb-0" },
           [
             _c(
               "button",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: { click: _vm.save }
               },
@@ -46726,7 +46745,7 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      staticClass: "btn btn-danger",
+                      staticClass: "btn btn-danger mr-1 float-right",
                       attrs: { type: "button", disabled: _vm.isProcessing },
                       on: {
                         click: function($event) {
@@ -46743,7 +46762,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn btn-secondary",
+                staticClass: "btn btn-secondary mr-1 float-right",
                 attrs: { type: "button", disabled: _vm.isProcessing },
                 on: {
                   click: function($event) {
@@ -46940,85 +46959,86 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c(
-        "h5",
-        [
-          _c("i", { staticClass: "fa fa-lock-open" }),
-          _vm._v(" Administración\n                "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Usuarios")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/roles" }
-            },
-            [_vm._v("Roles")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/permissions" }
-            },
-            [_vm._v("Permisos")]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
+      _c("div", { staticClass: "row m-0 mt-3" }, [
         _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "form-group col-4" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.searchQuery,
-                expression: "searchQuery"
-              }
-            ],
-            staticClass: "form-control mr-sm-2 mb-2 mb-sm-0",
-            attrs: {
-              type: "search",
-              placeholder: "Search...",
-              autocomplete: "off"
-            },
-            domProps: { value: _vm.searchQuery },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.searchQuery = $event.target.value
-              }
-            }
-          })
-        ]),
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "form-group col-6 mt-2 mb-0 p-0" },
           [
             _c(
               "router-link",
               {
-                staticClass: "btn btn-primary",
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/users" }
+              },
+              [_vm._v(" Usuarios")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/roles" }
+              },
+              [_vm._v(" Roles")]
+            ),
+            _vm._v(" "),
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                attrs: { to: "/permissions" }
+              },
+              [_vm._v(" Permisos")]
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group row m-0 mt-2 mb-2" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "col-6 p-0" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "btn btn-primary mr-1 float-right",
                 attrs: { to: "/users/create" }
               },
               [_vm._v(" Nuevo")]
-            )
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.searchQuery,
+                  expression: "searchQuery"
+                }
+              ],
+              staticClass:
+                "form-control col-8 mr-sm-2 mb-sm-0 mr-1 float-right",
+              attrs: {
+                type: "search",
+                placeholder: "Search...",
+                autocomplete: "off"
+              },
+              domProps: { value: _vm.searchQuery },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.searchQuery = $event.target.value
+                }
+              }
+            })
           ],
           1
         )
@@ -47050,7 +47070,16 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h5", { staticClass: "col-7" }, [
+    return _c("h5", { staticClass: "col-6" }, [
+      _c("i", { staticClass: "fa fa-lock-open" }),
+      _vm._v(" Administración")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "col-6" }, [
       _c("i", { staticClass: "fa fa-users" }),
       _vm._v(" Usuarios")
     ])
@@ -57131,77 +57160,77 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
     _c("div", { staticClass: "col-md" }, [
-      _c(
-        "h5",
-        [
-          _c("i", {
-            staticClass: "fa fa-address-book",
-            attrs: { "aria-hidden": "true" }
-          }),
-          _vm._v(" Servicios\n            "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Proveedores")]
-          ),
+      _c("div", { staticClass: "col-md" }, [
+        _c("div", { staticClass: "row m-0 mt-2" }, [
+          _vm._m(0),
           _vm._v(" "),
           _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/permissions" }
-            },
-            [_vm._v("Profesionales")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/roles" }
-            },
-            [_vm._v("Maestros/Obreros")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/roles" }
-            },
-            [_vm._v("Ingenieros")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Especialistas")]
-          ),
-          _vm._v(" "),
-          _c(
-            "router-link",
-            {
-              staticClass: "btn btn-secondary btn-sm float-right",
-              attrs: { to: "/users" }
-            },
-            [_vm._v("Arquitectos")]
+            "div",
+            { staticClass: "form-group col-10 m-0 mt-2 mb-0 p-0" },
+            [
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/users" }
+                },
+                [_vm._v("Proveedores")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/permissions" }
+                },
+                [_vm._v("Profesionales")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/roles" }
+                },
+                [_vm._v("Maestros/Obreros")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/roles" }
+                },
+                [_vm._v("Ingenieros")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/users" }
+                },
+                [_vm._v("Especialistas")]
+              ),
+              _vm._v(" "),
+              _c(
+                "router-link",
+                {
+                  staticClass: "btn btn-secondary btn-sm mr-1 float-right",
+                  attrs: { to: "/users" }
+                },
+                [_vm._v("Arquitectos")]
+              )
+            ],
+            1
           )
-        ],
-        1
-      ),
+        ])
+      ]),
       _vm._v(" "),
-      _c("hr"),
-      _vm._v(" "),
-      _c("div", { staticClass: "form-group row" }, [
-        _vm._m(0),
+      _c("div", { staticClass: "form-group row m-0 mt-2 mb-2" }, [
+        _vm._m(1),
         _vm._v(" "),
-        _c("div", { staticClass: "form-group col-4" }, [
+        _c("div", { staticClass: "col-4 p-0" }, [
           _c("input", {
             directives: [
               {
@@ -57231,6 +57260,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "col-1" },
           [
             _c(
               "router-link",
@@ -57271,13 +57301,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("h5", { staticClass: "col-2 p-0" }, [
+      _c("i", {
+        staticClass: "fa fa-address-book",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v(" Servicios")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("h5", { staticClass: "col-7" }, [
       _c("i", { staticClass: "fas fa-home" }),
       _vm._v(" Arquitectura "),
       _c("small", { staticStyle: { color: "rgb(51,115,255)" } }, [
-        _vm._v(
-          " . .  .  .  Estudio, Diseño, Construcción, Fiscalización, otros."
-        )
+        _vm._v(" . .  Estudio, Diseño, Construcción, Fiscalización, otros.")
       ])
     ])
   }

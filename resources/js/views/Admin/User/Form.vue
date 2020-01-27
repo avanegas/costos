@@ -2,15 +2,13 @@
     <div class="row">
         <div class="col-md">
 			<div class="form-group row mb-3 mt-3">
-				<div class="form-group col-9">
-					<h5>{{action}} User</h5>
-				</div>
-				<div>
-					<button type="button" class="btn btn-primary" @click="save" :disabled="isProcessing">Save</button>
+                <h5 class="col-6">{{action}} User</h5>
+				<div class="col-6 mt-2 mb-0">
+					<button type="button" class="btn btn-primary mr-1 float-right" @click="save" :disabled="isProcessing">Save</button>
 	        		<template v-if="action == 'Update'">
-	            		<button type="button" class="btn btn-danger" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
+	            		<button type="button" class="btn btn-danger mr-1 float-right" @click.prevent="remove(form)" :disabled="isProcessing">Eliminar</button>
 	        		</template>
-					<button type="button" class="btn btn-secondary" @click="$router.back()" :disabled="isProcessing">Cancel</button>
+					<button type="button" class="btn btn-secondary mr-1 float-right" @click="$router.back()" :disabled="isProcessing">Cancel</button>
 				</div>
 			</div>
 			<div class="card">
