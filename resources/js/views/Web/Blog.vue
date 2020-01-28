@@ -28,10 +28,6 @@
 					<p class="float-right">comentarios: {{post.comments.length}}</p>
 				</div>
 			</div>
-<!--            <infinite-loading @infinite="infiniteHandler">-->
-<!--                <div slot="no-more">Fin de archivos</div>-->
-<!--                <div slot="no-result">No hay archivos</div>-->
-<!--            </infinite-loading>-->
 		</div>
 	</div>
 </template>

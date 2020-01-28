@@ -10,9 +10,8 @@ import bar from './components/progress'
 router.beforeEach((to, from, next) => {
     bar.start()
     next()
-})
+});
 
-Vue.component('infinite-loading', require('vue-infinite-loading').default);
 Vue.component('v-select', vSelect);
 Vue.filter('formatMoney', (value) => {
     return Number(value)
@@ -25,4 +24,4 @@ const app = new Vue({
 	template: `<app></app>`,
 	components: { App },
 	router
-})
+});
