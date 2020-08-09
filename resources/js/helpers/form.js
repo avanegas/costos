@@ -9,6 +9,7 @@ export function toMulipartedForm(form, mode) {
 }
 
 export function objectToFormData(obj, form, namespace) {
+    console.log(obj, form, namespace);
     let fd = form || new FormData()
     let formKey
     for(var property in obj) {

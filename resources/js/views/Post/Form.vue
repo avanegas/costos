@@ -153,9 +153,9 @@
 				this.isProcessing = true;
 				this.form.user_id = this.authState.user_id;
 				const form = toMulipartedForm(this.form, this.$route.meta.mode);
+				//console.log(this.form);				
 				post(this.storeURL, form)
 				.then((res) => {
-					console.log(res);
 					if(res.data.saved) {
 						Flash.setSuccess(res.data.message)
 						this.$router.push(`/posts/${res.data.id}`)
